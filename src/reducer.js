@@ -1,25 +1,9 @@
-const todos = function(state=[], action){
-  switch (action.type) {
-    case 'ADD_TODO':
-      return [
-        ...state,
-        {
-          text: action.text,
-          completed: false
-        }
-      ]
-    case 'TOGGLE_TODO':
-      return state.map((todo, index) => {
-        if (index === action.index) {
-          return Object.assign({}, todo, {
-            completed: !todo.completed
-          })
-        }
-        return todo
-      })
-    default:
-      return state
-  }
-}
+import {combineReducers} from 'redux';
+import userReducer from './components/Utils/reducers/users';
 
-export default todos
+
+const easyflight = combineReducers({
+  userReducer
+});
+
+export default easyflight;

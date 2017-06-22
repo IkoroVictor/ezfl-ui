@@ -1,0 +1,222 @@
+/* Big tablets to 1500px*/
+@media only screen and (max-width: 2000px){
+
+}
+
+/* Big tablets to 1200px*/
+@media only screen and (max-width: 1199px){
+
+}
+
+
+
+
+
+
+/* Small tablets to big tablets: from 768px to 1023px*/
+@media only screen and (max-width: 1023px){
+  .nav-elements figure{
+    margin-left: 10px;
+  }
+
+  .main-nav{
+    margin-right: 10px;
+  }
+}
+
+@media only screen and (max-width: 991px){
+  .top-right-bottom{
+    text-align: center;
+    padding-left: 0px;
+    font-size: 100%;
+  }
+}
+
+
+
+
+
+
+/* Small phones to small tablets: from 481px to 767px*/
+@media only screen and (max-width: 767px){
+  .hero-search-box{
+    max-width: 100%;
+  }
+
+  .main-nav.menu-hidden{
+    display:none;
+  }
+
+  .btn-menu{
+    display: block;
+    float:right;
+    margin-top: -5px;
+  }
+
+.main-nav{
+  display: block;
+  position:fixed;
+  top :50px;
+  left: 0;
+  text-align: center;
+}
+
+  nav ul.main-nav{
+      list-style: none;
+      width: 100%;
+  }
+
+  nav ul.main-nav li{
+    background-color: #32658F;
+    border-top: 1px solid #fff;
+    line-height: 50px;
+    width: 100%;
+    margin: 0;
+  }
+
+  nav ul.main-nav li:last-child a{
+      border: 0;
+  }
+
+  nav ul.main-nav li a:link, nav ul.main-nav li a:visited{
+      font-size:80%;
+      text-transform: uppercase;
+      word-spacing: 1px;
+      letter-spacing: 1px;
+      font-weight: 400;
+      color: #fff;
+      transition: 0.4s;
+  }
+
+  nav ul.main-nav li a:hover{
+      border: 0;
+  }
+
+  nav ul.main-nav li:hover{
+      background-color: #142839;
+  }
+
+  /*----------------------------------------------------------------*/
+  /* REUSABLE COMPONENTS */
+  /*----------------------------------------------------------------*/
+
+  section{
+      padding:10px 0;
+  }
+
+  .hero-search-box{
+      position:absolute;
+      text-transform: uppercase;
+      top:30%;
+      left:50%;
+      transform:translate(-50%, -50%);
+  }
+
+  .search-component{
+    font-size: 85%;
+  }
+
+  .top-right-bottom{
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .top-right-top figure{
+    margin-left: 7px;
+  }
+
+/****** FLIGHT CARD ***********/
+  .flight-card{
+    font-size: 80%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    width:100%;
+  }
+
+  .top-left img{
+    max-width: 55%;
+    height: 20px;
+  }
+
+  .top-left img.double-routes{
+    margin: 45% auto 0 auto;
+    max-width: 65%;
+    height: 20px;
+  }
+
+  .top-right img{
+    max-width: 70px;
+  }
+
+  *.location-stamp-departure{
+    margin-left: 2%;
+  }
+
+  .location-stamp-arrival{
+    margin-right: 0;
+  }
+
+  .time{
+    font-weight: 300;
+    font-size: 70%;
+    color: #333;
+  }
+  .btn-border{
+    border: 0;
+  }
+
+  .btn{
+    font-size: 120%;
+  }
+
+  /*************FOOTER************/
+
+  .footer{
+    text-align: center;
+  }
+
+  .footer .social-icons li{
+    margin: 0px 20px 15px 20px;
+  }
+
+  .footer ul.social-icons{
+    float:none;
+    padding-right: 0;
+    font-size:150%;
+    color: #255C80;
+    margin: 0;
+  }
+
+  .footer p{
+    color:#888;
+    font-size: 60%;
+  }
+
+  .about-us{
+    text-align: justify;
+  }
+
+  /************** DISPLAY PANEL ***************/
+  .flight-filter{
+    text-align: center;
+  }
+
+  .flight-number{
+    text-align: center;
+  }
+
+  /***************** SEARCH COMPONENT **************/
+}
+
+
+
+
+
+
+
+
+
+/* Small phones: from 0 to 480px*/
+@media only screen and (max-width: 480px){
+
+}

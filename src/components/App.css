@@ -1,24 +1,1211 @@
-.App {
+/*
+Orange color - #e67e22
+Blue color - #32648e
+*/
+
+/*----------------------------------------------------------------*/
+/* REUSABLE COMPONENTS */
+/*----------------------------------------------------------------*/
+
+section{
+    padding:40px 0;
+}
+
+a:link, a:visited{
+    text-decoration: none;
+    color: white;
+}
+
+/*----------------------------------------------------------------*/
+/* HEADER */
+/*----------------------------------------------------------------*/
+/*----------NAV----------rgba(50, 100, 142, 0.97)--------*/
+nav{
+    background-color: rgba(58, 140, 194, 0.97);
+    height: 50px;
+    width:100%;
+    position:fixed;
+    z-index:9999;
+}
+
+.nav-elements{
+  margin-top: 10px;
+  color:white;
+}
+
+nav ul.main-nav{
+    list-style: none;
+    float:right;
+}
+
+nav ul.main-nav li{
+    display:inline-block;
+    margin: 0 10px;
+}
+
+nav ul.main-nav li a:link, nav ul.main-nav li a:visited{
+    font-size:55%;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+    word-spacing: 1px;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+    transition: 0.4s;
+}
+
+li.sign-up a{
+    border: 1px solid #fff;
+    border-radius: 4px;
+    padding: 7px 18px 7px 16px;
+}
+
+nav ul.main-nav li a:hover, nav ul.main-nav li a:active{
+    border-bottom: 1px solid #fff;
+}
+
+.main-nav{
+  margin-right: 30px;
+}
+
+.logo-container{
+  margin-left: 30px;
+}
+
+.user-id img{
+  width: 32px;
+  height: auto;
+  border-radius: 50%;
+  display: inline-block;
+  margin-bottom: 0px;
+}
+
+.user-id{
+  vertical-align:middle;
+}
+
+
+.signout{
+  display: inline-block;
+  text-transform: capitalize;
+  vertical-align: top;
+  margin-left: 3px;
+  letter-spacing: 1px;
+  padding-top: 5px;
+}
+
+.btn-menu i{
+  font-size: 170%;
+  vertical-align: middle;
+}
+
+.btn-menu{
+  display: none;
+}
+/*----------LOGO-----------------*/
+.logo{
+  width:30px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+/* ---------NAVIGATION-----------*/
+/* ---------JUMBOTRON-----------*/
+.jumbotron-home{
+    background-image: linear-gradient(rgba(11, 11, 11, 0.5), rgba(11, 11,11, 0.5)), url(../images/cities/index.jpg);
+    background-size:cover;
+    color:white;
+    background-position:bottom;
+    background-attachment: fixed;
+}
+
+.hero-search-box>div{
+  padding: 150px 0 100px 0;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.search-component{
+  font-size: 95%;
+  text-transform: uppercase;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+/*----------------------------------------------------------------*/
+/* SEARCH COMPONENT */
+/*----------------------------------------------------------------*/
+.fl-location-stamp{
+  display: inline-block;
 }
 
-.App-intro {
-  font-size: large;
+.fl-location-stamp p{
+margin: 0;
+margin-left: 3px;;
+font-size: 55%;
+font-weight: 400;
+margin-bottom: 10px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.fl-location-stamp span{
+  font-weight: 400;
+  font-size:220%;
+  color: #fff;
+  margin: 0;
+  padding: 0;
 }
+
+.fl-location-stamp i{
+  vertical-align:super;
+  margin: 0 3px;
+  font-size: 90%;
+}
+
+.fl-route i.ion-android-plane{
+  display: inline-block;
+  transform: rotate(90deg);
+  font-size:140%;
+  margin: 0 20px;
+  vertical-align:super;
+}
+
+.fl-route, .btn-search, .date-picker{
+  display:inline-block;
+}
+
+.flight-details.wrapper{
+    width: 200px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.picker-passengers-wrapper {
+  margin-top: 10px;
+}
+
+.picker-wrapper.passenger{
+  width: 30%;
+  display: inline-block;
+  margin-right: 5%;
+  box-sizing: border-box;
+}
+
+.picker-wrapper.passenger:last-child{
+  margin-right: 0px;
+}
+
+.flight-location-wrapper {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 20px 0 20px;
+}
+/***********DATE PICKER****************/
+.date-picker .date-component{
+  background-color: #fff;
+  color: #555;
+  width: 160px;
+  border: 1px solid #ddd;
+  height: 45px;
+  line-height: 43px;
+  text-align: center;
+  font-size: 70%;
+}
+
+p.on-search-component{
+  margin: 0;
+  font-size: 55%;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.date-picker-sub i{
+  font-size: 140%;
+  margin-right: 10px;
+  color: #b7a074;
+  vertical-align: middle;
+}
+
+.date-picker-sub-right .date-component{
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.date-picker-sub-left .date-component{
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+/****************NORMAL PICKER**************/
+.picker-input{
+  font-size: 70%;
+  height: 45px;
+  line-height: 43px;
+  color: #286A9D;
+  font-weight: 100;
+  text-transform: uppercase;
+  width: 100%;
+  -webkit-appearance: none;
+  padding: 0 12px;
+  background-image: url(../images/bg/select-arrow.png);
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px) 50%;
+  background-size: 9px;
+}
+
+/******************SEARCH BUTTON**********/
+.btn-search{
+  height: 42px;
+  background-color: #E1A93C;
+  width: 170px;
+  text-align: center;
+  line-height: 35px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+}
+
+.btn-search a{
+  color: #fff;
+  font-size: 65%;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+.btn-search{
+  margin-left: 20px;
+}
+
+/*---------JUMBO TOGGLE COMPONENT -----------*/
+.toggler{
+    text-align: center;
+    font-size: 65%;
+    margin-top:10px;
+    font-weight: 100;
+    margin-top:40px;
+    padding-left: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  vertical-align:middle;
+  margin: 0 10px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 30px;
+  left: 0px;
+  bottom: 0px;
+  background-color: #30BFED;
+  transition: .4s;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+input + .slider {
+  background-color: #fff;
+}
+
+input:checked + .slider:before {
+  transform: translateX(30px);
+}
+/*----------------------------------------------------------------*/
+/* SECTION ABOUT */
+/*----------------------------------------------------------------*/
+
+.section-about{
+    text-align: center;
+    background: #fff;
+    padding: 10px 0;
+    text-transform:full-width;
+    font-size: 110%;
+    color: #777;
+}
+
+.section-about ul{
+    width:100%;
+    list-style: none;
+}
+.section-about li{
+    display: inline-block;
+    opacity: 0.9;
+}
+
+.long-copy-row{
+  margin: 0 0 30px 0!important;
+}
+
+.long-copy li img{
+  width: auto;
+  height: 18px;
+}
+
+/*----------------------------------------------------------------*/
+/* SECTION DESTINATIONS */
+/*----------------------------------------------------------------*/
+
+.section-destinations{
+    background-color: #f7f7f7;
+    text-transform: uppercase;
+}
+
+.galleria{
+  max-width:950px;
+  margin: 40px auto;
+}
+
+.gallery{
+    position:relative;
+    height:280px;
+    border: 1px solid #ddd;
+    color:#fff;
+}
+
+.gallery-row{
+  margin-bottom: 25px;
+}
+
+.gal-col{
+  padding: 0 12px !important;
+}
+
+.gallery h3{
+    font-size: 250%;
+}
+
+.gallery h4{
+    font-size: 170%;
+}
+
+.gallery h3, .gallery h4{
+    position:absolute;
+    top:30%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    font-weight: 400;
+}
+
+.gallery span{
+    font-size:80%;
+    font-weight: 400;
+}
+
+.gallery span i{
+    font-size:150%;
+    vertical-align: middle;
+     margin-right:5px;
+}
+
+.gallery span:first-of-type i{
+    display: inline-block;
+    transform: rotate(45deg);
+}
+
+.gallery span:first-of-type{
+    position:absolute;
+    top:85%;
+    left:25%;
+    transform:translate(-50%, -50%);
+}
+
+.gallery span:last-of-type{
+    position:absolute;
+    top:85%;
+    left:70%;
+    transform:translate(-50%, -50%);
+    width: 160px;
+}
+
+.gallery small{
+    margin-right:2.5px;
+    margin-left:4.5px;
+}
+
+.pos1 span:first-of-type{
+    position:absolute;
+    top:85%;
+    left:30%;
+    transform:translate(-50%, -50%);
+}
+
+.pos1{
+    background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/lagos.png);
+    background-size: cover;
+    background-position:center;
+}
+.pos2{
+    background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/abj2.jpg);
+    background-size: cover;
+    background-position:bottom;
+}
+.pos3{
+    background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/benin.jpg);
+    background-size: cover;
+    background-position:bottom;
+}
+.pos4{
+    background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/cal2.jpg);
+    background-size: cover;
+    background-position:middle;
+}
+.pos5{
+    background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/ph2.jpg);
+    background-size: cover;
+    background-position:bottom;
+}
+
+.gallery{
+  transition: all 0.4s;
+}
+.gallery:hover{
+    transform: scale(1.01);
+}
+/*----------------------------------------------------------------*/
+/* SECTION SERVICES */
+/*----------------------------------------------------------------*/
+
+.services-row{
+    width: 90%;
+    margin: 0 auto !important;
+}
+.service-box{
+    width:90%;
+    text-align: center;
+    padding: 20px 10px;
+    border: 1px solid #f7f7f7;
+    box-shadow: 0 2px 2px #ccc;
+    margin-top: 30px;
+    box-shadow: 1px 4px 15x 2px rgba(46,61,73,0.2);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    }
+
+  .service-box:hover{
+    box-shadow: 0px 6px 15px 0px rgba(46,61,73,0.2);
+  }
+
+.service-box i{
+    display: inline-block;
+    padding: 6px 10px;
+    border: 2px solid #32648e;
+    border-radius: 50%;
+    margin-bottom: 6px;
+    margin-top: 30px;
+    color: #32648e;
+    font-size: 120%;
+}
+
+.service-box h3{
+    padding: 5px 0;
+    margin-bottom: 0px;
+    font-size: 70%;
+    text-transform: uppercase;
+    color: #32648e;
+}
+
+.service-box p{
+    display: inline-block;
+    padding: 5px 14px;
+    font-size: 80%;
+    color: #777;
+}
+
+.service-box p:nth-child(4){
+    font-size: 70%;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.new-feature{
+  margin-bottom: -2px;
+}
+
+
+/*----------------------------------------------------------------*/
+/* FOOTER */
+
+/*background-image: linear-gradient(to bottom right, #F7F7F7, #EAFBFF);
+}*/
+/*----------------------------------------------------------------*/
+/* ---------FOOTER HEADER--------------*/
+
+h5{
+    text-transform: uppercase;
+    font-size: 60%;
+    font-weight: 400;
+    color:  #777;
+    word-spacing: 2px;
+    letter-spacing: 0.5px;
+}
+
+.about-us{
+    max-width: 400px;
+    word-spacing: 2px;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    text-align: justify;
+}
+
+table {
+    width: 70%;
+    float:right;
+    padding-bottom: 30px;
+}
+
+td, th {
+    text-align: left;
+    padding: 5px 0;
+}
+
+td, .about-us{
+  font-size: 75%;
+  color:#ddd;
+}
+
+/* ---------FOOTER FOOTER--------------*/
+footer{
+    color:white;
+    background-color:#333;
+}
+.footer ul{
+    list-style: none;
+    /*display:inline-block;*/
+    margin: 10px 0;
+}
+
+.social-icons{
+    float: right;
+    padding-right: 20%;
+}
+
+.footer li{
+    display: inline-block;
+    margin-left: 15px;
+    font-size:100%;
+    font-weight: 100;
+}
+
+.footer p{
+    font-size:60%;
+    margin:5px;
+    color:#777;
+
+}
+
+.footer{
+    background-color: #222;
+    padding: 5px;
+     color:#777;
+}
+
+/*----------------------------------------------------------------*/
+/* SECTION MOBILE DOWNLOAD*/
+/*----------------------------------------------------------------*/
+
+.section-download{
+  background-color: #F7F7F7;
+  box-shadow: 5px 5px 25px 0px rgba(46,61,73,0.2);
+  padding: 2px 0;
+  font-size: 80%;
+  margin-top:40px;
+}
+
+.section-download h3{
+  padding-top: 20px;
+  color: #5d5d5d;
+}
+
+.section-download p{
+  max-width: 400px;
+  text-align: justify;
+  color: #6a6a6a;
+}
+
+.section-download h4{
+  color: #888;
+    font-size: 80%;
+    margin-top:0;
+    text-transform:none !important;
+}
+
+.col-downloads{
+  border-left: 1px solid #e5e5e5;
+  position: relative;
+  height: 180px;
+}
+.available-on-item{
+    display: inline-block;
+    position: absolute;
+    transition: all 1s;
+    top:23%;
+    left:45%;
+    text-align: center;
+}
+
+.available-on-item i{
+    color: #129CF3;
+    opacity: 1;
+    font-size: 250%;
+    transition: all 1s;
+}
+
+.available-on-inner{
+    opacity: 1;
+    transition: all 1s;
+}
+
+/*----------------------------------------------------------------*/
+/* SECTION FEEDBACK*/
+/*----------------------------------------------------------------*/
+.section-feedback{
+  text-align: center;
+}
+
+.form-control {
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.contact-us-form .form-control {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 21px;
+    color: #555;
+    background-color: transparent;
+    border: 1px solid #aeaeae;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    opacity: .8;
+    outline: 0px !important;
+    transition: all 1s;
+    -moz-transition: all 1s;
+    -o-transition: all 1s;
+    -webkit-transition: all 1s;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+input {
+    line-height: normal;
+}
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+}
+
+input {
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    user-select: text;
+    cursor: auto;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+}
+
+input, textarea, select, button {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em 0em 0em 0em;
+    font: 11px system-ui;
+}
+
+input, textarea, select, button, meter, progress {
+    -webkit-writing-mode: horizontal-tb;
+}
+
+Style Attribute {
+    visibility: visible;
+    animation-name: bounceIn;
+}
+
+html {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+/*TEXTAREA*/
+#message {
+    height: 117px;
+    resize: none;
+}
+
+/*BUTTON*/
+.submit-btn, .submit-btn:active, .submit-btn:focus, .submit-btn:visited {
+    background-color: transparent;
+    border: 1px solid #129CF3;
+    border-radius: 4px;
+    width: 100%;
+    height: 50px;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #129CF3;
+    outline: 0px !important;
+    transition: all 1s;
+    -moz-transition: all 1s;
+    -o-transition: all 1s;
+    -webkit-transition: all 1s;
+}
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+/*----------------------------------------------------------------*/
+/* SECTION RESULT */
+/*----------------------------------------------------------------*/
+.jumbotron-away, .jumbotron-manager{
+    background-image: linear-gradient(#3881AF, #286A9D);
+    height:30vh;
+}
+
+.jumbotron-away .hero-search-box, .jumbotron-manager .hero-search-box{
+    position:absolute;
+    text-transform: uppercase;
+    top:17%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    color: #fff;
+}
+
+.jumbotron-away .toggler{
+  margin-top: -5px;
+}
+
+.jumbotron-away .fl-location-stamp i{
+  color: #275E82;
+}
+
+/*-----------------------RESULTS PANE------------------------------*/
+.results-pane{
+  background-color: #f8f8f8;
+}
+/*----------------FLIGHT CARD------------------------*/
+
+.flight-card{
+  text-transform:uppercase;
+  max-width:500px;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  color: #656565;
+  margin: 10px 0 10px 15px;
+  font-size:80%;
+  position: relative;
+}
+
+/*------FLIGHT CARD TOP----*/
+.card-top{
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+}
+
+.card-top > div{
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.manager.card-top{
+  border-bottom: 0;
+}
+
+.manager .top-right-top{
+  border-top: 0 !important;
+}
+
+/*-TOP-RIGHT-*/
+.top-right{
+  border-left: 1px solid #eee;
+{/*padding-right: 29px !important;*/}
+}
+
+.top-right img{
+  max-width: 120px;
+}
+
+.top-right-top{
+  border-top: 1px solid #eee !important;
+  text-align: center;
+  padding-bottom: 7px;
+}
+
+.card-manage .top-right-top{
+  border-bottom: 1px solid #eee !important;
+  text-align: center;
+  padding-bottom: 7px;
+}
+
+.top-right-top figure{
+  line-height: 50px;
+  margin-left: 25px;
+}
+
+.top-right-bottom small{
+  font-size: 100%;
+  color: #2E72A3;
+}
+
+.top-right-bottom{
+  font-weight: 400;
+  font-size:80%;
+  line-height: 40px;
+  padding-left: 30px;
+  color: #2E72A3;
+}
+
+.location-stamp-departure{
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+.location-stamp-arrival{
+  margin-right: 30px;
+  margin-top: 10px;
+}
+
+.city{
+  font-weight: 400;
+  font-size: 130%;
+}
+.time{
+  font-weight: 100;
+  font-size: 70%;
+  color: #333;
+}
+
+.price{
+  color: #2E72A3;
+}
+
+/*------"MANAGER-CARD" STYLE---------*/
+.card-manage .top-right-top{
+  font-size: 93%;
+  border-top: 0;
+}
+
+.card-manage .top-right-bottom{
+  padding-left: 0px;
+}
+
+.fl-manage-top, .fl-manage-bottom{
+  padding: 0 15px;
+}
+.fl-manage-top{
+  margin-top: 7px;
+}
+
+.fl-name-date{
+  text-align: left;
+}
+
+.airline-name{
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+.flight-date{
+  font-size: 60%;
+}
+
+.fl-summary{
+  text-align: left;
+  padding: 0 5px;
+}
+
+.flight-summary{
+  font-size: 70%;
+}
+
+.card-manage .top-right-bottom, .card-manage .price, .card-manage small{
+  color: #555;
+}
+
+.strike-price, small.strike-currency{
+  font-size: 90%;
+  color: #6a6a6a;
+}
+
+.card-manage .btn-border{
+  border: 0;
+  color: #777 !important;
+  font-weight: 400;
+  width: 80px;
+}
+
+.card-manage .btn-border{
+  font-weight: 300;
+}
+
+.manager-pane{
+  text-align: left;
+}
+
+.card-manage .ion-android-plane{
+  display: none;
+}
+/*--------------------------------*/
+/*-TOP-LEFT-*/
+.top-left{
+  padding: 0 !important;
+}
+
+/***********--DYNAMIC-----*/
+.top-left img{
+  display:block;
+  max-width: 100%;
+  height: 20px;
+  margin: 25% auto 0 auto;
+}
+
+.top-left img.double-routes{
+  display:block;
+  max-width: 100%;
+  height: 25px;
+  margin: 35% auto 0 auto;
+}
+/*--------------------------*/
+
+/*----------FLIGHT CARD BOTTOM---------------*/
+.card-bottom{
+  height: 40px;
+  text-align: center;
+  line-height: 35px;
+  background-color: #fcfcfc;
+}
+
+.card-bottom i{
+  display: inline-block;
+  margin-right: 5px;
+  font-size:100%;
+  vertical-align: middle;
+
+}
+
+.btn-flight-book .ion-android-plane{
+  transform: rotate(45deg);
+  color:#ECBD4B;
+}
+
+.card-bottom span{
+  font-size: 65%;
+  font-weight: 400;
+  color: #938F8F;
+}
+
+.btn-flight-book{
+  line-height: 10px;
+  display: inline-block;
+  padding: 2px 10px;
+}
+
+.btn{
+transition: all 0.1s ease;
+font-weight: 100;
+}
+
+
+.btn-flight-book span{
+  color: #4791C6;
+}
+
+.btn-border{
+  border: 1px solid #4791C6;
+  border-radius: 45px;
+}
+/*--------------------FILTER SECTION--------------------*/
+.display-panel{
+  font-size: 65%;
+  border: 1px solid #ddd;
+  line-height: 30px;
+  margin: 10px 0;
+  background-color: #eee;
+}
+.select-container{
+  overflow:hidden;
+  display: inline-block;
+  color: #a2a2a2;
+  font-weight: 300;
+  border-radius: 0px 0px 0px 0px/0px 0px 0px 0px;
+  border-bottom: solid 1px #626262;
+  position: relative;
+  cursor: pointer;
+  vertical-align: middle;
+  line-height: 20px;
+}
+
+.display-panel select{
+  color: #626262;
+  appearance:none;
+  background:none;
+  background:transparent;
+  border:none;
+  outline:none;
+  width:120%;
+  cursor:pointer;
+  display: inline;
+}
+
+
+.flight-filter{
+  text-align: left;
+}
+
+.flight-info{
+  text-align: center;
+}
+
+.flight-number{
+  text-align: right;
+}
+
+.display-panel i{
+  font-size: 110%;
+  font-weight: 400;
+  margin: 0 5px;
+}
+
+/*--------------------AD SECTION--------------------*/
+.ad{
+  margin: 0 0 10px 0;
+}
+
+.ad-box{
+  background-color: #e2e2e2;
+  height: 400px;
+  width: 250px;
+  border-radius: 6px;
+  display: inline-block;
+}
+.Ad-col{
+  text-align: right;
+}
+
+.ad p{
+  font-size: 45%;
+  color: #d2d2d2;
+  text-transform: uppercase;
+}
+
+.clearfix{
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/*------------------BADGE------------------*/
+.btn-notification{
+  position: absolute;
+  top: 0;
+  right: 5px;
+  font-size: 140%;
+}
+
+i.ion-android-notifications{
+  position:relative;
+}
+
+i.ion-android-notifications div{
+  position: absolute;
+  top: -7px;
+  right: -13px;
+  border-radius: 50%;
+  padding: 1px 6px;
+  color:#fff;
+  background-color: #ECBD4B;
+  font-size: 70%;
+  font-weight: 700;
+}
+
+.btn-close{
+  position: absolute;
+  top: 0;
+  left:4px;
+  font-size: 120%;
+  font-weight: 400;
+  color: #aaa;
+  transition: 0.1s;
+}
+
+.btn-close:hover{
+  color: #777;
+  font-size: 130%;
+}
+/*
+Orange color - #ECBD4B
+Blue color - #32648e
+*/
