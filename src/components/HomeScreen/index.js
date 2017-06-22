@@ -28,7 +28,7 @@ const HomeScreen = (screenClass, props) => (
                     </Col>
                     <Col md={8}>
                         <textarea className="form-control" id="message" rows="25" cols="10" placeholder="Message Text...."></textarea>
-                        <button type="button" className="btn btn-default submit-btn form_submit">SEND</button>
+                        <button type="button" className="btn-contact-us submit-btn form_submit">SEND</button>
                     </Col>
                 </Row>
             </form>
