@@ -1,10 +1,15 @@
 /* Big tablets to 1500px*/
-@media only screen and (max-width: 1176px){
+@media only screen and (max-width: 1180px){
   .hero-search-box .search-component-piece.left {
     margin-right: 50px;
   }
 
-  
+  .search-component-location {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+  }
+
   .hero-search-box .fl-route {
     display: block;
   }
