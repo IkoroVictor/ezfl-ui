@@ -127,6 +127,11 @@ nav ul.main-nav li a:hover, nav ul.main-nav li a:active{
   text-transform: uppercase;
 }
 
+.search-component-piece {
+  display: inline-block;
+  vertical-align: top;
+}
+
 /*----------------------------------------------------------------*/
 /* SEARCH COMPONENT */
 /*----------------------------------------------------------------*/
@@ -233,7 +238,7 @@ p.on-search-component{
 /****************NORMAL PICKER**************/
 .picker-input{
   font-size: 70%;
-  height: 45px;
+  height: 47px;
   line-height: 43px;
   color: #286A9D;
   font-weight: 100;
@@ -249,13 +254,15 @@ p.on-search-component{
 
 /******************SEARCH BUTTON**********/
 .btn-search{
-  height: 42px;
+  height: 47px;
   background-color: #E1A93C;
   width: 170px;
   text-align: center;
-  line-height: 35px;
+  line-height: 43px;
   border-radius: 5px;
   border: 1px solid #aaa;
+  vertical-align: top;
+  margin-top: 20px;
 }
 
 .btn-search a{
