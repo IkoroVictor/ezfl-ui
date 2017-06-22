@@ -154,7 +154,7 @@ nav ul.main-nav li a:hover, nav ul.main-nav li a:active{
 }
 
 .search-compoennt-location-box .location-item {
-  font-size: 14px;
+  font-size: 15px;
   padding: 7px;
   text-align: left;
   border-bottom: 1px solid rgb(204, 204, 204);
@@ -173,8 +173,8 @@ nav ul.main-nav li a:hover, nav ul.main-nav li a:active{
 }
 
 .search-compoennt-location-box .location-item div.icon svg {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   fill: #bbb;
 }
 
@@ -193,8 +193,9 @@ nav ul.main-nav li a:hover, nav ul.main-nav li a:active{
 
 .search-compoennt-location-box .location-item div label{
   display: inline-block;
-  padding: 5px;
-  background: gray;
+  padding: 4px 7px 4px 7px;
+
+  background: #30BFED;
   color: white;
   font-weight: bold;
   border-radius: 3px;
