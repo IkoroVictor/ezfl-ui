@@ -127,11 +127,103 @@ nav ul.main-nav li a:hover, nav ul.main-nav li a:active{
   text-transform: uppercase;
 }
 
+.search-component-piece {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.search-component-location {
+  display: inline-block;
+  width: 324px;
+  position: relative;
+}
+
+.search-compoennt-location-box {
+  background: white;
+  color: gray;
+  margin: auto;
+  max-width: 324px;
+  border-radius: 2px;
+  position: absolute;
+  width: 100%;
+  z-index: 2000;
+  max-height: 150px;
+  overflow-y: auto;
+  margin-top: 10px;
+
+}
+
+.search-compoennt-location-box .location-item {
+  font-size: 15px;
+  padding: 7px;
+  text-align: left;
+  border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+.search-compoennt-location-box .location-item:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
+.search-compoennt-location-box .location-item div.icon {
+  display: inline-block;
+  width: 15%;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.search-compoennt-location-box .location-item div.icon svg {
+  width: 30px;
+  height: 30px;
+  fill: #bbb;
+}
+
+.search-compoennt-location-box .location-item span {
+  display: inline-block;
+  width: 60%;
+  vertical-align: middle;
+}
+
+.search-compoennt-location-box .location-item div.code {
+  display: inline-block;
+  width: 20%;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.search-compoennt-location-box .location-item div label{
+  display: inline-block;
+  padding: 4px 7px 4px 7px;
+
+  background: #30BFED;
+  color: white;
+  font-weight: bold;
+  border-radius: 3px;
+
+}
+
+
+
 /*----------------------------------------------------------------*/
 /* SEARCH COMPONENT */
 /*----------------------------------------------------------------*/
 .fl-location-stamp{
   display: inline-block;
+  width: 40%;
+  text-align: left;
+}
+
+.fl-location-stamp:last-child {
+  padding-left: 5%;
+  box-sizing: border-box;
+}
+
+.fl-route {
+  width: 100%;
+}
+
+.fl-route-plane-icon {
+  width: 20%;
 }
 
 .fl-location-stamp p{
@@ -156,6 +248,9 @@ margin-bottom: 10px;
   font-size: 90%;
 }
 
+.fl-route-plane-icon {
+  display: inline-block;
+}
 .fl-route i.ion-android-plane{
   display: inline-block;
   transform: rotate(90deg);
@@ -233,7 +328,7 @@ p.on-search-component{
 /****************NORMAL PICKER**************/
 .picker-input{
   font-size: 70%;
-  height: 45px;
+  height: 47px;
   line-height: 43px;
   color: #286A9D;
   font-weight: 100;
@@ -249,13 +344,15 @@ p.on-search-component{
 
 /******************SEARCH BUTTON**********/
 .btn-search{
-  height: 42px;
+  height: 47px;
   background-color: #E1A93C;
   width: 170px;
   text-align: center;
-  line-height: 35px;
+  line-height: 43px;
   border-radius: 5px;
   border: 1px solid #aaa;
+  vertical-align: top;
+  margin-top: 20px;
 }
 
 .btn-search a{

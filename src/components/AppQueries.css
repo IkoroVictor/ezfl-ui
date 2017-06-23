@@ -1,16 +1,47 @@
 /* Big tablets to 1500px*/
-@media only screen and (max-width: 2000px){
+@media only screen and (max-width: 1180px){
+  .hero-search-box .search-component-piece.left {
+    margin-right: 50px;
+  }
+
+  .search-component-location {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+  }
+
+  .hero-search-box .fl-route {
+    display: block;
+  }
+
+  .hero-search-box .fl-location-stamp {
+    width: 40%;
+  }
+
+  .hero-search-box .ion-android-plane {
+    width: 20%;
+    margin: 0 !important;
+  }
+
+  .hero-search-box .flight-details.wrapper  {
+    display: block;
+  }
+
+  .hero-search-box .flight-location-wrapper {
+    margin-top: 20px;
+  }
+
+  .hero-search-box .picker-passengers-wrapper {
+    margin-top: 20px;
+  }
+
+  .hero-search-box .btn-search {
+    margin: 0px;
+    margin-top: 25px;
+    width: 100%;
+  }
 
 }
-
-/* Big tablets to 1200px*/
-@media only screen and (max-width: 1199px){
-
-}
-
-
-
-
 
 
 /* Small tablets to big tablets: from 768px to 1023px*/
@@ -234,14 +265,6 @@
       padding:5px 0 0 0 !important;
   }
 
-  .hero-search-box{
-      position:absolute;
-      text-transform: uppercase;
-      top:30%;
-      left:50%;
-      transform:translate(-50%, -50%);
-  }
-
   .search-component{
     font-size: 85%;
   }
@@ -349,4 +372,35 @@
 /* Small phones: from 0 to 480px*/
 @media only screen and (max-width: 480px){
 
+}
+
+
+
+
+@media only screen and (max-width: 680px){
+  .hero-search-box .search-component-piece.left, .hero-search-box .search-component-piece.right {
+    display: block;
+    margin: 0px;
+    margin: auto;
+    max-width: 400px;
+  }
+
+  .hero-search-box .search-component-piece.right {
+    max-width: 330px;
+  }
+
+
+  .hero-search-box .flight-location-wrapper {
+    padding: 0px;
+    width: 100%;
+  }
+
+  .hero-search-box .flight-details.wrapper {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .hero-search-box>div {
+    padding-top: 120px;
+  }
 }
