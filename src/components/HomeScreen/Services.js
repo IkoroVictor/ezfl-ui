@@ -6,7 +6,7 @@ import '../../css/ionicons.min.css';
 
 const Services = () => (
   <section className="section-services">
-    <Container>
+    <Container fluid>
       <h2>Use our platform to find and manage your flights</h2>
       <Row className="services-row">
         <Col md={3}>
@@ -35,7 +35,7 @@ const Services = () => (
             <i className="ion-ios-paw"></i>
             <h3>track</h3>
             <p className="new-feature">Know the location of flights in real time</p>
-            <p>Coming soon...</p>
+            <p className="coming-soon">Coming soon...</p>
           </div>
         </Col>
       </Row>

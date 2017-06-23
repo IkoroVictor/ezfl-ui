@@ -376,7 +376,7 @@ input:checked + .slider:before {
 .gallery{
     position:relative;
     height:280px;
-    border: 1px solid #ddd;
+    /*border: 1px solid #ddd;*/
     color:#fff;
 }
 
@@ -384,9 +384,6 @@ input:checked + .slider:before {
   margin-bottom: 25px;
 }
 
-.gal-col{
-  padding: 0 12px !important;
-}
 
 .gallery h3{
     font-size: 250%;
@@ -402,6 +399,7 @@ input:checked + .slider:before {
     left:50%;
     transform:translate(-50%, -50%);
     font-weight: 400;
+    z-index: 2;
 }
 
 .gallery span{
@@ -425,6 +423,7 @@ input:checked + .slider:before {
     top:85%;
     left:25%;
     transform:translate(-50%, -50%);
+    z-index: 2;
 }
 
 .gallery span:last-of-type{
@@ -433,6 +432,7 @@ input:checked + .slider:before {
     left:70%;
     transform:translate(-50%, -50%);
     width: 160px;
+    z-index: 2;
 }
 
 .gallery small{
@@ -447,7 +447,7 @@ input:checked + .slider:before {
     transform:translate(-50%, -50%);
 }
 
-.pos1{
+/*.pos1{
     background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/lagos.png);
     background-size: cover;
     background-position:center;
@@ -471,13 +471,44 @@ input:checked + .slider:before {
     background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/ph2.jpg);
     background-size: cover;
     background-position:bottom;
-}
+}*/
 
 .gallery{
+  width: 100%;
+  overflow: hidden;
   transition: all 0.4s;
 }
+
+.gallery img{
+  width: 100%;
+  height: auto;
+  transform: scale(1.15);
+  transition: all 0.4s ease-out;
+  background-color: #000;
+}
+
+.gallery img:hover{
+  transform: scale(1.03);
+}
+
 .gallery:hover{
     transform: scale(1.01);
+}
+
+.dest-shadow{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: inherit;
+  height: inherit;
+  background-color: #000;
+  z-index: 1;
+  opacity: 0.5;
+  transition: all 0.4s;
+}
+
+.dest-shadow:hover{
+  opacity: 0.3;
 }
 /*----------------------------------------------------------------*/
 /* SECTION SERVICES */
@@ -716,6 +747,7 @@ footer{
 #message {
     height: 97px;
     resize: none;
+    margin-bottom: 9px;
 }
 
 /*BUTTON*/
@@ -724,13 +756,13 @@ footer{
     border: 1px solid #bebebe;
     border-radius: 4px;
     width: 94%;
-    height: 50px;
+    height: 48px;
     text-transform: uppercase;
     font-size: 75%;
     color: #129CF3;
     outline: 0px !important;
     transition: all 1s;
-    margin-bottom: 0;
+    margin-top: 0;
     white-space: nowrap;
     vertical-align: middle;
     color: #333;
