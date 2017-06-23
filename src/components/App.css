@@ -127,11 +127,103 @@ nav ul.main-nav li a:hover, nav ul.main-nav li a:active{
   text-transform: uppercase;
 }
 
+.search-component-piece {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.search-component-location {
+  display: inline-block;
+  width: 324px;
+  position: relative;
+}
+
+.search-compoennt-location-box {
+  background: white;
+  color: gray;
+  margin: auto;
+  max-width: 324px;
+  border-radius: 2px;
+  position: absolute;
+  width: 100%;
+  z-index: 2000;
+  max-height: 150px;
+  overflow-y: auto;
+  margin-top: 10px;
+
+}
+
+.search-compoennt-location-box .location-item {
+  font-size: 15px;
+  padding: 7px;
+  text-align: left;
+  border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+.search-compoennt-location-box .location-item:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
+.search-compoennt-location-box .location-item div.icon {
+  display: inline-block;
+  width: 15%;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.search-compoennt-location-box .location-item div.icon svg {
+  width: 30px;
+  height: 30px;
+  fill: #bbb;
+}
+
+.search-compoennt-location-box .location-item span {
+  display: inline-block;
+  width: 60%;
+  vertical-align: middle;
+}
+
+.search-compoennt-location-box .location-item div.code {
+  display: inline-block;
+  width: 20%;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.search-compoennt-location-box .location-item div label{
+  display: inline-block;
+  padding: 4px 7px 4px 7px;
+
+  background: #30BFED;
+  color: white;
+  font-weight: bold;
+  border-radius: 3px;
+
+}
+
+
+
 /*----------------------------------------------------------------*/
 /* SEARCH COMPONENT */
 /*----------------------------------------------------------------*/
 .fl-location-stamp{
   display: inline-block;
+  width: 40%;
+  text-align: left;
+}
+
+.fl-location-stamp:last-child {
+  padding-left: 5%;
+  box-sizing: border-box;
+}
+
+.fl-route {
+  width: 100%;
+}
+
+.fl-route-plane-icon {
+  width: 20%;
 }
 
 .fl-location-stamp p{
@@ -156,6 +248,9 @@ margin-bottom: 10px;
   font-size: 90%;
 }
 
+.fl-route-plane-icon {
+  display: inline-block;
+}
 .fl-route i.ion-android-plane{
   display: inline-block;
   transform: rotate(90deg);
@@ -233,7 +328,7 @@ p.on-search-component{
 /****************NORMAL PICKER**************/
 .picker-input{
   font-size: 70%;
-  height: 45px;
+  height: 47px;
   line-height: 43px;
   color: #286A9D;
   font-weight: 100;
@@ -249,13 +344,15 @@ p.on-search-component{
 
 /******************SEARCH BUTTON**********/
 .btn-search{
-  height: 42px;
+  height: 47px;
   background-color: #E1A93C;
   width: 170px;
   text-align: center;
-  line-height: 35px;
+  line-height: 43px;
   border-radius: 5px;
   border: 1px solid #aaa;
+  vertical-align: top;
+  margin-top: 20px;
 }
 
 .btn-search a{
@@ -376,7 +473,7 @@ input:checked + .slider:before {
 .gallery{
     position:relative;
     height:280px;
-    border: 1px solid #ddd;
+    /*border: 1px solid #ddd;*/
     color:#fff;
 }
 
@@ -384,9 +481,6 @@ input:checked + .slider:before {
   margin-bottom: 25px;
 }
 
-.gal-col{
-  padding: 0 12px !important;
-}
 
 .gallery h3{
     font-size: 250%;
@@ -402,6 +496,7 @@ input:checked + .slider:before {
     left:50%;
     transform:translate(-50%, -50%);
     font-weight: 400;
+    z-index: 2;
 }
 
 .gallery span{
@@ -425,6 +520,7 @@ input:checked + .slider:before {
     top:85%;
     left:25%;
     transform:translate(-50%, -50%);
+    z-index: 2;
 }
 
 .gallery span:last-of-type{
@@ -433,6 +529,7 @@ input:checked + .slider:before {
     left:70%;
     transform:translate(-50%, -50%);
     width: 160px;
+    z-index: 2;
 }
 
 .gallery small{
@@ -447,7 +544,7 @@ input:checked + .slider:before {
     transform:translate(-50%, -50%);
 }
 
-.pos1{
+/*.pos1{
     background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/lagos.png);
     background-size: cover;
     background-position:center;
@@ -471,13 +568,44 @@ input:checked + .slider:before {
     background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/ph2.jpg);
     background-size: cover;
     background-position:bottom;
-}
+}*/
 
 .gallery{
+  width: 100%;
+  overflow: hidden;
   transition: all 0.4s;
 }
+
+.gallery img{
+  width: 100%;
+  height: auto;
+  transform: scale(1.15);
+  transition: all 0.4s ease-out;
+  background-color: #000;
+}
+
+.gallery img:hover{
+  transform: scale(1.03);
+}
+
 .gallery:hover{
     transform: scale(1.01);
+}
+
+.dest-shadow{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: inherit;
+  height: inherit;
+  background-color: #000;
+  z-index: 1;
+  opacity: 0.5;
+  transition: all 0.4s;
+}
+
+.dest-shadow:hover{
+  opacity: 0.3;
 }
 /*----------------------------------------------------------------*/
 /* SECTION SERVICES */
@@ -681,20 +809,18 @@ footer{
 }
 
 .form-control {
-    width: 100%;
+    width: 90%;
     height: 34px;
     padding: 6px 12px;
-    font-size: 14px;
+    font-size: 70%;
     line-height: 1.42857143;
     color: #555;
     background-color: #fff;
     background-image: none;
     border: 1px solid #ccc;
     border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    margin-bottom: 15px;
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
@@ -703,129 +829,49 @@ footer{
     width: 100%;
     height: 50px;
     padding: 6px 12px;
-    font-size: 14px;
     line-height: 21px;
     color: #555;
     background-color: transparent;
     border: 1px solid #aeaeae;
     border-radius: 3px;
-    margin-bottom: 15px;
     opacity: .8;
     outline: 0px !important;
     transition: all 1s;
-    -moz-transition: all 1s;
-    -o-transition: all 1s;
-    -webkit-transition: all 1s;
 }
 
-button, input, select, textarea {
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-}
-
-input {
-    line-height: normal;
-}
-
-button, input, optgroup, select, textarea {
-    margin: 0;
-    font: inherit;
-    color: inherit;
-}
-
-input {
-    -webkit-appearance: textfield;
-    background-color: white;
-    -webkit-rtl-ordering: logical;
-    user-select: text;
-    cursor: auto;
-    padding: 1px;
-    border-width: 2px;
-    border-style: inset;
-    border-color: initial;
-    border-image: initial;
-}
-
-input, textarea, select, button {
-    text-rendering: auto;
-    color: initial;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-    display: inline-block;
-    text-align: start;
-    margin: 0em 0em 0em 0em;
-    font: 11px system-ui;
-}
-
-input, textarea, select, button, meter, progress {
-    -webkit-writing-mode: horizontal-tb;
-}
-
-Style Attribute {
-    visibility: visible;
-    animation-name: bounceIn;
-}
-
-html {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-}
 
 /*TEXTAREA*/
 #message {
-    height: 117px;
+    height: 97px;
     resize: none;
+    margin-bottom: 9px;
 }
 
 /*BUTTON*/
 .submit-btn, .submit-btn:active, .submit-btn:focus, .submit-btn:visited {
     background-color: transparent;
-    border: 1px solid #129CF3;
+    border: 1px solid #bebebe;
     border-radius: 4px;
-    width: 100%;
-    height: 50px;
+    width: 94%;
+    height: 48px;
     text-transform: uppercase;
-    font-size: 18px;
+    font-size: 75%;
     color: #129CF3;
     outline: 0px !important;
     transition: all 1s;
-    -moz-transition: all 1s;
-    -o-transition: all 1s;
-    -webkit-transition: all 1s;
-}
-
-.btn-default {
-    color: #333;
-    background-color: #fff;
-    border-color: #ccc;
-}
-
-.btn {
-    display: inline-block;
-    padding: 6px 12px;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.42857143;
-    text-align: center;
+    margin-top: 0;
     white-space: nowrap;
     vertical-align: middle;
-    -ms-touch-action: manipulation;
+    color: #333;
     touch-action: manipulation;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
-    background-image: none;
-    border: 1px solid transparent;
-    border-radius: 4px;
 }
+
+.submit-btn:hover {
+  background-color: #4090C4;
+}
+
 
 /*----------------------------------------------------------------*/
 /* SECTION RESULT */

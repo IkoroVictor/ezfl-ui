@@ -1,16 +1,47 @@
 /* Big tablets to 1500px*/
-@media only screen and (max-width: 2000px){
+@media only screen and (max-width: 1180px){
+  .hero-search-box .search-component-piece.left {
+    margin-right: 50px;
+  }
+
+  .search-component-location {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+  }
+
+  .hero-search-box .fl-route {
+    display: block;
+  }
+
+  .hero-search-box .fl-location-stamp {
+    width: 40%;
+  }
+
+  .hero-search-box .ion-android-plane {
+    width: 20%;
+    margin: 0 !important;
+  }
+
+  .hero-search-box .flight-details.wrapper  {
+    display: block;
+  }
+
+  .hero-search-box .flight-location-wrapper {
+    margin-top: 20px;
+  }
+
+  .hero-search-box .picker-passengers-wrapper {
+    margin-top: 20px;
+  }
+
+  .hero-search-box .btn-search {
+    margin: 0px;
+    margin-top: 25px;
+    width: 100%;
+  }
 
 }
-
-/* Big tablets to 1200px*/
-@media only screen and (max-width: 1199px){
-
-}
-
-
-
-
 
 
 /* Small tablets to big tablets: from 768px to 1023px*/
@@ -39,10 +70,140 @@
 
 /* Small phones to small tablets: from 481px to 767px*/
 @media only screen and (max-width: 767px){
+  body {
+    font-size: 15px !important;
+  }
+
+
+  /*----------------------------------------------------------------*/
+  /* HOME COMPONENTS */
+  /*----------------------------------------------------------------*/
   .hero-search-box{
     max-width: 100%;
   }
+  /*-------HOME SECTIONS---------*/
+  /*---GALLERY SECTION---*/
+  .gal-col{
+    padding: 0 0 !important;
+    margin-bottom: 0px;
+  }
 
+  .gallery{
+      height:170px;
+      border: none;
+  }
+
+  .gallery span:last-of-type {
+    left: 65%;
+  }
+
+  .gallery.pos1 span:last-of-type {
+    left: 75%;
+}
+
+  .gallery div{
+    font-size: 115%;
+  }
+  .gallery-row{
+    margin: 0px !important;
+  }
+
+
+
+  /*---SERVICES SECTION---*/
+  .services-row{
+      width: 100%;
+  }
+
+  .services-row > div{
+      padding: 0 !important;
+  }
+
+  .section-services{
+    text-align: -webkit-center;
+  }
+
+  .section-services > div{
+    padding: 0 !important;
+  }
+
+  .service-box{
+      width:90%;
+      padding: 0;
+      margin-top: 15px;
+  }
+
+
+  .service-box i{
+      display: inline-block;
+      padding: 6px 10px;
+      border: 2px solid #32648e;
+      border-radius: 50%;
+      margin-bottom: 0px;
+      margin-top: 15px;
+      color: #32648e;
+      font-size: 100%;
+  }
+
+  .service-box h3{
+      padding: 0;
+      margin-bottom: 0px;
+      font-size: 105%;
+      text-transform: uppercase;
+      color: #32648e;
+  }
+
+  .service-box p{
+      display: inline-block;
+      padding: 5px 14px;
+      font-size: 100%;
+      color: #777;
+  }
+
+  .service-box p:nth-child(4){
+      font-size: 70%;
+      padding-bottom: 10px;
+      margin-bottom: 0;
+  }
+
+  .new-feature{
+    margin-bottom: -10px;
+  }
+
+  .coming-soon{
+    margin-top:4px;
+  }
+
+  /*---DOWNLOAD SECTION---*/
+
+  .section-download{
+    text-align: center;
+    padding-bottom: 40px !important;
+  }
+
+  .download-text{
+    border-bottom: 1px solid #eee;
+  }
+
+  .download-buttons{
+    box-shadow: 0px 0px 5px 0px rgba(46,61,73,0.2);
+  }
+
+  .col-downloads{
+    border-left: 1px solid #e5e5e5;
+    position: relative;
+    height: 70px;
+  }
+
+  .available-on-item{
+      top:15%;
+  }
+
+  /*-------FEEDBACK SECTION---------*/
+    .section-feedback {
+      padding-bottom: 20px !important;
+    }
+  /*-------NAV---------*/
   .main-nav.menu-hidden{
     display:none;
   }
@@ -101,21 +262,14 @@
   /*----------------------------------------------------------------*/
 
   section{
-      padding:10px 0;
-  }
-
-  .hero-search-box{
-      position:absolute;
-      text-transform: uppercase;
-      top:30%;
-      left:50%;
-      transform:translate(-50%, -50%);
+      padding:5px 0 0 0 !important;
   }
 
   .search-component{
     font-size: 85%;
   }
 
+  /*-------CARD COMPONENT------------*/
   .top-right-bottom{
     text-align: center;
     padding-left: 0;
@@ -205,7 +359,6 @@
     text-align: center;
   }
 
-  /***************** SEARCH COMPONENT **************/
 }
 
 
@@ -219,4 +372,35 @@
 /* Small phones: from 0 to 480px*/
 @media only screen and (max-width: 480px){
 
+}
+
+
+
+
+@media only screen and (max-width: 680px){
+  .hero-search-box .search-component-piece.left, .hero-search-box .search-component-piece.right {
+    display: block;
+    margin: 0px;
+    margin: auto;
+    max-width: 400px;
+  }
+
+  .hero-search-box .search-component-piece.right {
+    max-width: 330px;
+  }
+
+
+  .hero-search-box .flight-location-wrapper {
+    padding: 0px;
+    width: 100%;
+  }
+
+  .hero-search-box .flight-details.wrapper {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .hero-search-box>div {
+    padding-top: 120px;
+  }
 }
