@@ -42,10 +42,7 @@ class ResultsScreen extends Component{
   }
 
   componentDidMount(){
-    console.log(getCity);
     this.request = store.getState().request.request;
-    console.log(this.request);
-    debugger;
     let from = getCity[this.request.from];
     let to = getCity[this.request.to];
     let departure = moment(this.request.departure).format("DD/MM/YYYY");
@@ -57,30 +54,30 @@ class ResultsScreen extends Component{
     if(this.state.hasErrored){
       return (
         <div>
-          <Jumbotron forStyle="jumbotron-home away"/>
-          <p>Sorry! There was an error loading the items</p>
+          <Jumbotron forStyle="jumbotron-home away" search={true}/>
+          <DisplayComponent message={"Sorry! There was an error loading the items"}/>
         </div>);
     }
     if(this.state.isLoading){
       return (
         <div>
-          <Jumbotron forStyle="jumbotron-home away"/>
-          <p>Loading…</p>
+          <Jumbotron forStyle="jumbotron-home away" search={true}/>
+           <DisplayComponent/>
         </div>);
     }
     if(this.state.result==={} && this.state.isLoading===false){
       return (
         <div>
-          <Jumbotron forStyle="jumbotron-home away"/>
-          <div>Something went Wrong</div>
+          <Jumbotron forStyle="jumbotron-home away" search={true}/>
+          <DisplayComponent message={"Something went Wrong"}/>
         </div>
       );
     }else if(this.state.result!=={} && this.state.isLoading===false){
       if(this.state.result.content===[]){
         return(
           <div>
-            <Jumbotron forStyle="jumbotron-home away"/>
-            <div>No flight found</div>
+            <Jumbotron forStyle="jumbotron-home away" search={true}/>
+            <DisplayComponent message={"No flight found"}/>
           </div>
         );
       }else{
@@ -92,7 +89,7 @@ class ResultsScreen extends Component{
         flDetails.oneWay = true;
         return(
           <div className='Results-Component'>
-            <Jumbotron forStyle="jumbotron-home away"/>
+            <Jumbotron forStyle="jumbotron-home away" search={true}/>
             <ResultPane flDetails={flDetails}/>
           </div>
         )
@@ -102,3 +99,21 @@ class ResultsScreen extends Component{
 }
 
 export default ResultsScreen;
+
+const DisplayComponent = ({message}) =>(
+
+  <div className="display-component"><span>
+    {
+      message?message:
+      (
+        <div className="spinner">
+          <div className="rect1"></div>
+          <div className="rect2"></div>
+          <div className="rect3"></div>
+          <div className="rect4"></div>
+          <div className="rect5"></div>
+        </div>
+      )
+    }</span>
+  </div>
+);
