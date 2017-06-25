@@ -16,6 +16,7 @@ const Footer = () => (
         <Col md={6}>
           <Hidden sm xs>
           <table>
+            <tbody>
             <tr>
               <th>
                 <h5>Company</h5>
@@ -42,6 +43,7 @@ const Footer = () => (
               <td>Hotels</td>
               <td>Direct Routes</td>
             </tr>
+          </tbody>
           </table>
         </Hidden>
         </Col>

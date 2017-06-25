@@ -5,7 +5,7 @@ const initialState = {
   login: false
 };
 
-function userLoginManager(state=initialState, action){
+export function userLoginManager(state=initialState, action){
   switch(action.type){
     case LOGIN:
       return Object.assign({}, state, {login:true});
@@ -17,5 +17,3 @@ function userLoginManager(state=initialState, action){
       return state;
   }
 }
-
-export default userLoginManager;

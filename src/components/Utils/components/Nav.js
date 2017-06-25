@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import {Link} from 'react-router-dom';
 import {Container, Row, Col} from 'react-grid-system';
-//import { bindActionCreators } from 'redux'
 import {connect} from 'react-redux';
 import * as UserActions from '../actions/userActions';
 import logo from '../../logo.png';
@@ -20,14 +19,13 @@ import {store} from '../../../store';
 
     store.subscribe(() => {
       this.setState({
-        login: store.getState().userReducer.login
+        login: store.getState().userLoginManager.login
       });
     });
   }
 
 
   render(){
-    //const actions = bindActionCreators(UserActions, this.props.dispatch);
 
     return(
       <div className="nav-elements">
@@ -63,7 +61,7 @@ import {store} from '../../../store';
                 )}
                 {this.state.login && (
                   <li>
-                    <Link to="/profile">Profile</Link>
+                    <Link to="/profile">Settings</Link>
                   </li>
                 )}
                 {this.state.login && (

@@ -26,8 +26,9 @@ const Destinations = () => (
         <Row className="gallery-row">
           <Col md={12} className="gal-col">
             <div className="gallery pos1">
-              <div className="dest-shadow"></div>
+
               <img src={lagosPix} alt="lagos-city"/>
+              <div className="dest-shadow"></div>
               <h3>Lagos</h3>
               <div>
                 <span>
@@ -43,8 +44,8 @@ const Destinations = () => (
         <Row className="gallery-row">
           <Col md={6} xs={6} className="gal-col">
             <div className="gallery pos2">
-              <div className="dest-shadow"></div>
               <img src={abujaPix} alt="abuja-city"/>
+              <div className="dest-shadow"></div>
               <h4>Abuja</h4>
               <div>
                 <span>
@@ -58,8 +59,8 @@ const Destinations = () => (
           </Col>
           <Col md={6} xs={6} className="gal-col">
             <div className="gallery pos3">
-              <div className="dest-shadow"></div>
               <img src={beninPix} alt="benin-city"/>
+              <div className="dest-shadow"></div>
               <h4>Benin</h4>
               <div>
                 <span>
@@ -75,8 +76,8 @@ const Destinations = () => (
         <Row className="gallery-row">
           <Col md={6} xs={6} className="gal-col">
             <div className="gallery pos4">
-              <div className="dest-shadow"></div>
               <img src={calabarPix} alt="calabar-city"/>
+              <div className="dest-shadow"></div>
               <h4>Calabar</h4>
               <div>
                 <span>
@@ -90,8 +91,8 @@ const Destinations = () => (
           </Col>
           <Col md={6} xs={6} className="gal-col">
             <div className="gallery pos5">
+              <img src={enuguPix} alt="enugu-city" className="foo"/>
               <div className="dest-shadow"></div>
-              <img src={enuguPix} alt="enugu-city"/>
               <h4>Enugu</h4>
               <div>
                 <span>

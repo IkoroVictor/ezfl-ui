@@ -25,7 +25,7 @@ nav{
     height: 50px;
     width:100%;
     position:fixed;
-    z-index:9999;
+    z-index:99;
 }
 
 .nav-elements{
@@ -138,60 +138,60 @@ nav ul.main-nav li a:hover, nav ul.main-nav li a:active{
   position: relative;
 }
 
-.search-compoennt-location-box {
-  background: white;
-  color: gray;
+.search-component-location-box {
+  background: #efefef;
+  color: #777;
   margin: auto;
   max-width: 324px;
   border-radius: 2px;
   position: absolute;
   width: 100%;
   z-index: 2000;
-  max-height: 150px;
+  max-height: 280px;
   overflow-y: auto;
   margin-top: 10px;
-
+  opacity:0.95;
 }
 
-.search-compoennt-location-box .location-item {
+.search-component-location-box .location-item {
   font-size: 15px;
   padding: 7px;
   text-align: left;
   border-bottom: 1px solid rgb(204, 204, 204);
 }
 
-.search-compoennt-location-box .location-item:hover {
+.search-component-location-box .location-item:hover {
   background: #eee;
   cursor: pointer;
 }
 
-.search-compoennt-location-box .location-item div.icon {
+.search-component-location-box .location-item div.icon {
   display: inline-block;
   width: 15%;
   text-align: left;
   vertical-align: middle;
 }
 
-.search-compoennt-location-box .location-item div.icon svg {
+.search-component-location-box .location-item div.icon svg {
   width: 30px;
   height: 30px;
   fill: #bbb;
 }
 
-.search-compoennt-location-box .location-item span {
+.search-component-location-box .location-item span {
   display: inline-block;
   width: 60%;
   vertical-align: middle;
 }
 
-.search-compoennt-location-box .location-item div.code {
+.search-component-location-box .location-item div.code {
   display: inline-block;
   width: 20%;
   text-align: right;
   vertical-align: middle;
 }
 
-.search-compoennt-location-box .location-item div label{
+.search-component-location-box .location-item div label{
   display: inline-block;
   padding: 4px 7px 4px 7px;
 
@@ -199,7 +199,6 @@ nav ul.main-nav li a:hover, nav ul.main-nav li a:active{
   color: white;
   font-weight: bold;
   border-radius: 3px;
-
 }
 
 
@@ -209,21 +208,11 @@ nav ul.main-nav li a:hover, nav ul.main-nav li a:active{
 /*----------------------------------------------------------------*/
 .fl-location-stamp{
   display: inline-block;
-  width: 40%;
   text-align: left;
-}
-
-.fl-location-stamp:last-child {
-  padding-left: 5%;
-  box-sizing: border-box;
 }
 
 .fl-route {
   width: 100%;
-}
-
-.fl-route-plane-icon {
-  width: 20%;
 }
 
 .fl-location-stamp p{
@@ -240,6 +229,7 @@ margin-bottom: 10px;
   color: #fff;
   margin: 0;
   padding: 0;
+  cursor: pointer;
 }
 
 .fl-location-stamp i{
@@ -257,6 +247,24 @@ margin-bottom: 10px;
   font-size:140%;
   margin: 0 20px;
   vertical-align:super;
+}
+
+.roundtrip {
+  position: relative;
+}
+
+.roundtrip i.ion-android-plane.inverse{
+  transform: rotate(270deg);
+  position: absolute;
+  right: 5px;
+  top: 15px;
+}
+
+.roundtrip i.ion-android-plane{
+  font-size:120%;
+  position: relative;
+  right: 5px;
+  bottom: 10px;
 }
 
 .fl-route, .btn-search, .date-picker{
@@ -299,6 +307,7 @@ margin-bottom: 10px;
   line-height: 43px;
   text-align: center;
   font-size: 70%;
+  cursor: pointer;
 }
 
 p.on-search-component{
@@ -308,11 +317,26 @@ p.on-search-component{
   margin-bottom: 10px;
 }
 
+date-picker-sub{
+  position: relative;
+}
+
 .date-picker-sub i{
-  font-size: 140%;
+  font-size: 170%;
   margin-right: 10px;
   color: #b7a074;
   vertical-align: middle;
+}
+
+.date-picker-sub-right.disabled .date-picker-sub i{
+  position: absolute;
+  left:-42px;
+  top: 1px;
+}
+
+
+.date-picker-sub-right.disabled .date-component{
+  cursor:not-allowed;
 }
 
 .date-picker-sub-right .date-component{
@@ -340,6 +364,8 @@ p.on-search-component{
   background-repeat: no-repeat;
   background-position: calc(100% - 10px) 50%;
   background-size: 9px;
+  background-color: #fff;
+  cursor: pointer;
 }
 
 /******************SEARCH BUTTON**********/
@@ -353,17 +379,10 @@ p.on-search-component{
   border: 1px solid #aaa;
   vertical-align: top;
   margin-top: 20px;
-}
-
-.btn-search a{
-  color: #fff;
-  font-size: 65%;
+  font-size: 60%;
   font-weight: 400;
-  text-transform: capitalize;
-}
-
-.btn-search{
   margin-left: 20px;
+  cursor: pointer;
 }
 
 /*---------JUMBO TOGGLE COMPONENT -----------*/
@@ -383,6 +402,7 @@ p.on-search-component{
   height: 30px;
   vertical-align:middle;
   margin: 0 10px;
+  cursor: pointer;
 }
 
 .switch input {display:none;}
@@ -473,8 +493,10 @@ input:checked + .slider:before {
 .gallery{
     position:relative;
     height:280px;
-    /*border: 1px solid #ddd;*/
     color:#fff;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.4s;
 }
 
 .gallery-row{
@@ -544,52 +566,17 @@ input:checked + .slider:before {
     transform:translate(-50%, -50%);
 }
 
-/*.pos1{
-    background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/lagos.png);
-    background-size: cover;
-    background-position:center;
-}
-.pos2{
-    background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/abj2.jpg);
-    background-size: cover;
-    background-position:bottom;
-}
-.pos3{
-    background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/benin.jpg);
-    background-size: cover;
-    background-position:bottom;
-}
-.pos4{
-    background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/cal2.jpg);
-    background-size: cover;
-    background-position:middle;
-}
-.pos5{
-    background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/ph2.jpg);
-    background-size: cover;
-    background-position:bottom;
-}*/
-
-.gallery{
-  width: 100%;
-  overflow: hidden;
-  transition: all 0.4s;
-}
-
 .gallery img{
-  width: 100%;
+  width: 125%;
   height: auto;
   transform: scale(1.15);
   transition: all 0.4s ease-out;
   background-color: #000;
+  z-index: 4;
 }
 
 .gallery img:hover{
   transform: scale(1.03);
-}
-
-.gallery:hover{
-    transform: scale(1.01);
 }
 
 .dest-shadow{
@@ -599,9 +586,9 @@ input:checked + .slider:before {
   width: inherit;
   height: inherit;
   background-color: #000;
-  z-index: 1;
-  opacity: 0.5;
+  z-index: 2;
   transition: all 0.4s;
+  opacity: 0.5;
 }
 
 .dest-shadow:hover{
@@ -876,20 +863,24 @@ footer{
 /*----------------------------------------------------------------*/
 /* SECTION RESULT */
 /*----------------------------------------------------------------*/
-.jumbotron-away, .jumbotron-manager{
+.jumbotron-home.away{
     background-image: linear-gradient(#3881AF, #286A9D);
-    height:30vh;
+    height:33vh;
 }
 
-.jumbotron-away .hero-search-box, .jumbotron-manager .hero-search-box{
+.jumbotron-home.away .hero-search-box>div{
+  padding: 40px 0 100px 0;
+  text-align: center;
+}
+
+/*.hero-search-box{
     position:absolute;
     text-transform: uppercase;
     top:17%;
     left:50%;
     transform:translate(-50%, -50%);
     color: #fff;
-}
-
+}*/
 .jumbotron-away .toggler{
   margin-top: -5px;
 }
@@ -906,18 +897,19 @@ footer{
 
 .flight-card{
   text-transform:uppercase;
-  max-width:500px;
-  border: 1px solid #e1e1e1;
+  max-width:550px;
+  border: 1px solid #d1d1d1;
   border-radius: 4px;
   color: #656565;
-  margin: 10px 0 10px 15px;
-  font-size:80%;
+  margin: 10px 0 20px 15px;
+  font-size:90%;
   position: relative;
+  box-shadow: 0px 1px 3px 1px rgba(46,61,73,0.2);
 }
 
 /*------FLIGHT CARD TOP----*/
 .card-top{
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #d1d1d1;
   background-color: #fff;
 }
 
@@ -936,76 +928,94 @@ footer{
 
 /*-TOP-RIGHT-*/
 .top-right{
-  border-left: 1px solid #eee;
-{/*padding-right: 29px !important;*/}
+  border-left: 1px solid #dfdfdf;
 }
 
 .top-right img{
-  max-width: 120px;
+  padding-top: 15px;
+}
+
+.travelDate{
+  font-size: 55%;
 }
 
 .top-right-top{
-  border-top: 1px solid #eee !important;
+  border-top: 1px solid #dfdfdf !important;
   text-align: center;
-  padding-bottom: 7px;
+  padding-bottom: 14px;
 }
 
 .card-manage .top-right-top{
-  border-bottom: 1px solid #eee !important;
+  border-bottom: 1px solid #dfdfdf !important;
   text-align: center;
   padding-bottom: 7px;
 }
 
-.top-right-top figure{
-  line-height: 50px;
-  margin-left: 25px;
-}
 
 .top-right-bottom small{
-  font-size: 100%;
+  font-size: 140%;
   color: #2E72A3;
 }
 
 .top-right-bottom{
+  text-align: center;
   font-weight: 400;
-  font-size:80%;
+  font-size:70%;
   line-height: 40px;
-  padding-left: 30px;
-  color: #2E72A3;
+  color: #555;
 }
 
 .location-stamp-departure{
   margin-top: 10px;
-  margin-left: 30px;
 }
 
 .location-stamp-arrival{
-  margin-right: 30px;
   margin-top: 10px;
+  text-align: center;
+}
+
+.stamp-desc{
+  font-size:40%;
 }
 
 .city{
   font-weight: 400;
   font-size: 130%;
+  color: #535353;
 }
 .time{
-  font-weight: 100;
-  font-size: 70%;
-  color: #333;
+  font-weight: 300;
+  font-size: 68%;
+  color: #5f5f5f;
+  padding-left: 2px;
 }
 
 .price{
   color: #2E72A3;
+  font-size: 140%;
+  padding-left: 2px;
+}
+/*ROUNDTRIP--CARD*/
+.fl-roundtrip{
+  font-size: 90%;
 }
 
+.fl-roundtrip img{
+  width: 20px;
+  height: 20px;
+}
+
+.right-stamp{
+  margin-left: 20px;
+}
+
+.inline{
+  display:inline-block;
+}
 /*------"MANAGER-CARD" STYLE---------*/
 .card-manage .top-right-top{
   font-size: 93%;
   border-top: 0;
-}
-
-.card-manage .top-right-bottom{
-  padding-left: 0px;
 }
 
 .fl-manage-top, .fl-manage-bottom{
@@ -1074,30 +1084,23 @@ footer{
 .top-left img{
   display:block;
   max-width: 100%;
-  height: 20px;
-  margin: 25% auto 0 auto;
-}
-
-.top-left img.double-routes{
-  display:block;
-  max-width: 100%;
-  height: 25px;
-  margin: 35% auto 0 auto;
+  height: 27px;
+  margin: 32% auto 0 auto;
 }
 /*--------------------------*/
 
 /*----------FLIGHT CARD BOTTOM---------------*/
 .card-bottom{
-  height: 40px;
+  height: 47px;
   text-align: center;
-  line-height: 35px;
-  background-color: #fcfcfc;
+  line-height: 45px;
+  background-color: #fafafa;
 }
 
 .card-bottom i{
   display: inline-block;
   margin-right: 5px;
-  font-size:100%;
+  font-size:105%;
   vertical-align: middle;
 
 }
@@ -1107,21 +1110,28 @@ footer{
   color:#ECBD4B;
 }
 
+.btn-flight-save img{
+  width: 1em;
+  vertical-align: sub;
+  padding-right: 3px;
+}
+
 .card-bottom span{
   font-size: 65%;
   font-weight: 400;
-  color: #938F8F;
+  color: #7a7a7a;
 }
 
 .btn-flight-book{
-  line-height: 10px;
+  line-height: 15px;
   display: inline-block;
-  padding: 2px 10px;
+  padding: 3px 6px 5px 4px;
 }
 
 .btn{
 transition: all 0.1s ease;
 font-weight: 100;
+cursor: pointer;
 }
 
 
@@ -1135,11 +1145,12 @@ font-weight: 100;
 }
 /*--------------------FILTER SECTION--------------------*/
 .display-panel{
-  font-size: 65%;
+  font-size: 70%;
   border: 1px solid #ddd;
-  line-height: 30px;
+  line-height: 40px;
   margin: 10px 0;
   background-color: #eee;
+  box-shadow: 0px 1px 10px 0px rgba(46,61,73,0.2);
 }
 .select-container{
   overflow:hidden;
@@ -1239,10 +1250,10 @@ i.ion-android-notifications div{
 
 .btn-close{
   position: absolute;
-  top: 0;
-  left:4px;
-  font-size: 120%;
-  font-weight: 400;
+  top: 4px;
+  left:9px;
+  font-size: 130%;
+  font-weight: 700;
   color: #aaa;
   transition: 0.1s;
 }
@@ -1255,3 +1266,95 @@ i.ion-android-notifications div{
 Orange color - #ECBD4B
 Blue color - #32648e
 */
+
+.rodal-mask{
+  background: rgba(0, 0, 0, 0.84) !important;
+}
+
+.modal-middle{
+  background-color: #FbFbFb;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.modal-buttons{
+  background-color: #f0f0f0;
+}
+
+.modal-buttons .btn-flight-details span, .modal-buttons .btn-flight-save span, .modal-buttons i{
+  color: #5a5a5a;
+}
+
+.extra-flight-data{
+  line-height: 22px;
+}
+
+.extra-flight-data .city{
+  padding-top: 5px;
+}
+
+.extra-flight-data .city.top{
+  padding-top: 25px;
+}
+.extra-flight-data .time.top{
+  padding-top:8px;
+}
+
+.extra-flight-data .time:last-child{
+  padding-bottom: 18px;
+}
+
+.flights-divider {
+  width: 100%;
+  height: 1px;
+  margin: 17px auto;
+  background: #dfdfdf;
+}
+
+.vertical-divider{
+  height: 100%;
+}
+
+.vertical-divider img{
+  width: 7px;
+  position: absolute;
+  top: 100px;
+  right: 0;
+  transform: translate(0, -50%);
+}
+
+.modal-header {
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.modal-header img {
+  width: 110px;
+  padding:24px 0 12px 0;
+}
+
+.rodal-dialog {
+  padding:0 !important;
+  border-radius: 0 !important;
+}
+
+.rodal-dialog .extra-flight-data, .modal-details{
+  text-align: left;
+}
+
+.modal-details{
+  padding-left: 70px;
+  font-size: 85%;
+}
+
+.modal-details p{
+  display: inline-block;
+  color: #39AFE0;
+  font-size: 110%;
+  padding-left: 10px;
+  margin: 0;
+}
+
+.modal-details, .modal-buttons{
+  border-top: 1px solid #dfdfdf;
+  line-height: 65px;
+}
