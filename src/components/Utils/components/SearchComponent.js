@@ -350,7 +350,7 @@ class DatePickerComponent extends Component {
               onChange={this.handleChangeDeparture}
               disabled={false}
               minDate={moment()}
-              maxDate={moment().add(3, "months")}
+              maxDate={moment().add(2, "weeks")}
             />
           </div>
         </div>
@@ -364,7 +364,7 @@ class DatePickerComponent extends Component {
               onChange={this.handleChangeArrival}
               disabled={this.props.oneWay}
               minDate={moment()}
-              maxDate={moment().add(3, "months")}
+              maxDate={moment().add(2, "weeks")}
             />
           </div>
         </div>

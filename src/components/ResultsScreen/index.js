@@ -4,6 +4,7 @@ import FilterPane from './FilterPane';
 import ResultPane from './ResultPane';
 import {getCity} from '../Utils/strings';
 import {store} from '../../store';
+import {Hidden} from 'react-grid-system';
 import moment from 'moment';
 import axios from 'axios';
 
@@ -52,19 +53,34 @@ class ResultsScreen extends Component{
     if(this.state.hasErrored){
       return (
         <div>
-          <Jumbotron forStyle="jumbotron-home away" search={true}/>
+          <Hidden xs sm>
+            <Jumbotron forStyle="jumbotron-home away" search={true}/>
+          </Hidden>
+          <Hidden md lg xl>
+            <div style={{width:"100%",height:"50px"}}></div>
+          </Hidden>
           <DisplayComponent message={"Sorry! Unable to load items"}/>
         </div>);
     } else if(this.state.isLoading){
       return (
         <div>
-          <Jumbotron forStyle="jumbotron-home away" search={true}/>
+          <Hidden xs sm>
+            <Jumbotron forStyle="jumbotron-home away" search={true}/>
+          </Hidden>
+          <Hidden md lg xl>
+            <div style={{width:"100%",height:"50px"}}></div>
+          </Hidden>
            <DisplayComponent/>
         </div>);
     } else if(this.request===undefined && this.state.isLoading===false){
       return (
         <div>
-          <Jumbotron forStyle="jumbotron-home away" search={true}/>
+          <Hidden xs sm>
+            <Jumbotron forStyle="jumbotron-home away" search={true}/>
+          </Hidden>
+          <Hidden md lg xl>
+            <div style={{width:"100%",height:"50px"}}></div>
+          </Hidden>
           <DisplayComponent message={"Something went wrong, please perform search again."}/>
         </div>
       );
@@ -72,7 +88,12 @@ class ResultsScreen extends Component{
       if(this.state.result.content===[]){
         return(
           <div>
-            <Jumbotron forStyle="jumbotron-home away" search={true}/>
+            <Hidden xs sm>
+              <Jumbotron forStyle="jumbotron-home away" search={true}/>
+            </Hidden>
+            <Hidden md lg xl>
+              <div style={{width:"100%",height:"50px"}}></div>
+            </Hidden>
             <DisplayComponent message={"No flight found"}/>
           </div>
         );
@@ -82,7 +103,12 @@ class ResultsScreen extends Component{
         flDetails.oneWay = flDetails.request.oneWay;
         return(
           <div className='Results-Component'>
-            <Jumbotron forStyle="jumbotron-home away" search={true} searchHandler={this.doFetch}/>
+            <Hidden xs sm>
+              <Jumbotron forStyle="jumbotron-home away" search={true} searchHandler={this.doFetch}/>
+            </Hidden>
+            <Hidden md lg xl>
+              <div style={{width:"100%",height:"50px"}}></div>
+            </Hidden>
             <ResultPane flDetails={flDetails}/>
           </div>
         )

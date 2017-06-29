@@ -50,15 +50,23 @@ class FlightCard extends Component{
   }
 
   prev(){
+    let base = 0;
+    let prevId = this.state.selectedClassId+1;
+    let isAtMax = (this.state.selectedClassId+1)>(this.state.numberOfClasses-1);
+    let newId = isAtMax?base:prevId;
     this.setState({
-      selectedClassId:((this.state.selectedClassId+1)>(this.state.numberOfClasses-1))?0:(this.state.selectedClassId+1)
+      selectedClassId: newId
     });
     this.loadPriceAndClass();
   }
 
   next(){
+    let base = this.state.numberOfClasses-1;
+    let nextId = (this.state.selectedClassId-1);
+    let isAtMin = ((this.state.selectedClassId-1)<0);
+    let newId = isAtMin?base:nextId
     this.setState({
-      selectedClassId:((this.state.selectedClassId-1)<0)?this.state.numberOfClasses-1:(this.state.selectedClassId-1)
+      selectedClassId:newId
     });
     this.loadPriceAndClass();
   }
@@ -89,7 +97,29 @@ class FlightCard extends Component{
         });
       }
     }
-  }
+
+      if(this.state.cost==="0" && this.state.numberOfClasses>1){
+        debugger;
+        for(let i=0; i<this.state.numberOfClasses; i++){
+          let base = this.state.numberOfClasses-1;
+          let nextId = (this.state.selectedClassId-1);
+          let isAtMin = ((this.state.selectedClassId-1)<0);
+          let newId = isAtMin?base:nextId;
+          let newCost = (this.state.validPrices[newId].cost).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          let newFlClass = this.state.validPrices[newId].class;
+
+          this.setState({
+            selectedClassId:newId,
+            cost:newCost,
+            flightClass:newFlClass
+          });
+
+          if(newCost!=="0"){
+            break;
+          }
+        }
+      }
+    }
 
   render(){
     return(
@@ -248,9 +278,9 @@ const FlightCardTRBottom=(props)=>{
         <div className="top-right-bottom">
           <div className= "left">
             {(props.numberOfClasses>1)&&<span onClick={()=>{props.prev()}}><i className="ion-chevron-left"/></span>}
-            <Hidden xs sm><span><strong className="price-text">Price: </strong></span></Hidden>
-            <small className="currency"><strong>&#8358;</strong></small>
-            <span className="price"><strong>{props.flCost}</strong></span>
+            {(props.flCost!=="0") && (<span><Hidden xs sm><span><strong className="price-text">Price: </strong></span></Hidden>
+            <small className="currency"><strong>&#8358;</strong></small></span>)}
+            <span className="price"><strong>{(props.flCost!=="0")?props.flCost:"NO SEATS"}</strong></span>
           </div>
           <div className= "right">
             <span className="flight-class"><strong>{props.flClass}</strong></span>

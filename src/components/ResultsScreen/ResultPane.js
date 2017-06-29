@@ -23,22 +23,10 @@ class ResultPane extends Component{
           return (null);
         }
 
-        let noValidCost= false;
-        let validPrices = [];
+        data.selectedClassId=prices.length-1;
+        data.NumberOfClasses=prices.length;
+        data.validPrices = prices;
 
-        for( let price of prices){
-          if(price.cost!==0){
-            validPrices.push(price);
-          }
-        }
-        if(validPrices.length === 0 ){
-          this.setState({numberOfFlights:this.state.numberOfFlights--});
-          return (null);
-        }else{
-            data.selectedClassId=validPrices.length-1;
-            data.NumberOfClasses=validPrices.length;
-            data.validPrices = validPrices;
-        }
         return(<FlightCard key={data.id} type={this.props.flDetails.type} oneWay={this.props.flDetails.oneWay} data={data}/>);
         }
       );
