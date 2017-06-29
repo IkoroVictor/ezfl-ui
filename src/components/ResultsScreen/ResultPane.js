@@ -1,64 +1,70 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Container, Row, Col, Hidden} from 'react-grid-system';
 import FlightCard from '../Utils/components/FlightCard';
 import DisplayPanel from './FilterPane';
 
+class ResultPane extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+      numberOfFlights:props.flDetails.content.length
+    };
+  }
 
-let getPrice = function(price=[], flightClass=""){
-  console.log("Here");
-}
+  componentWillMount(){
+    this.loadCards =
+      this.props.flDetails.content.map((data)=>{
+        let selectedClassId = 0;
+        let NumberOfClasses = 0;
 
-const ResultPane = ({flDetails}) => {
-  let flightData = flDetails.content;
-  let flightClass =flDetails.request.class;
-  let badFlightCounter = 0;
-  return(
-  <div className='results-pane'>
-    <div>
-      <Container>
-        <DisplayPanel/>
-        <Row>
-          <Col md={4}>
-              <AdPane/>
-          </Col>
-          <Col md={8}  style={{padding:"0px"}}>
-            {
-              flightData.map((data)=>{
-                data.flightClass=flightClass;
-                let priceArray = data.prices.price;
-                if(!priceArray){
-                  return (null);
-                }
+        let prices = data.prices.price;
+        if(!prices){
+          this.setState({numberOfFlights:this.state.numberOfFlights--});
+          return (null);
+        }
 
-                for(let i=0; i< priceArray.length; i++){
-                  if(priceArray[i].class.toLowerCase()===flightClass.toLowerCase()){
-                    data.price = priceArray[i].cost;
-                    data.price = data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    if(data.price==0){
-                      badFlightCounter++;
-                      return null;
-                    }
-                    break;
-                  }
-                  if(i===priceArray.length-1){
-                    data.price = 0;
-                  }
-                }
-                if(data.price==0){
-                  badFlightCounter++;
-                  return null;
-                }
-                return(<FlightCard key={data.id} flCardDetails={{type: flDetails.type, oneWay: flDetails.oneWay, data:data}}/>);
-                }
-              )
-            }
-          </Col>
-        </Row>
-      </Container>
+        let noValidCost= false;
+        let validPrices = [];
+
+        for( let price of prices){
+          if(price.cost!==0){
+            validPrices.push(price);
+          }
+        }
+        if(validPrices.length === 0 ){
+          this.setState({numberOfFlights:this.state.numberOfFlights--});
+          return (null);
+        }else{
+            data.selectedClassId=validPrices.length-1;
+            data.NumberOfClasses=validPrices.length;
+            data.validPrices = validPrices;
+        }
+        return(<FlightCard key={data.id} type={this.props.flDetails.type} oneWay={this.props.flDetails.oneWay} data={data}/>);
+        }
+      );
+
+  }
+
+  render(){
+    return(
+    <div className='results-pane'>
+      <div>
+        <Container>
+          <DisplayPanel {...this.props} numberOfFlights={this.state.numberOfFlights}/>
+          <Row>
+            <Col md={4}>
+                <AdPane/>
+            </Col>
+            <Col md={8}  style={{padding:"0px"}}>
+              {this.loadCards}
+            </Col>
+          </Row>
+        </Container>
+      </div>
+
     </div>
-
-  </div>
-);
+  );
+  }
 }
 
 const AdPane = () => (

@@ -1,11 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Jumbotron from '../Utils/components/Jumbotron';
 import About from './About';
 import Destinations from './Destinations';
 import Services from './Services';
 import DownloadMobileApp from './DownloadMobileApp';
 import {Container, Row, Col} from 'react-grid-system';
-import {Link} from 'react-router-dom';
 
 const HomeScreen = (screenClass, props) => (
   <div className='Home-Component'>
@@ -19,7 +18,7 @@ const HomeScreen = (screenClass, props) => (
       <Container>
         <Row>
           <Col md={12}>
-            <form role="form">
+            <form>
                 <Row>
                     <Col md={4}>
                         <input type="text" className="form-control" id="name" placeholder="Name"/>

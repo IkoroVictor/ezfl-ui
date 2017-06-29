@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import '../App.css';
 import Jumbotron from '../Utils/components/Jumbotron';
 import FilterPane from './FilterPane';
 import ResultPane from './ResultPane';
-import {sampleData, getCity} from '../Utils/strings';
+import {getCity} from '../Utils/strings';
 import {store} from '../../store';
 import moment from 'moment';
+import axios from 'axios';
 
 class ResultsScreen extends Component{
   constructor(props){
@@ -17,36 +17,34 @@ class ResultsScreen extends Component{
       result:{}
     }
     this.fetchData = this.fetchData.bind(this);
-  }
-
-  constructURL(data){
-    //25/06/2017
-    return `https://easyflight-api.herokuapp.com/easyflight/flights/flight?from=${data.from}&to=${data.to}&date=${data.toDate}&pageNumber=1&pageSize=30`
+    this.doFetch = this.doFetch.bind(this);
   }
 
   fetchData(url) {
     this.setState({ isLoading: true, hasErrored: false });
-    fetch(url)
-        .then((response) => {
-            if (!response.ok) {
-                throw Error(response.statusText);
-            }
-            this.setState({hasErrored: false });
-            return response;
-        })
-        .then((response) => response.json())
-        .then((result) => {
-          this.setState({ result, isLoading: false})
-        })
-        .catch(() => this.setState({hasErrored: true }));
+    axios.get(url)
+    .then(response => {
+      this.setState({ result:response.data, isLoading: false})
+    })
+    .catch(error => {
+      this.setState({hasErrored: true });
+    });
+  }
+
+  doFetch(){
+    try{
+      this.request = store.getState().request.request;
+      let from = getCity[this.request.from];
+      let to = getCity[this.request.to];
+      let departure = moment(this.request.departure).format("DD/MM/YYYY");
+      this.fetchData(`/flights/flight?from=${from}&to=${to}&date=${departure}&pageNumber=0&pageSize=1000`);//`https://easyflight-api.herokuapp.com/easyflight/flights/flight?from=${from}&to=${to}&date=${departure}&pageNumber=1&pageSize=10`);
+    }catch(err){
+      this.setState({ isLoading: false, hasErrored: false });
+    }
   }
 
   componentDidMount(){
-    this.request = store.getState().request.request;
-    let from = getCity[this.request.from];
-    let to = getCity[this.request.to];
-    let departure = moment(this.request.departure).format("DD/MM/YYYY");
-    this.fetchData(`https://easyflight-api.herokuapp.com/easyflight/flights/flight?from=${from}&to=${to}&date=${departure}&pageNumber=1&pageSize=10`);
+    this.doFetch();
   }
 
   render(){
@@ -55,21 +53,19 @@ class ResultsScreen extends Component{
       return (
         <div>
           <Jumbotron forStyle="jumbotron-home away" search={true}/>
-          <DisplayComponent message={"Sorry! There was an error loading the items"}/>
+          <DisplayComponent message={"Sorry! Unable to load items"}/>
         </div>);
-    }
-    if(this.state.isLoading){
+    } else if(this.state.isLoading){
       return (
         <div>
           <Jumbotron forStyle="jumbotron-home away" search={true}/>
            <DisplayComponent/>
         </div>);
-    }
-    if(this.state.result==={} && this.state.isLoading===false){
+    } else if(this.request===undefined && this.state.isLoading===false){
       return (
         <div>
           <Jumbotron forStyle="jumbotron-home away" search={true}/>
-          <DisplayComponent message={"Something went Wrong"}/>
+          <DisplayComponent message={"Something went wrong, please perform search again."}/>
         </div>
       );
     }else if(this.state.result!=={} && this.state.isLoading===false){
@@ -81,15 +77,12 @@ class ResultsScreen extends Component{
           </div>
         );
       }else{
-        flDetails.request = {
-          passenger: 1,
-          class: "economy"
-        };
+        flDetails.request = this.request;
         flDetails.type = "search";
-        flDetails.oneWay = true;
+        flDetails.oneWay = flDetails.request.oneWay;
         return(
           <div className='Results-Component'>
-            <Jumbotron forStyle="jumbotron-home away" search={true}/>
+            <Jumbotron forStyle="jumbotron-home away" search={true} searchHandler={this.doFetch}/>
             <ResultPane flDetails={flDetails}/>
           </div>
         )
@@ -117,3 +110,5 @@ const DisplayComponent = ({message}) =>(
     }</span>
   </div>
 );
+
+//https://easyflight-logistics.herokuapp.com

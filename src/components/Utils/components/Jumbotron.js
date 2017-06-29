@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import SearchComponent from './SearchComponent';
 import { Hidden } from 'react-grid-system';
 
-const Jumbotron = ({ forStyle, manager, search }) => {
+const Jumbotron = ({ forStyle, manager, search, searchHandler }) => {
   return (
     <div className={forStyle}>
       <div className="hero-search-box">
@@ -11,11 +11,11 @@ const Jumbotron = ({ forStyle, manager, search }) => {
         {search &&
           (
             <div>
-              <Hidden sm xs>
-                <SearchComponent/>
+              <Hidden sm xs md>
+                <SearchComponent searchHandler={searchHandler}/>
               </Hidden>
-              <Hidden md lg xl>
-                <h2>Flights</h2>
+              <Hidden lg xl>
+                <h2 className="flights-sm">Flights</h2>
               </Hidden>
             </div>
           )

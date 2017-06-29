@@ -9,6 +9,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+::selection{
+  background: transparent;
+
+}
 
 :focus {
   outline: 0;

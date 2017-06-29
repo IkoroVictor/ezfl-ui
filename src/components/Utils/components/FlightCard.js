@@ -32,23 +32,85 @@ const BtnClose = ()=>(
 );
 //---------------------//
 
-const FlightCard = ({flCardDetails}) => (
-  <div className="flight-card">
-    <FlightCardTop request={flCardDetails.request} type={flCardDetails.type} oneWay={flCardDetails.oneWay} data={flCardDetails.data}/>
-    {(flCardDetails.type === "search")?(<FlightCardBottom flCardDetails={flCardDetails}/>):
-    (
-      <div>
-          <BtnClose/>
-          {(flCardDetails.data.notifications!==undefined && flCardDetails.data.notifications.length>0) &&<Badge/>}
+class FlightCard extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+      modalVisible:false,
+      cost:(this.props.data.validPrices[this.props.data.selectedClassId].cost).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+      flightClass:this.props.data.validPrices[this.props.data.selectedClassId].class,
+      selectedClassId: this.props.data.selectedClassId,
+      numberOfClasses: this.props.data.NumberOfClasses,
+      validPrices:this.props.data.validPrices
+    }
+    this.next=this.next.bind(this);
+    this.prev=this.prev.bind(this);
+    this.loadPriceAndClass=this.loadPriceAndClass.bind(this);
+    this.showModal=this.showModal.bind(this);
+  }
+
+  prev(){
+    this.setState({
+      selectedClassId:((this.state.selectedClassId+1)>(this.state.numberOfClasses-1))?0:(this.state.selectedClassId+1)
+    });
+    this.loadPriceAndClass();
+  }
+
+  next(){
+    this.setState({
+      selectedClassId:((this.state.selectedClassId-1)<0)?this.state.numberOfClasses-1:(this.state.selectedClassId-1)
+    });
+    this.loadPriceAndClass();
+  }
+
+  loadPriceAndClass(){
+    this.setState({
+      cost:(this.state.validPrices[this.state.selectedClassId].cost).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+      flightClass:this.state.validPrices[this.state.selectedClassId].class
+    });
+  }
+
+  showModal(){
+    this.setState({
+      modalVisible:true
+    });
+  }
+
+  componentWillMount(){
+    if(this.state.numberOfClasses>1){
+      let firstCost = this.state.validPrices[0].cost;
+      let lastCost = this.state.validPrices[this.state.selectedClassId].cost;
+
+      if(lastCost > firstCost){
+        this.setState({
+          selectedClassId: 0,
+          cost:(this.props.data.validPrices[0].cost).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+          flightClass:this.props.data.validPrices[0].class
+        });
+      }
+    }
+  }
+
+  render(){
+    return(
+      <div className="flight-card">
+        <FlightCardTop {...this.props} prev={this.prev} next={this.next} selectedClassId={this.state.selectedClassId} numberOfClasses={this.state.numberOfClasses} validPrices={this.state.validPrices} flClass={this.state.flightClass} flCost={this.state.cost}/>
+        {(this.props.type === "search")?(<FlightCardBottom {...this.props} flClass={this.state.flightClass} flCost={this.state.cost} visible={this.state.modalVisible}/>):
+        (
+          <div>
+              <BtnClose/>
+              {(this.props.data.notifications!==undefined && this.props.data.notifications.length>0) &&<Badge/>}
+          </div>
+        )}
       </div>
-    )}
-  </div>
-);
+    );
+  }
+}
 
 const FlightCardTop = (props) => (
   <div className={(props.type==="search")?"card-top":"card-top manager"}>
     <Row>
-      <FlightCardTopLeft airline={props.data.airline} type={props.type}/>
+      <FlightCardTopLeft airline={props.data.airline} flightNumber={props.data.flightNumber}/>
       <FlightCardTopRight {...props}/>
     </Row>
   </div>
@@ -57,6 +119,7 @@ const FlightCardTop = (props) => (
 const FlightCardTopLeft = (props) => {
   return (
     <Col md={3} sm={3} xs={3} className="top-left">
+      <span><strong>{props.flightNumber}</strong></span>
       <figure><img src={airlineMap[props.airline]} alt=""/></figure>
     </Col>
   );
@@ -175,39 +238,56 @@ const TravelRoute = (props) => {
   )
 }
 
-const FlightCardTRBottom = (props) => (
-  <div>
-  {(props.type==="search")?(
-    <div className="top-right-bottom">
-        <span><strong>Price: </strong></span>
-        <small className="currency"><strong>&#8358;</strong></small>
-        <span className="price"><strong>{props.data.price}</strong></span>
-    </div>)
-  :(
-    <div className="top-right-bottom">
-      <Row className="manager-pane">
-        <Col md={4} sm={4} xs={4}>
-          <span>Price: </span>
-          <small className="currency">&#8358;</small>
-          <span className="price">{props.data.price}</span>
-        </Col>
-        <Col md={2} sm={2} xs={2}>
-          <small className="strike-currency">&#8358;</small>
-          <s className="strike-price">{props.data.price}</s>
-        </Col>
-        <Col md={6} sm={6} xs={6} style={{textAlign:"right"}}><BtnFlightBook/></Col>
-      </Row>
+const FlightCardTRBottom=(props)=>{
+    return(
+    <div>
+    {(props.type==="search")
+    ?
+    (
+      <div className="price-component">
+        <div className="top-right-bottom">
+          <div className= "left">
+            {(props.numberOfClasses>1)&&<span onClick={()=>{props.prev()}}><i className="ion-chevron-left"/></span>}
+            <Hidden xs sm><span><strong className="price-text">Price: </strong></span></Hidden>
+            <small className="currency"><strong>&#8358;</strong></small>
+            <span className="price"><strong>{props.flCost}</strong></span>
+          </div>
+          <div className= "right">
+            <span className="flight-class"><strong>{props.flClass}</strong></span>
+            {(props.numberOfClasses>1)&&<span onClick={()=>{props.next()}}><i className="ion-chevron-right"/></span>}
+          </div>
+        </div>
+        <div className="clearfix"></div>
+      </div>
 
-    </div>)
-  }
-</div>
-);
+    )
+    :
+    (
+      <div className="top-right-bottom">
+        <Row className="manager-pane">
+          <Col md={4} sm={4} xs={4}>
+            <span>Price: </span>
+            <small className="currency">&#8358;</small>
+            <span className="price">{this.validPrices[this.state.selectedClassId].cost}</span>
+          </Col>
+          <Col md={2} sm={2} xs={2}>
+            <small className="strike-currency">&#8358;</small>
+            <s className="strike-price">{this.validPrices[this.state.selectedClassId].cost}</s>
+          </Col>
+          <Col md={6} sm={6} xs={6} style={{textAlign:"right"}}><BtnFlightBook/></Col>
+        </Row>
+      </div>
+    )
+    }
+    </div>
+    );
+}
 
 class FlightCardBottom extends Component{
   constructor(props){
     super(props);
     this.state = {
-      visible: false,
+      visible: this.props.visible,
     };
     this.clickHandler=this.clickHandler.bind(this);
   }
@@ -219,7 +299,7 @@ class FlightCardBottom extends Component{
   }
 
   render(){
-    let flightDetails = this.props.flCardDetails;
+    let flightDetails = this.props;
     return(<div className="card-bottom">
       <Col md={4} sm={4} xs={4}>
         <BtnFlightDetails clickHandler={this.clickHandler}/>
@@ -257,23 +337,23 @@ class FlightCardBottom extends Component{
             <strong>flight: <p>{flightDetails.data.flightNumber}</p></strong>
           </div>
           <div className="modal-details">
-            <strong>class: <p>{flightDetails.data.flightClass}</p></strong>
+            <strong>class: <p>{flightDetails.flClass}</p></strong>
           </div>
           <div className="modal-details">
-            <strong>price: <p><small>&#8358;</small>{flightDetails.data.price}</p></strong>
+            <strong>price: <p><small>&#8358;</small>{flightDetails.flCost}</p></strong>
           </div>
           <div className="modal-buttons">
             <Row>
               <Col md={4} sm={4} xs={4}>
-                <BtnFlightDetailsPrint/>
+                <BtnFlightSave/>
               </Col>
               <Col md={4} sm={4} xs={4}>
                 <Hidden xs sm>
-                  <BtnFlightSave/>
+                  <BtnFlightDetailsPrint/>
                 </Hidden>
               </Col>
               <Col md={4} sm={4} xs={4}>
-                  <BtnFlightBook/>
+                <BtnFlightBook/>
               </Col>
             </Row>
           </div>

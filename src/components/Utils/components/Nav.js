@@ -43,25 +43,25 @@ import {store} from '../../../store';
             </Col>
             <Col md={9} xs={4}>
               <ul className={this.props.mainClass}>
-                <li>
+                <li onClick={this.props._toggleMenu}>
                   <Link to="/">Flight search</Link>
                 </li>
                 <li>
-                  <Link to="/manage">Manage Schedule</Link>
+                  <Link to="#">Manage Schedule</Link>
                 </li>
                 {!this.state.login && (
-                  <li onClick={()=>{store.dispatch(UserActions.userLogin({name:"name"}))}}>
+                  <li>
                     <Link to="#">Login</Link>
                   </li>
                 )}
                 {!this.state.login && (
-                  <li className="sign-up" onClick={()=>{store.dispatch(UserActions.userLogin({name:"name"}))}}>
+                  <li className="sign-up">
                     <Link to="#">Sign up</Link>
                   </li>
                 )}
                 {this.state.login && (
                   <li>
-                    <Link to="/profile">Settings</Link>
+                    <Link to="#">Settings</Link>
                   </li>
                 )}
                 {this.state.login && (
@@ -90,5 +90,7 @@ import {store} from '../../../store';
     )
   }
 }
+
+//onClick={()=>{store.dispatch(UserActions.userLogin({name:"name"}))}}
 
 export default Nav;

@@ -10,6 +10,7 @@ import './AppQueries.css';
 import '../css/ionicons.min.css';
 import 'rodal/lib/rodal.css';
 
+
 class App extends Component {
   render() {
     return (

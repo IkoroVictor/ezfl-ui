@@ -21,13 +21,13 @@ class SearchComponent extends Component{
       arrival:"",
       departure:"",
       oneWay:true,
-      flightType: "economy",
       adult:1,
       children:0,
       infant:0,
       direction: "from",
       dropdown:false,
-      error:""
+      error:"",
+      isMobile:false
     };
     this.fromStampClickHandler = this.fromStampClickHandler.bind(this);
     this.toStampClickHandler = this.toStampClickHandler.bind(this);
@@ -52,6 +52,12 @@ class SearchComponent extends Component{
     this.volume = 2;
   }
 
+  onDropDownBlur =() => {
+    this.setState({
+      dropdown: false
+    });
+  }
+
   showAlert = () => {
     this.msg.error(this.error, {
       time: 5000,
@@ -61,10 +67,30 @@ class SearchComponent extends Component{
   }
 
   componentWillMount(){
-    this.setState({
-      arrival: moment(),
-      departure: moment(),
-    });
+    let isMobile = false;
+    if (/Mobi/i.test(navigator.userAgent) || /Anroid/i.test(navigator.userAgent)) {
+      isMobile = true
+    }
+
+    this.request = store.getState().request.request;
+    if(this.request !== undefined){
+      this.setState({
+        from:this.request.from,
+        to:this.request.to,
+        arrival:this.request.arrival,
+        departure:this.request.departure,
+        oneWay:this.request.oneWay,
+        adult:parseInt(this.request.adult),
+        children:parseInt(this.request.children),
+        infant:parseInt(this.request.infant)
+      });
+    }else{
+      this.setState({
+        arrival: moment(),
+        departure: moment(),
+        isMobile: isMobile
+      });
+    }
   }
 
   fromStampClickHandler(){
@@ -142,14 +168,14 @@ class SearchComponent extends Component{
     try{
       this.verifyData();
     }catch(e){
-      console.log(e);
+
     }
 
     if(this.error!==""){
       this.showAlert();
     }else{
       this.saveRequestToRedux();
-      this.props.history.push("/search");
+      this.props.searchHandler!==undefined?this.props.searchHandler():this.props.history.push("/search");
     }
   }
 
@@ -206,10 +232,13 @@ class SearchComponent extends Component{
               )}
             <FlightRouteLocationStamp direction="to" location={this.state.to} clickHandler={this.toStampClickHandler}/>
           </div>
-          {this.state.dropdown && (<FlightRouteDropDown onLocationSelect={this.locationSelect}/>)}
+          {this.state.dropdown && (<FlightRouteDropDown onLocationSelect={this.locationSelect} onDropDownBlur={this.onDropDownBlur}/>)}
         </div>
         <div className="flight-location-wrapper">
           <DatePickerComponent arrivalDateSelect={this.arrivalDateSelect} departureDateSelect={this.departureDateSelect} departure={this.state.departure} arrival={this.state.arrival} oneWay={this.state.oneWay}/>
+          {/*(this.state.isMobile)
+            ?<MobileDatePickerComponent arrivalDateSelect={this.arrivalDateSelect} departureDateSelect={this.departureDateSelect} departure={this.state.departure} arrival={this.state.arrival} oneWay={this.state.oneWay}/>
+            :<DatePickerComponent arrivalDateSelect={this.arrivalDateSelect} departureDateSelect={this.departureDateSelect} departure={this.state.departure} arrival={this.state.arrival} oneWay={this.state.oneWay}/>*/}
           <div>
             <BtnRoundTrip roundtripSelect={this.roundtripSelect}/>
           </div>
@@ -218,18 +247,17 @@ class SearchComponent extends Component{
 
       <div className="search-component-piece right">
         <div className="flight-details wrapper">
-          <Picker header="flight type" options={["economy", "business", "first-class", "premium"]} handler={this.flightTypeSelect}/>
           <div className="picker-passengers-wrapper">
             <div className="picker-wrapper passenger">
-              <Picker header="adults" options={["01", "02", "03", "04", "05"]} handler={this.adultSelect}/>
+              <Picker header="adult" options={["01", "02", "03", "04", "05"]} handler={this.adultSelect} initialValue={this.state.adult}/>
             </div>
 
             <div className="picker-wrapper passenger">
-              <Picker header="Children" options={["--", "01", "02", "03", "04", "05"]} handler={this.childrenSelect}/>
+              <Picker header="Children" options={["--", "01", "02", "03", "04", "05"]} handler={this.childrenSelect} initialValue={this.state.children}/>
             </div>
 
             <div className="picker-wrapper passenger">
-              <Picker header="infants" options={["--", "01", "02", "03", "04", "05"]} handler={this.infantSelect}/>
+              <Picker header="infant" options={["--", "01", "02", "03", "04", "05"]} handler={this.infantSelect} initialValue={this.state.infant}/>
             </div>
           </div>
         </div>
@@ -242,9 +270,9 @@ class SearchComponent extends Component{
 }
 }
 
-const FlightRouteDropDown = ({onLocationSelect}) => {
+const FlightRouteDropDown = ({onLocationSelect, onDropDownBlur}) => {
   return(
-      <div className="search-component-location-box">
+      <div className="search-component-location-box" onBlur={()=>{onDropDownBlur()}}>
         {
           Object.keys(airportCodes).map(function(key, index){
             return(<div className="location-item" key={index} onClick={()=>onLocationSelect(airportCodes[key])}>
@@ -274,23 +302,27 @@ const FlightRouteLocationStamp = ({ direction, location, clickHandler}) => (
 );
 /**************************/
 
-const Picker = ({handler, header, options}) => (
-  <div className="picker-box">
-    <p className="on-search-component">{header}</p>
-    <select className="picker-input" name="flightClass" id="roundFlightClass" onChange={(e)=>{handler(e.target.value)}}>
-      {
-        options.map((val, key) => {
-          return (
-            <option value={val} key={key}>{val}</option>
-          )
-        })
-      }
-    </select>
-  </div>
-);
+const Picker = ({handler, header, options, initialValue}) => {
+
+let a =1;
+  return(
+    <div className="picker-box">
+      <p className="on-search-component">{header}</p>
+      <select className="picker-input" name="flightClass" id="roundFlightClass" onChange={(e)=>{handler(e.target.value)}}>
+        {
+          options.map((val, key) => {
+            return (
+              <option value={val} key={key} selected={initialValue===parseInt(val)?"selected":""}>{val}</option>
+            )
+          })
+        }
+      </select>
+    </div>
+  );
+}
 
 /*****DATE-PICKER******/
-class DatePickerComponent extends React.Component {
+class DatePickerComponent extends Component {
   constructor(props) {
     super(props)
     this.handleChangeDeparture = this.handleChangeDeparture.bind(this);
@@ -309,7 +341,7 @@ class DatePickerComponent extends React.Component {
     return (
       <div className="date-picker">
         <div className="date-picker-sub-left" style={{ display: "inline-block" }}>
-          <p className="on-search-component">depature</p>
+          <p className="on-search-component">departure</p>
           <div className="date-component">
             <DatePicker placeholderText="Click to select a date"
               customInput={<CustomDatePicker />}
@@ -341,8 +373,52 @@ class DatePickerComponent extends React.Component {
   }
 }
 
-class CustomDatePicker extends React.Component {
+class MobileDatePickerComponent extends Component{
+  constructor(props) {
+    super(props)
+    this.handleChangeDeparture = this.handleChangeDeparture.bind(this);
+    this.handleChangeArrival = this.handleChangeArrival.bind(this);
+  }
 
+  handleChangeArrival() {
+    console.log(this.dateInput.value);
+    this.props.arrivalDateSelect(moment(this.dateInput.value));
+  }
+
+  handleChangeDeparture() {
+    console.log(this.dateInput.value);
+    this.props.departureDateSelect(moment(this.dateInput.value));
+  }
+
+  render() {
+    let min = moment().format("YYYY/MM/DD");
+    let max = moment().add(3, 'M').format("YYYY/MM/DD");
+    return (
+      <div className="date-picker mobile">
+        <div className="date-picker-sub-left" style={{ display: "inline-block" }}>
+          <p className="on-search-component">departure</p>
+          <div className="date-component">
+            <div>
+            <i className="ion-calendar"></i>
+            <input ref={(input) => { this.dateInput = input; }}  type={"date"} min={min} max={max} onChange={this.handleChangeDeparture}/>
+          </div>
+          </div>
+        </div>
+        <div className={this.props.oneWay?("date-picker-sub-right disabled"):("date-picker-sub-right")} style={{ display: "inline-block" }}>
+          <p className="on-search-component">arrival</p>
+          <div className="date-component">
+            <div>
+            <i className="ion-calendar"></i>
+            <input ref={(input) => { this.dateInput = input; }} type={"date"} min={min} max={max} onChange={this.handleChangeDeparture}/>
+          </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+class CustomDatePicker extends React.Component {
   render() {
     return (
       <div className="date-picker-sub"
