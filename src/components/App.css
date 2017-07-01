@@ -613,6 +613,7 @@ input:checked + .slider:before {
   z-index: 2;
   transition: all 0.4s;
   opacity: 0.5;
+  pointer-events: none;
 }
 
 .dest-shadow:hover{
@@ -1503,4 +1504,124 @@ Blue color - #32648e
 
 .filter-text{
   padding-left: 15px;
+}
+
+/*------LOGIN/SIGNUP-----------*/
+.modal-header h3{
+  font-size: 90%;
+  text-align: center;
+  color: #555;
+}
+
+.login-modal{
+  color: #555;
+  width: 85%;
+  margin: auto;
+}
+
+.social-login-facebook, .social-login-google, .login-modal .btn-login{
+  font-size: 90%;
+  text-align: left;
+  width:100%;
+  padding: 13px 0;
+  border-radius: 2px;
+  box-shadow: 0px 1px 10px 0px rgba(46,61,73,0.2);
+}
+
+.social-login-facebook i{
+  font-size: 160%;
+  margin: 0 25px 0 30px;
+  vertical-align: sub;
+}
+
+.social-login-google i{
+  margin: 0 25px 0 20px;
+  vertical-align: sub;
+}
+
+.social-login-facebook{
+  background-color:#21499F;
+  color:#fff;
+  margin: 20px auto 10px auto;
+  border: 1px solid #21499F;
+}
+
+.social-login-google{
+  margin: 0 auto 10px auto;
+  border: 1px solid #dfdfdf;
+}
+
+.social-login-google img{
+  width: 25px;
+}
+
+.login-modal .divider{
+  width: 100%;
+  color:#333;
+  letter-spacing: 1px;
+  text-align: center;
+  font-size: 50%;
+  margin-bottom: 15px;
+}
+
+.login-modal .divider div{
+  display: inline-block;
+  width: 45%;
+  height: 1px;
+  background: #d1d1d1;
+}
+
+.login-modal .divider span{
+  margin: 0 8px;
+  vertical-align:sub;
+}
+
+.login input, .signup input{
+  width:92%;
+  height: 45px;
+  margin-bottom: 10px;
+  font-size: 90%;
+  padding-left: 20px;
+}
+
+.login-modal input:first-of-type{
+  margin-top:20px;
+}
+
+.login-modal .btn-login{
+  width: 100%;
+  text-align: center;
+  background-color: #E1A93C;
+  margin-bottom: 10px;
+}
+
+.login-modal-base{
+  text-align: center ;
+}
+
+.login-modal a{
+  color:#0D4F91;
+}
+
+.login-modal .forgot-password{
+  font-size: 80%;
+}
+
+
+.login-modal .terms{
+  font-size: 55%;
+}
+
+.login-modal .footer-divider{
+  height: 1px;
+  width:100%;
+  background-color: #dfdfdf;
+  margin: 10px 0 15px 0;
+}
+.login-modal .sign-up{
+  font-size: 90%;
+}
+
+.modal-border{
+  border-radius:15px;
 }

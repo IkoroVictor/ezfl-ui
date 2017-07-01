@@ -41,6 +41,7 @@ class SearchComponent extends Component{
     this.adultSelect = this.adultSelect.bind(this);
     this.childrenSelect = this.childrenSelect.bind(this);
     this.infantSelect = this.infantSelect.bind(this);
+    this.onDropDownBlur = this.onDropDownBlur.bind(this);
 
     this.alertOptions = {
       offset: 50,
@@ -52,7 +53,7 @@ class SearchComponent extends Component{
     this.volume = 2;
   }
 
-  onDropDownBlur =() => {
+  onDropDownBlur(){
     this.setState({
       dropdown: false
     });
@@ -270,27 +271,53 @@ class SearchComponent extends Component{
 }
 }
 
-const FlightRouteDropDown = ({onLocationSelect, onDropDownBlur}) => {
-  return(
-      <div className="search-component-location-box" onBlur={()=>{onDropDownBlur()}}>
-        {
-          Object.keys(airportCodes).map(function(key, index){
-            return(<div className="location-item" key={index} onClick={()=>onLocationSelect(airportCodes[key])}>
-              <div className="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" height="24" viewBox="0 0 24 24" width="24">
-                  <path d="M15 11V5l-3-3-3 3v2H3v14h18V11h-6zm-8 8H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm6 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm6 12h-2v-2h2v2zm0-4h-2v-2h2v2z" />
-                  <path d="M0 0h24v24H0z" fill="none" />
-                </svg>
-              </div>
-              <span>{key}</span>
-              <div className="code">
-                <label>{airportCodes[key]}</label>
-              </div>
-            </div>)
-          })
-        }
-    </div>
-  );
+class FlightRouteDropDown extends Component{
+  constructor(props){
+    super(props);
+    this.setRefWrapper = this.setRefWrapper.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+  componentDidMount() {
+      document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+      document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+  setRefWrapper(node) {
+       this.wrapperRef = node;
+   }
+
+   handleClickOutside(event) {
+       if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+         this.props.onDropDownBlur();
+       }
+   }
+
+   render(){
+     let prop = this.props;
+     return(
+        <div className="search-component-location-box" ref={this.setRefWrapper}>
+          {
+            Object.keys(airportCodes).map(function(key, index){
+              return(<div className="location-item" key={index} onClick={()=>prop.onLocationSelect(airportCodes[key])}>
+                <div className="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" height="24" viewBox="0 0 24 24" width="24">
+                    <path d="M15 11V5l-3-3-3 3v2H3v14h18V11h-6zm-8 8H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm6 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm6 12h-2v-2h2v2zm0-4h-2v-2h2v2z" />
+                    <path d="M0 0h24v24H0z" fill="none" />
+                  </svg>
+                </div>
+                <span>{key}</span>
+                <div className="code">
+                  <label>{airportCodes[key]}</label>
+                </div>
+              </div>)
+            })
+          }
+      </div>
+    );
+   }
 }
 
 const FlightRouteLocationStamp = ({ direction, location, clickHandler}) => (

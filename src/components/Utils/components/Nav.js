@@ -8,6 +8,8 @@ import * as UserActions from '../actions/userActions';
 import logo from '../../logo.png';
 import profilePics from '../../../images/face.jpg';
 import {store} from '../../../store';
+import Rodal from 'rodal';
+import googleLogo from '../../../images/google.png';
 
  class Nav extends Component{
   constructor(props){
@@ -15,6 +17,8 @@ import {store} from '../../../store';
 
     this.state = {
       login: false,
+      visibleLogin: false,
+      visibleSignUp:false
     };
 
     store.subscribe(() => {
@@ -22,8 +26,22 @@ import {store} from '../../../store';
         login: store.getState().userLoginManager.login
       });
     });
+
+    this.loginClickHandler=this.loginClickHandler.bind(this);
+    this.signUpClickHandler=this.signUpClickHandler.bind(this);
   }
 
+  loginClickHandler(){
+    this.setState({
+      visibleLogin:true
+    });
+  }
+
+  signUpClickHandler(){
+    this.setState({
+      visibleSignUp:true
+    });
+  }
 
   render(){
 
@@ -51,12 +69,12 @@ import {store} from '../../../store';
                 </li>
                 {!this.state.login && (
                   <li>
-                    <Link to="#">Login</Link>
+                    <Link to="#" onClick={()=>this.loginClickHandler()}>Login</Link>
                   </li>
                 )}
                 {!this.state.login && (
                   <li className="sign-up">
-                    <Link to="#">Sign up</Link>
+                    <Link to="#" onClick={()=>this.signUpClickHandler()}>Sign up</Link>
                   </li>
                 )}
                 {this.state.login && (
@@ -86,6 +104,53 @@ import {store} from '../../../store';
             </Col>
           </Row>
         </Container>
+        <Rodal animation="slideDown" height={this.state.visibleLogin?535:575} visible={this.state.visibleLogin || this.state.visibleSignUp} onClose={()=>{this.setState({visibleLogin:false, visibleSignUp:false})}}>
+          {this.state.visibleLogin && <div className="login">
+          <div className="modal-header">
+            <h3>Login to Your Easyflight Account!</h3>
+            </div>
+            <div className="login-modal">
+                  <input type="email" maxLength="120" minLength="6" name="email" placeholder="Email" required={true}/>
+                  <input type="password" maxLength="120" minLength="6" name="password" placeholder="Password" required={true}/>
+                  <div className="btn-login">Login</div>
+                  <div className="divider"><div></div><span>OR</span><div></div></div>
+                  <div className="social-login-facebook"><i className="ion-social-facebook"/>Continue with Facebook</div>
+                  <div className="social-login-google"> <i><img src={googleLogo}/></i>Continue with Google</div>
+
+
+
+                  <div className="login-modal-base">
+                  <div className="forgot-password">or <Link to="#">Forgot Password</Link></div>
+                  <div className="terms"><p>By signing up, you agree to our <Link to="#">Terms of Use</Link> and <Link to="#">Privacy Policy</Link></p></div>
+                  <div className="footer-divider"></div>
+                <div className="sign-up">Don't have an account? <Link to="#" onClick={()=>{this.setState({visibleSignUp:true, visibleLogin:false})}}><strong>Sign up</strong></Link></div>
+                </div>
+              </div>
+            </div>}
+              {this.state.visibleSignUp && <div className="signup">
+                <div className="modal-header">
+                  <h3>Signup - Create an Easyflight Account</h3>
+                  </div>
+                  <div className="login-modal">
+                    <input type="text" maxLength="120" minLength="6" name="username" placeholder="Username" required={true}/>
+                        <input type="email" maxLength="120" minLength="6" name="email" placeholder="Email" required={true}/>
+                        <input type="password" maxLength="120" minLength="6" name="password" placeholder="Password" required={true}/>
+                        <div className="btn-login">Login</div>
+                        <div className="divider"><div></div><span>OR</span><div></div></div>
+                        <div className="social-login-facebook"><i className="ion-social-facebook"/>Signup with Facebook</div>
+                        <div className="social-login-google"> <i><img src={googleLogo}/></i>Signup with Google</div>
+
+
+
+                        <div className="login-modal-base">
+                        <div className="terms"><p>By signing up, you agree to our <Link to="#">Terms of Use</Link> and <Link to="#">Privacy Policy</Link></p></div>
+                        <div className="footer-divider"></div>
+                      <div className="sign-up">Already have an account? <Link to="#" onClick={()=>{this.setState({visibleSignUp:false, visibleLogin:true})}}><strong>Login</strong></Link></div>
+                      {console.log(this.state)}
+                    </div>
+                    </div>
+              </div>}
+        </Rodal>
       </div>
     )
   }
