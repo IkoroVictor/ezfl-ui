@@ -43,13 +43,13 @@ let getCity = {
 };
 
 let airlineFullNames = {
-  apk: "Air peace",
-  ara: "Arik air",
-  dan: "Dana Air",
-  frn: "First Nation",
-  mev: "Medview Airways",
-  ola: "Overland Airways",
-  aer: "Aero Contractors"
+  airpeace: "Air peace",
+  arik: "Arik air",
+  dana: "Dana Air",
+  firstnation: "First Nation",
+  medview: "Medview Airways",
+  overland: "Overland Airways",
+  aero: "Aero Contractors"
 };
 
 let airports = {

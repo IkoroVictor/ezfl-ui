@@ -2,49 +2,31 @@ import React, {Component} from 'react';
 import {Container, Row, Col, Hidden} from 'react-grid-system';
 import FlightCard from '../Utils/components/FlightCard';
 import DisplayPanel from './FilterPane';
+import Waypoint from 'react-waypoint';
+import {Sticky } from 'react-sticky';
 
-class ResultPane extends Component{
-  constructor(props){
-    super(props);
-    this.state={
-      numberOfFlights:props.flDetails.content.length
-    };
-  }
 
-  componentWillMount(){
-    this.loadCards =
-      this.props.flDetails.content.map((data)=>{
-        let selectedClassId = 0;
-        let NumberOfClasses = 0;
-
-        let prices = data.prices.price;
-        if(!prices){
-          this.setState({numberOfFlights:this.state.numberOfFlights--});
-          return (null);
-        }
-
-        data.selectedClassId=prices.length-1;
-        data.NumberOfClasses=prices.length;
-        data.validPrices = prices;
-
-        return(<FlightCard key={data.id} type={this.props.flDetails.type} oneWay={this.props.flDetails.oneWay} data={data}/>);
-        }
-      );
-
-  }
-
-  render(){
+const ResultPane = ({request, numberOfFlights, canLoadMore, moreHasErrored, flights, _handleWaypointEnter})=>{
     return(
     <div className='results-pane'>
       <div>
         <Container>
-          <DisplayPanel {...this.props} numberOfFlights={this.state.numberOfFlights}/>
+
+          <DisplayPanel request={request} numberOfFlights={numberOfFlights}/>
           <Row>
             <Col md={4}>
                 <AdPane/>
             </Col>
             <Col md={8}  style={{padding:"0px"}}>
-              {this.loadCards}
+              {flights}
+              {
+                (canLoadMore)?
+                (<div>
+                  <Waypoint
+                    onEnter={_handleWaypointEnter}
+                  />Loading more flights...
+                </div>):(null)
+              }
             </Col>
           </Row>
         </Container>
@@ -52,16 +34,30 @@ class ResultPane extends Component{
 
     </div>
   );
-  }
 }
 
 const AdPane = () => (
-  <div className="ad">
-    <Hidden sm xs>
-    <p>Sponsored Ad</p>
-    <div className="ad-box"></div>
-      </Hidden>
-  </div>
+  <Sticky topOffset={150}>
+    { ({ style, distanceFromBottom}) => {
+        console.log(distanceFromBottom);
+        var css = style;
+        if(css.position==="fixed"){
+          css.top=103;
+        }
+        if(distanceFromBottom<120){
+          
+        }
+        return(
+          <div className="ad" style={css}>
+            <Hidden sm xs>
+            <p>Sponsored Ad</p>
+            <div className="ad-box"></div>
+              </Hidden>
+          </div>
+        )}
+  }
+  </Sticky>
+
 );
 
 export default ResultPane;

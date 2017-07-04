@@ -99,7 +99,6 @@ class FlightCard extends Component{
     }
 
       if(this.state.cost==="0" && this.state.numberOfClasses>1){
-        debugger;
         for(let i=0; i<this.state.numberOfClasses; i++){
           let base = this.state.numberOfClasses-1;
           let nextId = (this.state.selectedClassId-1);

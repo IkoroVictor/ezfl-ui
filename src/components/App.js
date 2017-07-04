@@ -19,8 +19,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={HomeScreen}/>
           <Route path='/search' component={ResultsScreen}/>
-          <Route exact path='/manage' component={ManagerScreen}/>
-          {/*<Route exact path='/feedback' component={FeedbackScreen}/>*/}
+          <Route exact path='/manager' component={ManagerScreen}/>
         </Switch>
         <Footer/>
       </div>

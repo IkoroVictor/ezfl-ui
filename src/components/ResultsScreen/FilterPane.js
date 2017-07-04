@@ -4,18 +4,30 @@ import moment from 'moment';
 import {getCity} from "../Utils/strings";
 import TimePicker from 'rc-time-picker';
 import 'rc-time-picker/assets/index.css';
+import {Sticky } from 'react-sticky';
 
 const format = 'h:mm a';
 const now = moment().hour(0).minute(0);
 
-const DisplayPanel = ({flDetails, numberOfFlights}) => (
-  <div className="display-panel">
-    <Row>
-      <FlightNumber numberOfFlights={numberOfFlights}/>
-      <FlightInfo flDetails={flDetails}/>
-      <FlightFilter/>
-    </Row>
-  </div>
+const DisplayPanel = ({request, numberOfFlights}) => (
+    <Sticky topOffset={155}>
+      { ({style}) => {
+          var css = style;
+          if(css.position==="fixed"){
+            css.top=40;
+            css.zIndex=150;
+          }
+          return(
+            <div className="display-panel" style={css}>
+              <Row>
+                <FlightNumber numberOfFlights={numberOfFlights}/>
+                <FlightInfo request={request}/>
+                <FlightFilter/>
+              </Row>
+            </div>
+          )}
+    }
+    </Sticky>
 );
 
 const FlightNumber = ({numberOfFlights}) => (
@@ -28,21 +40,21 @@ const FlightNumber = ({numberOfFlights}) => (
   </Col>
 );
 
-const FlightInfo = ({flDetails}) => {
-  let adult = parseInt(flDetails.request.adult);
-  let children = parseInt(flDetails.request.children);
-  let infant = parseInt(flDetails.request.infant);
+const FlightInfo = ({request}) => {
+  let adult = parseInt(request.adult);
+  let children = parseInt(request.children);
+  let infant = parseInt(request.infant);
   let numberOfPassengers= (adult)+(isNaN(children)?0:children)+(isNaN(infant)?0:infant);
   return(
     <Hidden xs sm>
       <Col md={6} lg={3}>
         <div className="flight-info">
           <span id="from-city">
-            {getCity[flDetails.request.from]}
+            {getCity[request.from]}
           </span>
           <i className="ion-arrow-swap"></i>
           <span id="to-city">
-            {getCity[flDetails.request.to]}
+            {getCity[request.to]}
           </span>
           <i className="ion-ios-person-outline"></i>
           <span id="numOfPersons">

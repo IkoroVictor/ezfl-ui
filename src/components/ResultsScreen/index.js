@@ -5,8 +5,10 @@ import ResultPane from './ResultPane';
 import {getCity} from '../Utils/strings';
 import {store} from '../../store';
 import {Hidden} from 'react-grid-system';
+import FlightCard from '../Utils/components/FlightCard';
 import moment from 'moment';
 import axios from 'axios';
+import { StickyContainer} from 'react-sticky';
 
 class ResultsScreen extends Component{
   constructor(props){
@@ -14,22 +16,20 @@ class ResultsScreen extends Component{
     this.state={
       isLoading:true,
       hasErrored: false,
-      request:{},
-      result:{}
+      isLoadingMore:false,
+      canLoadMore:false,
+      moreHasErrored: false,
+      flights:[],
+      numberOfFlights:0
     }
     this.fetchData = this.fetchData.bind(this);
     this.doFetch = this.doFetch.bind(this);
+    this.loadMore = this.loadMore.bind(this);
+    this._handleWaypointEnter = this._handleWaypointEnter.bind(this);
   }
 
-  fetchData(url) {
-    this.setState({ isLoading: true, hasErrored: false });
-    axios.get(url)
-    .then(response => {
-      this.setState({ result:response.data, isLoading: false})
-    })
-    .catch(error => {
-      this.setState({hasErrored: true });
-    });
+  componentDidMount(){
+    this.doFetch();
   }
 
   doFetch(){
@@ -38,86 +38,124 @@ class ResultsScreen extends Component{
       let from = getCity[this.request.from];
       let to = getCity[this.request.to];
       let departure = moment(this.request.departure).format("DD/MM/YYYY");
-      this.fetchData(`/flights/flight?from=${from}&to=${to}&date=${departure}&pageNumber=0&pageSize=1000`);//`https://easyflight-api.herokuapp.com/easyflight/flights/flight?from=${from}&to=${to}&date=${departure}&pageNumber=1&pageSize=10`);
+      this.setState({ isLoading: true, hasErrored: false });
+      this.fetchData(`https://easyflight-logistics.herokuapp.com/flights/flight?from=${from}&to=${to}&date=${departure}&pageNumber=0&pageSize=1000`);
     }catch(err){
       this.setState({ isLoading: false, hasErrored: false });
     }
   }
 
-  componentDidMount(){
-    this.doFetch();
+  fetchData(url) {
+    axios.get(url)
+    .then(response => {
+      let newFlights = this.load(response.data.content);
+      let currentFlights = this.state.flights;
+      let flights = currentFlights.concat(newFlights);
+
+      let canLoadMore = !(response.data.last);
+      let totalNumOfFlights = response.data.numberOfElements;
+      let totalPages = response.data.totalPages;
+      let currentPage = response.data.number;
+
+      if(this.state.isLoadingMore){
+        this.setState({
+          flights, isLoadingMore: false, canLoadMore, numberOfFlights:totalNumOfFlights, totalPages, currentPage
+        });
+      }else{
+        this.setState({
+          flights, isLoading: false, canLoadMore:true, numberOfFlights:totalNumOfFlights, totalPages, currentPage
+        });
+      }
+
+    })
+    .catch(error => {
+      if(this.state.isLoadingMore){
+        this.setState({moreHasErrored: true });
+      }else{
+        this.setState({hasErrored: true });
+      }
+    });
+  }
+
+  load(flights){
+      return flights.map((data)=>{
+        let prices = data.prices.price;
+        data.selectedClassId=prices.length-1;
+        data.NumberOfClasses=prices.length;
+        data.validPrices = prices;
+        data.type = "search";
+        data.oneWay = this.request.oneWay;
+        let key = data.id+Math.random();
+        return <FlightCard key={key} type={"search"} oneWay={data.oneWay} data={data}/>;
+        }
+      );
+  }
+
+  loadMore(){
+
+      try{
+        this.request = store.getState().request.request;
+        let from = getCity[this.request.from];
+        let to = getCity[this.request.to];
+        let departure = moment(this.request.departure).format("DD/MM/YYYY");
+        this.fetchData(`https://easyflight-logistics.herokuapp.com/flights/flight?from=${from}&to=${to}&date=${departure}&pageNumber=0&pageSize=1000`);
+      }catch(err){
+        this.setState({ isLoadingMore: false, moreHasErrored: false });
+      }
+  }
+
+  _handleWaypointEnter(){
+    if(this.state.canLoadMore){
+      this.setState({isLoadingMore:true});
+      this.loadMore();
+    }
   }
 
   render(){
-    let flDetails = this.state.result;
     if(this.state.hasErrored){
       return (
         <div>
-          <Hidden xs sm>
-            <Jumbotron forStyle="jumbotron-home away" search={true}/>
-          </Hidden>
-          <Hidden md lg xl>
-            <div style={{width:"100%",height:"50px"}}></div>
-          </Hidden>
-          <DisplayComponent message={"Sorry! Unable to load items"}/>
+          <JumbotronHider/>
+          <DisplayComponent message={"Sorry! Unable to load flights"}/>
         </div>);
     } else if(this.state.isLoading){
       return (
         <div>
-          <Hidden xs sm>
-            <Jumbotron forStyle="jumbotron-home away" search={true}/>
-          </Hidden>
-          <Hidden md lg xl>
-            <div style={{width:"100%",height:"50px"}}></div>
-          </Hidden>
+          <JumbotronHider/>
            <DisplayComponent/>
         </div>);
     } else if(this.request===undefined && this.state.isLoading===false){
       return (
         <div>
-          <Hidden xs sm>
-            <Jumbotron forStyle="jumbotron-home away" search={true}/>
-          </Hidden>
-          <Hidden md lg xl>
-            <div style={{width:"100%",height:"50px"}}></div>
-          </Hidden>
+          <JumbotronHider/>
           <DisplayComponent message={"Something went wrong, please perform search again."}/>
         </div>
       );
-    }else if(this.state.result!=={} && this.state.isLoading===false){
-      if(this.state.result.content===[]){
+    }else if(this.state.flights!==[] && this.state.isLoading===false){
         return(
-          <div>
-            <Hidden xs sm>
-              <Jumbotron forStyle="jumbotron-home away" search={true}/>
-            </Hidden>
-            <Hidden md lg xl>
-              <div style={{width:"100%",height:"50px"}}></div>
-            </Hidden>
-            <DisplayComponent message={"No flight found"}/>
+
+            <div className='Results-Component'>
+              <StickyContainer>
+                <JumbotronHider/>
+                <ResultPane flights={this.state.flights} canLoadMore={this.state.canLoadMore} moreHasErrored={this.state.moreHasErrored} _handleWaypointEnter={this._handleWaypointEnter} request={this.request} numberOfFlights={this.state.numberOfFlights}/>
+              </StickyContainer>
           </div>
+
         );
-      }else{
-        flDetails.request = this.request;
-        flDetails.type = "search";
-        flDetails.oneWay = flDetails.request.oneWay;
-        return(
-          <div className='Results-Component'>
-            <Hidden xs sm>
-              <Jumbotron forStyle="jumbotron-home away" search={true} searchHandler={this.doFetch}/>
-            </Hidden>
-            <Hidden md lg xl>
-              <div style={{width:"100%",height:"50px"}}></div>
-            </Hidden>
-            <ResultPane flDetails={flDetails}/>
-          </div>
-        )
-      }
     }
   }
 }
 
 export default ResultsScreen;
+const JumbotronHider = () => (
+  <div>
+    <Hidden xs sm>
+      <Jumbotron forStyle="jumbotron-home away" search={true} searchHandler={this.doFetch}/>
+    </Hidden>
+    <Hidden md lg xl>
+      <div style={{width:"100%",height:"50px"}}></div>
+    </Hidden></div>
+);
 
 const DisplayComponent = ({message}) =>(
 

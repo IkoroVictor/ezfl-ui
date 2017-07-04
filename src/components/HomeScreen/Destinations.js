@@ -19,94 +19,26 @@ let hoverHandler=function(e){
 
 }
 const Destinations = () => (
-  <section className="section-destinations">
-    <Container fluid>
-      <h2>popular destinations</h2>
-      <div className="galleria">
-        <Row className="gallery-row">
-          <Col md={12} className="gal-col">
-            <div className="gallery pos1">
-
-              <img src={lagosPix} alt="lagos-city"/>
-              <div className="dest-shadow"></div>
-              <h3>Lagos</h3>
-              <div>
-                <span>
-                  <i className="ion-android-plane"></i>9 flights</span>
-                <span>
-                  <i className="ion-cash"></i>
-                  FROM:
-                  <small>&#8358;</small>27,500</span>
-              </div>
-            </div>
-          </Col>
-        </Row>
-        <Row className="gallery-row">
-          <Col md={6} xs={6} className="gal-col">
-            <div className="gallery pos2">
-              <img src={abujaPix} alt="abuja-city"/>
-              <div className="dest-shadow"></div>
-              <h4>Abuja</h4>
-              <div>
-                <span>
-                  <i className="ion-android-plane"></i>4 flights</span>
-                  <Hidden sm xs><span>
-                    <i className="ion-cash"></i>
-                    FROM:
-                    <small>&#8358;</small>27,500</span></Hidden>
-              </div>
-            </div>
-          </Col>
-          <Col md={6} xs={6} className="gal-col">
-            <div className="gallery pos3">
-              <img src={beninPix} alt="benin-city"/>
-              <div className="dest-shadow"></div>
-              <h4>Benin</h4>
-              <div>
-                <span>
-                  <i className="ion-android-plane"></i>2 flights</span>
-                  <Hidden sm xs><span>
-                    <i className="ion-cash"></i>
-                    FROM:
-                    <small>&#8358;</small>27,500</span></Hidden>
-              </div>
-            </div>
-          </Col>
-        </Row>
-        <Row className="gallery-row">
-          <Col md={6} xs={6} className="gal-col">
-            <div className="gallery pos4">
-              <img src={calabarPix} alt="calabar-city"/>
-              <div className="dest-shadow"></div>
-              <h4>Calabar</h4>
-              <div>
-                <span>
-                  <i className="ion-android-plane"></i>1 flight</span>
-                  <Hidden sm xs><span>
-                    <i className="ion-cash"></i>
-                    FROM:
-                    <small>&#8358;</small>27,500</span></Hidden>
-              </div>
-            </div>
-          </Col>
-          <Col md={6} xs={6} className="gal-col">
-            <div className="gallery pos5">
-              <img src={enuguPix} alt="enugu-city" className="foo"/>
-              <div className="dest-shadow"></div>
-              <h4>Enugu</h4>
-              <div>
-                <span>
-                  <i className="ion-android-plane"></i>5 flights</span>
-                <Hidden sm xs><span>
-                  <i className="ion-cash"></i>
-                  FROM:
-                  <small>&#8358;</small>27,500</span></Hidden>
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </div>
-    </Container>
+  <section className="section-destinations clear-fix">
+    <h2>popular destinations</h2>
+    <ul className="city-showcase">
+                <li><figure className="city-photo"><img src={lagosPix} alt="Korean bibimbap with egg and vegetables"/></figure></li>
+                <li><figure className="city-photo"><img src={enuguPix} alt="Simple italian pizza with cherry tomatoes"/></figure></li>
+                <li><figure className="city-photo"><img src={abujaPix} alt="Chicken breast steak with vegetables "/></figure></li>
+                <li><figure className="city-photo"><img src={beninPix} alt="Autumn pumpkin soup"/></figure></li>
+    </ul>
+    <ul className="city-showcase second-showcase">
+                <li><figure className="city-photo"><img src={abujaPix} alt="Paleo beef steak with vegetables"/></figure></li>
+                <li><figure className="city-photo"><img src={lagosPix} alt="Healthy baguette with egg and vegetables"/></figure></li>
+                <li><figure className="city-photo"><img src={beninPix} alt="Burger with cheddar and bacon"/></figure></li>
+                <li><figure className="city-photo"><img src={enuguPix} alt="Granola with cherries and strawberries"/></figure></li>
+    </ul>
   </section>
 );
 export default Destinations;
+
+{/*
+  <i className="ion-android-plane"></i>
+  <i className="ion-cash"></i>
+  <small>&#8358;</small>27,500</span>
+*/}

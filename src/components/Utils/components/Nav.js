@@ -32,15 +32,19 @@ import googleLogo from '../../../images/google.png';
   }
 
   loginClickHandler(){
+    this.props._toggleMenu();
     this.setState({
       visibleLogin:true
     });
+
   }
 
   signUpClickHandler(){
+    this.props._toggleMenu();
     this.setState({
       visibleSignUp:true
     });
+
   }
 
   render(){
@@ -65,16 +69,16 @@ import googleLogo from '../../../images/google.png';
                   <Link to="/">Flight search</Link>
                 </li>
                 <li>
-                  <Link to="#">Manage Schedule</Link>
+                  <Link to="/manager">Manage Schedule</Link>
                 </li>
                 {!this.state.login && (
                   <li>
-                    <Link to="#" onClick={()=>this.loginClickHandler()}>Login</Link>
+                    <Link to="#" onClick={this.loginClickHandler}>Login</Link>
                   </li>
                 )}
                 {!this.state.login && (
                   <li className="sign-up">
-                    <Link to="#" onClick={()=>this.signUpClickHandler()}>Sign up</Link>
+                    <Link to="#" onClick={this.signUpClickHandler}>Sign up</Link>
                   </li>
                 )}
                 {this.state.login && (
@@ -124,7 +128,7 @@ import googleLogo from '../../../images/google.png';
                   <div className="terms"><p>By signing up, you agree to our <Link to="#">Terms of Use</Link> and <Link to="#">Privacy Policy</Link></p></div>
                   <div className="footer-divider"></div>
                 <div className="sign-up">Don't have an account? <Link to="#" onClick={()=>{this.setState({visibleSignUp:true, visibleLogin:false})}}><strong>Sign up</strong></Link></div>
-                </div>
+              </div>
               </div>
             </div>}
               {this.state.visibleSignUp && <div className="signup">
@@ -146,7 +150,6 @@ import googleLogo from '../../../images/google.png';
                         <div className="terms"><p>By signing up, you agree to our <Link to="#">Terms of Use</Link> and <Link to="#">Privacy Policy</Link></p></div>
                         <div className="footer-divider"></div>
                       <div className="sign-up">Already have an account? <Link to="#" onClick={()=>{this.setState({visibleSignUp:false, visibleLogin:true})}}><strong>Login</strong></Link></div>
-                      {console.log(this.state)}
                     </div>
                     </div>
               </div>}

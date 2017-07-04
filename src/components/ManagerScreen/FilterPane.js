@@ -3,13 +3,13 @@ import {Container, Row, Col, Hidden} from 'react-grid-system';
 import '../App.css';
 import '../../css/ionicons.min.css';
 
-const DisplayPanel = () => (
+const DisplayPanel = (props) => (
   <div className="display-panel">
     <Row>
       <DisplayBoardFlightNumber/>
-      <DisplayBoardFlightFilter/>
-      <DisplayBoardFlightFilter/>
-      <DisplayBoardFlightFilter/>
+      <DisplayBoardFlightFilter filterBy="status" options={["active", "expired"]}/>
+      <DisplayBoardFlightFilter filterBy="airline" options={["aero", "airpeace", "arik", "dana", "firstnation", "medview", "overland"]}/>
+      <DisplayBoardFlightFilter filterBy="date" options={[]}/>
     </Row>
   </div>
 );
@@ -18,24 +18,25 @@ const DisplayBoardFlightNumber = () => (
   <Col md={3} sm={6} xs={6}>
     <div className="flight-number">
       <strong id="numOfFlights">
-        342 <span>saved flights</span>
+        3 <span> active flights Found</span>
       </strong>
     </div>
   </Col>
 );
 
-const DisplayBoardFlightFilter = ()=> (
+const DisplayBoardFlightFilter = (props)=> (
   <Col md={3} sm={6} xs={6}>
     <div className="flight-filter">
       <span>
         <i className="ion-android-options"></i>
-        <span>Filter by </span>
+        <span>Filter by {props.filterBy}: </span>
         <span className="select-container">
           <select>
-            <option value="airline"> All Airlines</option>
-            <option value="arik">Arik Air</option>
-            <option value="aero">Aero Contractors</option>
-            <option value="peace">Air Peace</option>
+            {props.options.map((val)=>{
+              return(
+                <option value={val}>{val}</option>
+              )
+            })}
           </select>
         </span>
       </span>

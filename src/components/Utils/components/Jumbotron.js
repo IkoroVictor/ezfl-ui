@@ -7,7 +7,7 @@ const Jumbotron = ({ forStyle, manager, search, searchHandler }) => {
     <div className={forStyle}>
       <div className="hero-search-box">
         {(!manager && !search) && <SearchComponent />}
-        {manager && <h2>Saved Flights</h2>}
+        {manager && <h2 className="saved-flight-title">Saved Flights</h2>}
         {search &&
           (
             <div>

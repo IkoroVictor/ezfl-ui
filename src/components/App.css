@@ -503,121 +503,50 @@ input:checked + .slider:before {
 /*----------------------------------------------------------------*/
 /* SECTION DESTINATIONS */
 /*----------------------------------------------------------------*/
+.section-destinations{
+}
+
+.section-destinations h2{
+  padding-bottom: 20px;
+}
+
+.city-showcase{
+    list-style: none;
+    width:100%;
+}
+
+.second-showcase{
+}
+
+.city-showcase li{
+    display:block;
+    float:left;
+    width:25%;
+    height:200px;
+}
+
+.city-photo{
+    width:100%;
+    margin:0;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.city-photo img{
+    opacity:0.7;
+    height:200px;
+    transform: scale(1.4);
+    transition: transform 0.5s, opacity 0.4s;
+}
+
+.city-photo img:hover{
+    opacity: 0.99;
+    transform: scale(1.2);
+}
 
 .section-destinations{
     background-color: #f7f7f7;
     text-transform: uppercase;
-}
-
-.galleria{
-  max-width:950px;
-  margin: 40px auto;
-}
-
-.gallery{
-    position:relative;
-    height:280px;
-    color:#fff;
-    width: 100%;
-    overflow: hidden;
-    transition: all 0.4s;
-}
-
-.gallery-row{
-  margin-bottom: 25px;
-}
-
-
-.gallery h3{
-    font-size: 250%;
-}
-
-.gallery h4{
-    font-size: 170%;
-}
-
-.gallery h3, .gallery h4{
-    position:absolute;
-    top:30%;
-    left:50%;
-    transform:translate(-50%, -50%);
-    font-weight: 400;
-    z-index: 2;
-}
-
-.gallery span{
-    font-size:80%;
-    font-weight: 400;
-}
-
-.gallery span i{
-    font-size:150%;
-    vertical-align: middle;
-     margin-right:5px;
-}
-
-.gallery span:first-of-type i{
-    display: inline-block;
-    transform: rotate(45deg);
-}
-
-.gallery span:first-of-type{
-    position:absolute;
-    top:85%;
-    left:25%;
-    transform:translate(-50%, -50%);
-    z-index: 2;
-}
-
-.gallery span:last-of-type{
-    position:absolute;
-    top:85%;
-    left:70%;
-    transform:translate(-50%, -50%);
-    width: 160px;
-    z-index: 2;
-}
-
-.gallery small{
-    margin-right:2.5px;
-    margin-left:4.5px;
-}
-
-.pos1 span:first-of-type{
-    position:absolute;
-    top:85%;
-    left:30%;
-    transform:translate(-50%, -50%);
-}
-
-.gallery img{
-  width: 125%;
-  height: auto;
-  transform: scale(1.15);
-  transition: all 0.4s ease-out;
-  background-color: #000;
-  z-index: 4;
-}
-
-.gallery img:hover{
-  transform: scale(1.03);
-}
-
-.dest-shadow{
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: inherit;
-  height: inherit;
-  background-color: #000;
-  z-index: 2;
-  transition: all 0.4s;
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.dest-shadow:hover{
-  opacity: 0.3;
 }
 /*----------------------------------------------------------------*/
 /* SECTION SERVICES */
@@ -725,6 +654,8 @@ td, .about-us{
 footer{
     color:white;
     background-color:#333;
+    z-index: 20;
+    position: relative;
 }
 .footer ul{
     list-style: none;
@@ -890,7 +821,7 @@ footer{
 /*----------------------------------------------------------------*/
 .jumbotron-home.away{
     background-image: linear-gradient(#3881AF, #286A9D);
-    height:33vh;
+    height:30vh;
 }
 
 .jumbotron-home.away .hero-search-box>div{
@@ -982,6 +913,46 @@ footer{
   color: #555;
   padding: 2px 15px 0 15px;
 }
+
+.saved-card-bottom{
+  text-align: center;
+  font-weight: 400;
+  font-size:70%;
+  line-height: 40px;
+  color: #2E72A8;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.saved-card-bottom small{
+  font-size: 130%;
+  color: #2E72A8;
+}
+
+.saved-card-bottom .strike-currency{
+  margin-left:6px;
+  font-size: 110%;
+  color: #aaa;
+  vertical-align: super;
+}
+
+.saved-card-bottom .strike-price{
+  margin-left:2px;
+  font-size: 110%;
+  color: #aaa;
+  vertical-align: super;
+}
+
+.saved-card-bottom .price, .saved-card-bottom .currency{
+  color: #2E72A8 !important;
+}
+
+.saved-card-bottom .expired{
+  color: #ddd;
+  vertical-align: sub;
+  font-size: 110%;
+}
+
 
 ::selection{
   background: transparent !important;
@@ -1084,33 +1055,89 @@ footer{
   border-top: 0;
 }
 
-.fl-manage-top, .fl-manage-bottom{
-  padding: 0 15px;
-}
-.fl-manage-top{
-  margin-top: 7px;
+.fl-manage-layer{
+  padding: 0 25px;
 }
 
-.fl-name-date{
-  text-align: left;
+.fl-manage-top{
+  padding-top: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+  background-color: #f6f9f9;
+  margin: 0 !important;
 }
+
 
 .airline-name{
-  font-weight: 400;
   text-transform: capitalize;
+  font-size:85%;
+  letter-spacing: 1px;
+  color: #2c3e50;
+}
+
+.fl-city{
+  color: #2c3e50;
+  vertical-align: sub;
+}
+
+.airline-class{
+  text-transform:lowercase;
+  font-size:75%;
+  margin-left: 5px;
 }
 
 .flight-date{
-  font-size: 60%;
+  font-size: 55%;
+  padding-top: -20px !important;
+  display: inline-block;
+  color: #e67e22;
 }
 
-.fl-summary{
-  text-align: left;
+.fl-manage-col{
+  text-align: left !important;
+  padding: 0 5px;
+}
+
+.fl-manage-col-right{
+  text-align: right !important;
   padding: 0 5px;
 }
 
 .flight-summary{
   font-size: 70%;
+}
+
+.manage-from-to{
+  font-size:110%;
+  color: #777 !important;
+  padding-top: 6px;
+}
+
+.top-right-top .divider{
+  background-color: #f9f9f9;
+  width: 86%;
+  height: 1px;
+  margin: 5px auto 9px auto;
+}
+
+.ion-plane{
+  display: inline-block;
+  transform: rotate(90deg);
+  display: block;
+  margin-bottom: -7px;
+  color: #e67e22;
+}
+
+.manage-from-to small{
+  font-size:60%;
+  color: #777 !important;
+}
+
+.manage-fl-details{
+  font-size:60%;
+  color: #888 !important;
+  padding-top:2px;
+  padding-bottom:2px;
 }
 
 .card-manage .top-right-bottom, .card-manage .price, .card-manage small{
@@ -1139,6 +1166,12 @@ footer{
 
 .card-manage .ion-android-plane{
   display: none;
+}
+
+.saved-flight-title{
+  font-size: 150%;
+  padding-top: 100px;
+  margin: 0;
 }
 /*--------------------------------*/
 /*-TOP-LEFT-*/
@@ -1301,32 +1334,36 @@ cursor: pointer;
 /*------------------BADGE------------------*/
 .btn-notification{
   position: absolute;
-  top: 0;
+  top: 3px;
   right: 5px;
   font-size: 140%;
+  z-index: 1;
 }
 
-i.ion-android-notifications{
+.btn-notification i{
   position:relative;
+  font-size: 90%;
+  transform: rotate(10deg);
+  display: inline-block;
 }
 
-i.ion-android-notifications div{
+.btn-notification div{
   position: absolute;
-  top: -7px;
-  right: -13px;
+  top: -5px;
+  right: -16px;
   border-radius: 50%;
   padding: 1px 6px;
   color:#fff;
-  background-color: #ECBD4B;
+  background-color: #3498db;
   font-size: 70%;
   font-weight: 700;
 }
 
 .btn-close{
   position: absolute;
-  top: 4px;
-  left:9px;
-  font-size: 130%;
+  top: 10px;
+  left:14px;
+  font-size: 100%;
   font-weight: 700;
   color: #aaa;
   transition: 0.1s;
@@ -1334,7 +1371,6 @@ i.ion-android-notifications div{
 
 .btn-close:hover{
   color: #777;
-  font-size: 130%;
 }
 /*
 Orange color - #ECBD4B
