@@ -22,11 +22,18 @@ const ResultPane = ({request, numberOfFlights, canLoadMore, moreHasErrored, flig
               {
                 (canLoadMore)?
                 (<div>
-                  <Waypoint
-                    onEnter={_handleWaypointEnter}
-                  />Loading more flights...
-                </div>):(null)
-              }
+                    <Waypoint
+                      onEnter={_handleWaypointEnter}
+                    />
+                  <div className="loading-more-spinner">
+                      <div className="loader" id="loader-4">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                    </div>
+                  </div>):(null)
+                }
             </Col>
           </Row>
         </Container>
@@ -45,13 +52,14 @@ const AdPane = () => (
           css.top=103;
         }
         if(distanceFromBottom<120){
-          
+
         }
         return(
           <div className="ad" style={css}>
             <Hidden sm xs>
             <p>Sponsored Ad</p>
-            <div className="ad-box"></div>
+            <div className="ad-box">
+            </div>
               </Hidden>
           </div>
         )}

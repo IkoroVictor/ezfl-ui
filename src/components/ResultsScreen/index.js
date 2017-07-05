@@ -20,7 +20,8 @@ class ResultsScreen extends Component{
       canLoadMore:false,
       moreHasErrored: false,
       flights:[],
-      numberOfFlights:0
+      numberOfFlights:0,
+      pageNumber:0
     }
     this.fetchData = this.fetchData.bind(this);
     this.doFetch = this.doFetch.bind(this);
@@ -39,7 +40,7 @@ class ResultsScreen extends Component{
       let to = getCity[this.request.to];
       let departure = moment(this.request.departure).format("DD/MM/YYYY");
       this.setState({ isLoading: true, hasErrored: false });
-      this.fetchData(`https://easyflight-logistics.herokuapp.com/flights/flight?from=${from}&to=${to}&date=${departure}&pageNumber=0&pageSize=1000`);
+      this.fetchData(`/flights/flight?from=${from}&to=${to}&date=${departure}&pageNumber=${this.state.pageNumber}&pageSize=10`);
     }catch(err){
       this.setState({ isLoading: false, hasErrored: false });
     }
@@ -55,20 +56,24 @@ class ResultsScreen extends Component{
       let canLoadMore = !(response.data.last);
       let totalNumOfFlights = response.data.numberOfElements;
       let totalPages = response.data.totalPages;
-      let currentPage = response.data.number;
+      let currentPage = this.state.pageNumber;
 
       if(this.state.isLoadingMore){
         this.setState({
-          flights, isLoadingMore: false, canLoadMore, numberOfFlights:totalNumOfFlights, totalPages, currentPage
+          flights, isLoadingMore: false, canLoadMore, numberOfFlights:totalNumOfFlights, totalPages, pageNumber:(currentPage+1)
         });
       }else{
         this.setState({
-          flights, isLoading: false, canLoadMore:true, numberOfFlights:totalNumOfFlights, totalPages, currentPage
+          flights, isLoading: false, canLoadMore, numberOfFlights:totalNumOfFlights, pageNumber:(currentPage+1)
         });
       }
 
     })
     .catch(error => {
+      if(error.message==="Network Error"){
+        this.state.message="Pls check your internet connection";
+        alert("Pls check your internet connection");
+      }
       if(this.state.isLoadingMore){
         this.setState({moreHasErrored: true });
       }else{
@@ -98,7 +103,7 @@ class ResultsScreen extends Component{
         let from = getCity[this.request.from];
         let to = getCity[this.request.to];
         let departure = moment(this.request.departure).format("DD/MM/YYYY");
-        this.fetchData(`https://easyflight-logistics.herokuapp.com/flights/flight?from=${from}&to=${to}&date=${departure}&pageNumber=0&pageSize=1000`);
+        this.fetchData(`/flights/flight?from=${from}&to=${to}&date=${departure}&pageNumber=${this.state.pageNumber}&pageSize=10`);
       }catch(err){
         this.setState({ isLoadingMore: false, moreHasErrored: false });
       }

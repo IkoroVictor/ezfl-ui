@@ -15,7 +15,7 @@ const DisplayPanel = ({request, numberOfFlights}) => (
           var css = style;
           if(css.position==="fixed"){
             css.top=40;
-            css.zIndex=150;
+            css.zIndex=1;
           }
           return(
             <div className="display-panel" style={css}>

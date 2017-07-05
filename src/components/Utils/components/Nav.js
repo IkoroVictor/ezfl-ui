@@ -10,6 +10,7 @@ import profilePics from '../../../images/face.jpg';
 import {store} from '../../../store';
 import Rodal from 'rodal';
 import googleLogo from '../../../images/google.png';
+import GoogleLogin from 'react-google-login';
 
  class Nav extends Component{
   constructor(props){
@@ -29,6 +30,8 @@ import googleLogo from '../../../images/google.png';
 
     this.loginClickHandler=this.loginClickHandler.bind(this);
     this.signUpClickHandler=this.signUpClickHandler.bind(this);
+    this.onSignIn = this.onSignIn.bind(this);
+    this.onSignOut = this.onSignOut.bind(this);
   }
 
   loginClickHandler(){
@@ -44,6 +47,14 @@ import googleLogo from '../../../images/google.png';
     this.setState({
       visibleSignUp:true
     });
+
+  }
+
+  onSignIn(){
+
+  }
+
+  onSignOut(){
 
   }
 
@@ -121,8 +132,6 @@ import googleLogo from '../../../images/google.png';
                   <div className="social-login-facebook"><i className="ion-social-facebook"/>Continue with Facebook</div>
                   <div className="social-login-google"> <i><img src={googleLogo}/></i>Continue with Google</div>
 
-
-
                   <div className="login-modal-base">
                   <div className="forgot-password">or <Link to="#">Forgot Password</Link></div>
                   <div className="terms"><p>By signing up, you agree to our <Link to="#">Terms of Use</Link> and <Link to="#">Privacy Policy</Link></p></div>
@@ -139,12 +148,10 @@ import googleLogo from '../../../images/google.png';
                     <input type="text" maxLength="120" minLength="6" name="username" placeholder="Username" required={true}/>
                         <input type="email" maxLength="120" minLength="6" name="email" placeholder="Email" required={true}/>
                         <input type="password" maxLength="120" minLength="6" name="password" placeholder="Password" required={true}/>
-                        <div className="btn-login">Login</div>
+                        <div className="btn-login">Signup</div>
                         <div className="divider"><div></div><span>OR</span><div></div></div>
                         <div className="social-login-facebook"><i className="ion-social-facebook"/>Signup with Facebook</div>
                         <div className="social-login-google"> <i><img src={googleLogo}/></i>Signup with Google</div>
-
-
 
                         <div className="login-modal-base">
                         <div className="terms"><p>By signing up, you agree to our <Link to="#">Terms of Use</Link> and <Link to="#">Privacy Policy</Link></p></div>
