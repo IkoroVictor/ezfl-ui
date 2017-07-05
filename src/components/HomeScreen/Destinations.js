@@ -8,7 +8,7 @@ import abujaPix from "../../images/bg/abj2.jpg";
 import beninPix from "../../images/bg/benin.jpg";
 import calabarPix from "../../images/bg/cal1.jpg";
 import enuguPix from "../../images/bg/enugu1.jpg";
-import kanoPix from "../../images/bg/kano1.jpg";
+import kanoPix from "../../images/bg/kano2.jpg";
 import kadunaPix from "../../images/bg/kaduna1.jpg";
 import phcPix from "../../images/bg/ph2.jpg";
 
