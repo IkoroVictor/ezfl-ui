@@ -1,7 +1,6 @@
 body {
   margin: 0;
   padding: 0;
-
   background-color: #fff;
   color: #555;
   font-family: 'Lato', Arial, sans-serif;
@@ -10,6 +9,18 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+::selection{
+  background: transparent;
+
+}
+
+:focus {
+  outline: 0;
+}
+
+:hover {
+  outline: 0;
+}
 /*------------SECTIONS----------------*/
 section{
     padding:30px 0;

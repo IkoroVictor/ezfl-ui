@@ -25,7 +25,7 @@ nav{
     height: 50px;
     width:100%;
     position:fixed;
-    z-index:9999;
+    z-index:99;
 }
 
 .nav-elements{
@@ -138,60 +138,60 @@ nav ul.main-nav li a:hover, nav ul.main-nav li a:active{
   position: relative;
 }
 
-.search-compoennt-location-box {
-  background: white;
-  color: gray;
+.search-component-location-box {
+  background: #efefef;
+  color: #777;
   margin: auto;
   max-width: 324px;
   border-radius: 2px;
   position: absolute;
   width: 100%;
   z-index: 2000;
-  max-height: 150px;
+  max-height: 280px;
   overflow-y: auto;
   margin-top: 10px;
-
+  opacity:0.95;
 }
 
-.search-compoennt-location-box .location-item {
+.search-component-location-box .location-item {
   font-size: 15px;
   padding: 7px;
   text-align: left;
   border-bottom: 1px solid rgb(204, 204, 204);
 }
 
-.search-compoennt-location-box .location-item:hover {
+.search-component-location-box .location-item:hover {
   background: #eee;
   cursor: pointer;
 }
 
-.search-compoennt-location-box .location-item div.icon {
+.search-component-location-box .location-item div.icon {
   display: inline-block;
   width: 15%;
   text-align: left;
   vertical-align: middle;
 }
 
-.search-compoennt-location-box .location-item div.icon svg {
+.search-component-location-box .location-item div.icon svg {
   width: 30px;
   height: 30px;
   fill: #bbb;
 }
 
-.search-compoennt-location-box .location-item span {
+.search-component-location-box .location-item span {
   display: inline-block;
   width: 60%;
   vertical-align: middle;
 }
 
-.search-compoennt-location-box .location-item div.code {
+.search-component-location-box .location-item div.code {
   display: inline-block;
   width: 20%;
   text-align: right;
   vertical-align: middle;
 }
 
-.search-compoennt-location-box .location-item div label{
+.search-component-location-box .location-item div label{
   display: inline-block;
   padding: 4px 7px 4px 7px;
 
@@ -199,7 +199,11 @@ nav ul.main-nav li a:hover, nav ul.main-nav li a:active{
   color: white;
   font-weight: bold;
   border-radius: 3px;
+}
 
+h2.flights-sm{
+  margin-top: 8%;
+  font-size: 140%;
 }
 
 
@@ -209,21 +213,11 @@ nav ul.main-nav li a:hover, nav ul.main-nav li a:active{
 /*----------------------------------------------------------------*/
 .fl-location-stamp{
   display: inline-block;
-  width: 40%;
   text-align: left;
-}
-
-.fl-location-stamp:last-child {
-  padding-left: 5%;
-  box-sizing: border-box;
 }
 
 .fl-route {
   width: 100%;
-}
-
-.fl-route-plane-icon {
-  width: 20%;
 }
 
 .fl-location-stamp p{
@@ -240,6 +234,7 @@ margin-bottom: 10px;
   color: #fff;
   margin: 0;
   padding: 0;
+  cursor: pointer;
 }
 
 .fl-location-stamp i{
@@ -259,6 +254,24 @@ margin-bottom: 10px;
   vertical-align:super;
 }
 
+.roundtrip {
+  position: relative;
+}
+
+.roundtrip i.ion-android-plane.inverse{
+  transform: rotate(270deg);
+  position: absolute;
+  right: 5px;
+  top: 15px;
+}
+
+.roundtrip i.ion-android-plane{
+  font-size:120%;
+  position: relative;
+  right: 5px;
+  bottom: 10px;
+}
+
 .fl-route, .btn-search, .date-picker{
   display:inline-block;
 }
@@ -270,7 +283,7 @@ margin-bottom: 10px;
 }
 
 .picker-passengers-wrapper {
-  margin-top: 10px;
+{/*margin-top: 10px;*/}
 }
 
 .picker-wrapper.passenger{
@@ -299,6 +312,7 @@ margin-bottom: 10px;
   line-height: 43px;
   text-align: center;
   font-size: 70%;
+  cursor: pointer;
 }
 
 p.on-search-component{
@@ -308,11 +322,26 @@ p.on-search-component{
   margin-bottom: 10px;
 }
 
+date-picker-sub{
+  position: relative;
+}
+
 .date-picker-sub i{
-  font-size: 140%;
+  font-size: 170%;
   margin-right: 10px;
   color: #b7a074;
   vertical-align: middle;
+}
+
+.date-picker-sub-right.disabled .date-picker-sub i{
+  position: absolute;
+  left:-42px;
+  top: 1px;
+}
+
+
+.date-picker-sub-right.disabled .date-component{
+  cursor:not-allowed;
 }
 
 .date-picker-sub-right .date-component{
@@ -323,6 +352,25 @@ p.on-search-component{
 .date-picker-sub-left .date-component{
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+}
+
+.mobile .date-component input{
+  -webkit-appearance: none;
+  border: none;
+  height: 38px;
+  background: transparent;
+  width: 60%;
+  margin-left: 4px;
+  font-size: 120%;
+  display: inline-block;
+  vertical-align:middle;
+  padding-top: 15px;
+}
+
+.mobile .date-component  i{
+  display: inline-block;
+  font-size: 250%;
+  text-align: left;
 }
 
 /****************NORMAL PICKER**************/
@@ -340,6 +388,8 @@ p.on-search-component{
   background-repeat: no-repeat;
   background-position: calc(100% - 10px) 50%;
   background-size: 9px;
+  background-color: #fff;
+  cursor: pointer;
 }
 
 /******************SEARCH BUTTON**********/
@@ -353,17 +403,10 @@ p.on-search-component{
   border: 1px solid #aaa;
   vertical-align: top;
   margin-top: 20px;
-}
-
-.btn-search a{
-  color: #fff;
-  font-size: 65%;
+  font-size: 60%;
   font-weight: 400;
-  text-transform: capitalize;
-}
-
-.btn-search{
   margin-left: 20px;
+  cursor: pointer;
 }
 
 /*---------JUMBO TOGGLE COMPONENT -----------*/
@@ -383,6 +426,7 @@ p.on-search-component{
   height: 30px;
   vertical-align:middle;
   margin: 0 10px;
+  cursor: pointer;
 }
 
 .switch input {display:none;}
@@ -459,154 +503,63 @@ input:checked + .slider:before {
 /*----------------------------------------------------------------*/
 /* SECTION DESTINATIONS */
 /*----------------------------------------------------------------*/
-
 .section-destinations{
     background-color: #f7f7f7;
     text-transform: uppercase;
 }
 
-.galleria{
-  max-width:950px;
-  margin: 40px auto;
+.section-destinations h2{
+  padding-bottom: 20px;
 }
 
-.gallery{
-    position:relative;
-    height:280px;
-    /*border: 1px solid #ddd;*/
-    color:#fff;
+.city-showcase{
+    list-style: none;
+    width:100%;
 }
 
-.gallery-row{
-  margin-bottom: 25px;
+.second-showcase{
 }
 
-
-.gallery h3{
-    font-size: 250%;
+.city-showcase li{
+    display:block;
+    float:left;
+    width:25%;
+    height:200px;
+    position: relative;
 }
 
-.gallery h4{
-    font-size: 170%;
+.city-photo{
+    width:100%;
+    margin:0;
+    overflow: hidden;
+    background-color: #000;
 }
 
-.gallery h3, .gallery h4{
-    position:absolute;
-    top:30%;
-    left:50%;
-    transform:translate(-50%, -50%);
-    font-weight: 400;
-    z-index: 2;
+.city-photo img{
+    opacity:0.5;
+    height:200px;
+    transform: scale(1.4);
+    transition: transform 0.5s, opacity 0.4s;
 }
 
-.gallery span{
-    font-size:80%;
-    font-weight: 400;
+.city-photo img:hover{
+    opacity: 0.7;
+    transform: scale(1.3);
 }
 
-.gallery span i{
-    font-size:150%;
-    vertical-align: middle;
-     margin-right:5px;
-}
-
-.gallery span:first-of-type i{
-    display: inline-block;
-    transform: rotate(45deg);
-}
-
-.gallery span:first-of-type{
-    position:absolute;
-    top:85%;
-    left:25%;
-    transform:translate(-50%, -50%);
-    z-index: 2;
-}
-
-.gallery span:last-of-type{
-    position:absolute;
-    top:85%;
-    left:70%;
-    transform:translate(-50%, -50%);
-    width: 160px;
-    z-index: 2;
-}
-
-.gallery small{
-    margin-right:2.5px;
-    margin-left:4.5px;
-}
-
-.pos1 span:first-of-type{
-    position:absolute;
-    top:85%;
-    left:30%;
-    transform:translate(-50%, -50%);
-}
-
-/*.pos1{
-    background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/lagos.png);
-    background-size: cover;
-    background-position:center;
-}
-.pos2{
-    background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/abj2.jpg);
-    background-size: cover;
-    background-position:bottom;
-}
-.pos3{
-    background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/benin.jpg);
-    background-size: cover;
-    background-position:bottom;
-}
-.pos4{
-    background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/cal2.jpg);
-    background-size: cover;
-    background-position:middle;
-}
-.pos5{
-    background-image: linear-gradient(rgba(55, 55, 55, 0.2), rgba(55, 55, 55, 0.7)),  url(../images/bg/ph2.jpg);
-    background-size: cover;
-    background-position:bottom;
-}*/
-
-.gallery{
-  width: 100%;
-  overflow: hidden;
-  transition: all 0.4s;
-}
-
-.gallery img{
-  width: 100%;
-  height: auto;
-  transform: scale(1.15);
-  transition: all 0.4s ease-out;
-  background-color: #000;
-}
-
-.gallery img:hover{
-  transform: scale(1.03);
-}
-
-.gallery:hover{
-    transform: scale(1.01);
-}
-
-.dest-shadow{
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: inherit;
-  height: inherit;
-  background-color: #000;
+.city-name{
+  font-size: 110%;
+  position:absolute;
   z-index: 1;
-  opacity: 0.5;
-  transition: all 0.4s;
+  color:#ddd;
+  width: 100%;
+  top:0;
+  text-align: center;
+  margin: 0 auto;
+  padding: 25% 0;
+  pointer-events: none;
 }
 
-.dest-shadow:hover{
-  opacity: 0.3;
-}
 /*----------------------------------------------------------------*/
 /* SECTION SERVICES */
 /*----------------------------------------------------------------*/
@@ -713,6 +666,8 @@ td, .about-us{
 footer{
     color:white;
     background-color:#333;
+    z-index: 20;
+    position: relative;
 }
 .footer ul{
     list-style: none;
@@ -876,18 +831,14 @@ footer{
 /*----------------------------------------------------------------*/
 /* SECTION RESULT */
 /*----------------------------------------------------------------*/
-.jumbotron-away, .jumbotron-manager{
+.jumbotron-home.away{
     background-image: linear-gradient(#3881AF, #286A9D);
     height:30vh;
 }
 
-.jumbotron-away .hero-search-box, .jumbotron-manager .hero-search-box{
-    position:absolute;
-    text-transform: uppercase;
-    top:17%;
-    left:50%;
-    transform:translate(-50%, -50%);
-    color: #fff;
+.jumbotron-home.away .hero-search-box>div{
+  padding: 40px 0 100px 0;
+  text-align: center;
 }
 
 .jumbotron-away .toggler{
@@ -906,18 +857,19 @@ footer{
 
 .flight-card{
   text-transform:uppercase;
-  max-width:500px;
-  border: 1px solid #e1e1e1;
+  max-width:550px;
+  border: 1px solid #d1d1d1;
   border-radius: 4px;
   color: #656565;
-  margin: 10px 0 10px 15px;
-  font-size:80%;
+  margin: 10px 0 20px 15px;
+  font-size:90%;
   position: relative;
+  box-shadow: 0px 1px 3px 1px rgba(46,61,73,0.2);
 }
 
 /*------FLIGHT CARD TOP----*/
 .card-top{
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #d1d1d1;
   background-color: #fff;
 }
 
@@ -936,105 +888,268 @@ footer{
 
 /*-TOP-RIGHT-*/
 .top-right{
-  border-left: 1px solid #eee;
-{/*padding-right: 29px !important;*/}
+  border-left: 1px solid #dfdfdf;
 }
 
 .top-right img{
-  max-width: 120px;
+  padding-top: 15px;
+}
+
+.travelDate{
+  font-size: 55%;
 }
 
 .top-right-top{
-  border-top: 1px solid #eee !important;
+  border-top: 1px solid #dfdfdf !important;
   text-align: center;
-  padding-bottom: 7px;
+  padding-bottom: 14px;
 }
 
 .card-manage .top-right-top{
-  border-bottom: 1px solid #eee !important;
+  border-bottom: 1px solid #dfdfdf !important;
   text-align: center;
   padding-bottom: 7px;
 }
 
-.top-right-top figure{
-  line-height: 50px;
-  margin-left: 25px;
-}
-
-.top-right-bottom small{
-  font-size: 100%;
-  color: #2E72A3;
+/*-------CARD PRICE-COMPONENT-------*/
+.price-component{
+  background-color:#f6f9f9;
+  margin: 0 -15px;
 }
 
 .top-right-bottom{
+  text-align: center;
   font-weight: 400;
-  font-size:80%;
+  font-size:70%;
   line-height: 40px;
-  padding-left: 30px;
+  color: #555;
+  padding: 2px 15px 0 15px;
+}
+
+.saved-card-bottom{
+  text-align: center;
+  font-weight: 400;
+  font-size:70%;
+  line-height: 40px;
+  color: #2E72A8;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.saved-card-bottom small{
+  font-size: 130%;
+  color: #2E72A8;
+}
+
+.saved-card-bottom .strike-currency{
+  margin-left:6px;
+  font-size: 110%;
+  color: #aaa;
+  vertical-align: super;
+}
+
+.saved-card-bottom .strike-price{
+  margin-left:2px;
+  font-size: 110%;
+  color: #aaa;
+  vertical-align: super;
+}
+
+.saved-card-bottom .price, .saved-card-bottom .currency{
+  color: #2E72A8 !important;
+}
+
+.saved-card-bottom .expired{
+  color: #ddd;
+  vertical-align: sub;
+  font-size: 110%;
+}
+
+
+::selection{
+  background: transparent !important;
+}
+
+.top-right-bottom small{
+  font-size: 130%;
   color: #2E72A3;
+}
+
+.top-right-bottom .left, .top-right-bottom .right{
+  display: inline-block;
+}
+
+.top-right-bottom .left{
+  float: left;
+}
+
+.top-right-bottom .right{
+  float: right;
+}
+
+.top-right-bottom .right i{
+  margin-left: 15px;
+}
+
+.top-right-bottom .left i{
+  margin-right: 15px;
+}
+
+.top-right-bottom .price-text{
+  font-size: 85%;
+}
+
+.top-right-bottom i{
+  border: 2px solid #555;
+  border-radius: 50%;
+  padding: 1px 6px;
+  font-size: 120%;
+  box-shadow: 0px 1px 5px 0px rgba(46,61,73,0.2);
+  cursor: pointer;
 }
 
 .location-stamp-departure{
   margin-top: 10px;
-  margin-left: 30px;
 }
 
 .location-stamp-arrival{
-  margin-right: 30px;
   margin-top: 10px;
+  text-align: center;
+}
+
+.stamp-desc{
+  font-size:40%;
 }
 
 .city{
   font-weight: 400;
   font-size: 130%;
+  color: #535353;
 }
 .time{
-  font-weight: 100;
-  font-size: 70%;
-  color: #333;
+  font-weight: 300;
+  font-size: 80%;
+  color: #5f5f5f;
+  padding-left: 2px;
 }
 
 .price{
   color: #2E72A3;
+  font-size: 130%;
+  padding-left: 2px;
 }
 
+.flight-class{
+  color: #888;
+}
+
+
+/*ROUNDTRIP--CARD*/
+.fl-roundtrip{
+  font-size: 90%;
+}
+
+.fl-roundtrip img{
+  width: 20px;
+  height: 20px;
+}
+
+.right-stamp{
+  margin-left: 20px;
+}
+
+.inline{
+  display:inline-block;
+}
 /*------"MANAGER-CARD" STYLE---------*/
 .card-manage .top-right-top{
   font-size: 93%;
   border-top: 0;
 }
 
-.card-manage .top-right-bottom{
-  padding-left: 0px;
+.fl-manage-layer{
+  padding: 0 25px;
 }
 
-.fl-manage-top, .fl-manage-bottom{
-  padding: 0 15px;
-}
 .fl-manage-top{
-  margin-top: 7px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+  background-color: #f6f9f9;
+  margin: 0 !important;
 }
 
-.fl-name-date{
-  text-align: left;
-}
 
 .airline-name{
-  font-weight: 400;
   text-transform: capitalize;
+  font-size:85%;
+  letter-spacing: 1px;
+  color: #2c3e50;
+}
+
+.fl-city{
+  color: #2c3e50;
+  vertical-align: sub;
+}
+
+.airline-class{
+  text-transform:lowercase;
+  font-size:75%;
+  margin-left: 5px;
 }
 
 .flight-date{
-  font-size: 60%;
+  font-size: 55%;
+  padding-top: -20px !important;
+  display: inline-block;
+  color: #e67e22;
 }
 
-.fl-summary{
-  text-align: left;
+.fl-manage-col{
+  text-align: left !important;
+  padding: 0 5px;
+}
+
+.fl-manage-col-right{
+  text-align: right !important;
   padding: 0 5px;
 }
 
 .flight-summary{
   font-size: 70%;
+}
+
+.manage-from-to{
+  font-size:110%;
+  color: #777 !important;
+  padding-top: 6px;
+}
+
+.top-right-top .divider{
+  background-color: #f9f9f9;
+  width: 86%;
+  height: 1px;
+  margin: 5px auto 9px auto;
+}
+
+.ion-plane{
+  display: inline-block;
+  transform: rotate(90deg);
+  display: block;
+  margin-bottom: -7px;
+  color: #e67e22;
+}
+
+.manage-from-to small{
+  font-size:60%;
+  color: #777 !important;
+}
+
+.manage-fl-details{
+  font-size:60%;
+  color: #888 !important;
+  padding-top:2px;
+  padding-bottom:2px;
 }
 
 .card-manage .top-right-bottom, .card-manage .price, .card-manage small{
@@ -1064,6 +1179,12 @@ footer{
 .card-manage .ion-android-plane{
   display: none;
 }
+
+.saved-flight-title{
+  font-size: 150%;
+  padding-top: 100px;
+  margin: 0;
+}
 /*--------------------------------*/
 /*-TOP-LEFT-*/
 .top-left{
@@ -1074,30 +1195,33 @@ footer{
 .top-left img{
   display:block;
   max-width: 100%;
-  height: 20px;
-  margin: 25% auto 0 auto;
+  height: 27px;
+  margin: 32% auto 0 auto;
+  position: relative;
 }
 
-.top-left img.double-routes{
-  display:block;
-  max-width: 100%;
-  height: 25px;
-  margin: 35% auto 0 auto;
+.top-left span{
+  position:absolute;
+  width: 100%;
+  font-size: 65%;
+  text-align: center;
+  padding-top: 15px;
+  color: #39AFE0;
 }
 /*--------------------------*/
 
 /*----------FLIGHT CARD BOTTOM---------------*/
 .card-bottom{
-  height: 40px;
+  height: 47px;
   text-align: center;
-  line-height: 35px;
-  background-color: #fcfcfc;
+  line-height: 45px;
+  background-color: #fafafa;
 }
 
 .card-bottom i{
   display: inline-block;
   margin-right: 5px;
-  font-size:100%;
+  font-size:105%;
   vertical-align: middle;
 
 }
@@ -1107,21 +1231,28 @@ footer{
   color:#ECBD4B;
 }
 
+.btn-flight-save img{
+  width: 1em;
+  vertical-align: sub;
+  padding-right: 3px;
+}
+
 .card-bottom span{
   font-size: 65%;
   font-weight: 400;
-  color: #938F8F;
+  color: #7a7a7a;
 }
 
 .btn-flight-book{
-  line-height: 10px;
+  line-height: 15px;
   display: inline-block;
-  padding: 2px 10px;
+  padding: 3px 6px 5px 4px;
 }
 
 .btn{
 transition: all 0.1s ease;
 font-weight: 100;
+cursor: pointer;
 }
 
 
@@ -1135,19 +1266,19 @@ font-weight: 100;
 }
 /*--------------------FILTER SECTION--------------------*/
 .display-panel{
-  font-size: 65%;
+  font-size: 70%;
   border: 1px solid #ddd;
-  line-height: 30px;
+  line-height: 40px;
   margin: 10px 0;
   background-color: #eee;
+  box-shadow: 0px 1px 10px 0px rgba(46,61,73,0.2);
+  text-transform: capitalize;
 }
 .select-container{
   overflow:hidden;
   display: inline-block;
   color: #a2a2a2;
   font-weight: 300;
-  border-radius: 0px 0px 0px 0px/0px 0px 0px 0px;
-  border-bottom: solid 1px #626262;
   position: relative;
   cursor: pointer;
   vertical-align: middle;
@@ -1156,19 +1287,17 @@ font-weight: 100;
 
 .display-panel select{
   color: #626262;
-  appearance:none;
   background:none;
-  background:transparent;
-  border:none;
   outline:none;
-  width:120%;
+  width:100%;
   cursor:pointer;
   display: inline;
+  height: 30px;
 }
 
 
 .flight-filter{
-  text-align: left;
+  text-align: center;
 }
 
 .flight-info{
@@ -1176,13 +1305,14 @@ font-weight: 100;
 }
 
 .flight-number{
-  text-align: right;
+  text-align: center;
 }
 
 .display-panel i{
-  font-size: 110%;
+  font-size: 150%;
   font-weight: 400;
-  margin: 0 5px;
+  margin: 0 10px 0 10px;
+  vertical-align: sub;
 }
 
 /*--------------------AD SECTION--------------------*/
@@ -1216,42 +1346,376 @@ font-weight: 100;
 /*------------------BADGE------------------*/
 .btn-notification{
   position: absolute;
-  top: 0;
+  top: 3px;
   right: 5px;
   font-size: 140%;
+  z-index: 1;
 }
 
-i.ion-android-notifications{
+.btn-notification i{
   position:relative;
+  font-size: 90%;
+  transform: rotate(10deg);
+  display: inline-block;
 }
 
-i.ion-android-notifications div{
+.btn-notification div{
   position: absolute;
-  top: -7px;
-  right: -13px;
+  top: -5px;
+  right: -16px;
   border-radius: 50%;
   padding: 1px 6px;
   color:#fff;
-  background-color: #ECBD4B;
+  background-color: #3498db;
   font-size: 70%;
   font-weight: 700;
 }
 
 .btn-close{
   position: absolute;
-  top: 0;
-  left:4px;
-  font-size: 120%;
-  font-weight: 400;
+  top: 10px;
+  left:14px;
+  font-size: 100%;
+  font-weight: 700;
   color: #aaa;
   transition: 0.1s;
 }
 
 .btn-close:hover{
   color: #777;
-  font-size: 130%;
 }
 /*
 Orange color - #ECBD4B
 Blue color - #32648e
 */
+
+.rodal-mask{
+  background: rgba(0, 0, 0, 0.84) !important;
+}
+
+.modal-middle{
+  background-color: #FbFbFb;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.modal-buttons{
+  background-color: #f0f0f0;
+}
+
+.modal-buttons .btn-flight-details span, .modal-buttons .btn-flight-save span, .modal-buttons i{
+  color: #5a5a5a;
+}
+
+.extra-flight-data{
+  line-height: 22px;
+}
+
+.extra-flight-data .city{
+  padding-top: 5px;
+}
+
+.extra-flight-data .city.top{
+  padding-top: 25px;
+}
+.extra-flight-data .time.top{
+  padding-top:8px;
+}
+
+.extra-flight-data .time:last-child{
+  padding-bottom: 18px;
+}
+
+.flights-divider {
+  width: 100%;
+  height: 1px;
+  margin: 17px auto;
+  background: #dfdfdf;
+}
+
+.vertical-divider{
+  height: 100%;
+}
+
+.vertical-divider img{
+  width: 7px;
+  position: absolute;
+  top: 100px;
+  right: 0;
+  transform: translate(0, -50%);
+}
+
+.modal-header {
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.modal-header img {
+  width: 110px;
+  padding:24px 0 12px 0;
+}
+
+.rodal-dialog {
+  padding:0 !important;
+  border-radius: 0 !important;
+}
+
+.rodal-dialog .extra-flight-data, .modal-details{
+  text-align: left;
+}
+
+.modal-details{
+  padding-left: 70px;
+  font-size: 85%;
+}
+
+.modal-details p{
+  display: inline-block;
+  color: #39AFE0;
+  font-size: 110%;
+  padding-left: 10px;
+  margin: 0;
+}
+
+.modal-details, .modal-buttons{
+  border-top: 1px solid #dfdfdf;
+  line-height: 65px;
+}
+
+
+/*-----------SPINNER-----------------*/
+.spinner {
+  margin: 100px auto;
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.spinner > div {
+  background-color: #5f5f5f;
+  height: 100%;
+  width: 6px;
+  margin-left: 4px;
+  display: inline-block;
+
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% {
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
+
+/*--------------LOADING MORE SPINNER----------------*/
+/* LOADER 4 */
+.loading-more-spinner{
+  height: 60px;
+  font-size: 50%;
+  text-align: center;
+  width:80%;
+}
+
+#loader-4{
+  display:inline-block;
+  vertical-align: top;
+}
+
+#loader-4 span{
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  background-color: #3498db;
+  margin: 10px 5px 10px 5px;
+  opacity: 0;
+}
+
+#loader-4 span:nth-child(1){
+  animation: opacitychange 1s ease-in-out infinite;
+}
+
+#loader-4 span:nth-child(2){
+  animation: opacitychange 1s ease-in-out 0.33s infinite;
+}
+
+#loader-4 span:nth-child(3){
+  animation: opacitychange 1s ease-in-out 0.66s infinite;
+}
+
+@keyframes opacitychange{
+  0%, 100%{
+    opacity: 0;
+  }
+
+  60%{
+    opacity: 1;
+  }
+}
+
+
+/*--------------DISPLAY COMPONENT----------------------*/
+.display-component{
+  height:300px;
+  text-align: center;
+  padding-top: 35px;
+}
+
+/*------TIME PICKER-----------*/
+.rc-time-picker{
+  width:11%;
+}
+
+.filter-text{
+  padding-left: 15px;
+}
+
+/*------LOGIN/SIGNUP-----------*/
+.modal-header h3{
+  font-size: 90%;
+  text-align: center;
+  color: #555;
+}
+
+.login-modal{
+  color: #555;
+  width: 85%;
+  margin: auto;
+}
+
+.social-login-facebook, .social-login-google, .login-modal .btn-login{
+  font-size: 90%;
+  text-align: left;
+  width:100%;
+  padding: 13px 0;
+  border-radius: 2px;
+  box-shadow: 0px 1px 10px 0px rgba(46,61,73,0.2);
+}
+
+.social-login-facebook i{
+  font-size: 160%;
+  margin: 0 25px 0 30px;
+  vertical-align: sub;
+}
+
+.social-login-google i{
+  margin: 0 25px 0 20px;
+  vertical-align: sub;
+}
+
+.social-login-facebook{
+  background-color:#21499F;
+  color:#fff;
+  margin: 20px auto 10px auto;
+  border: 1px solid #21499F;
+}
+
+.social-login-google{
+  margin: 0 auto 10px auto;
+  border: 1px solid #dfdfdf;
+}
+
+.social-login-google img{
+  width: 25px;
+}
+
+.login-modal .divider{
+  width: 100%;
+  color:#333;
+  letter-spacing: 1px;
+  text-align: center;
+  font-size: 50%;
+  margin-bottom: 15px;
+}
+
+.login-modal .divider div{
+  display: inline-block;
+  width: 45%;
+  height: 1px;
+  background: #d1d1d1;
+}
+
+.login-modal .divider span{
+  margin: 0 8px;
+  vertical-align:sub;
+}
+
+.login input, .signup input{
+  width:92%;
+  height: 45px;
+  margin-bottom: 10px;
+  font-size: 90%;
+  padding-left: 20px;
+}
+
+.login-modal input:first-of-type{
+  margin-top:20px;
+}
+
+.login-modal .btn-login{
+  width: 100%;
+  text-align: center;
+  background-color: #E1A93C;
+  margin-bottom: 10px;
+}
+
+.login-modal-base{
+  text-align: center ;
+}
+
+.login-modal a{
+  color:#0D4F91;
+}
+
+.login-modal .forgot-password{
+  font-size: 80%;
+}
+
+
+.login-modal .terms{
+  font-size: 55%;
+}
+
+.login-modal .footer-divider{
+  height: 1px;
+  width:100%;
+  background-color: #dfdfdf;
+  margin: 10px 0 15px 0;
+}
+.login-modal .sign-up{
+  font-size: 90%;
+}
+
+.modal-border{
+  border-radius:15px;
+}

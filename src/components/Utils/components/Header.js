@@ -1,14 +1,6 @@
 import React, {Component} from 'react';
 import Nav from './Nav';
 
-var menuHiddenStyle = {
-  display: "none"
-};
-
-var menuVisibleStyle = {
-  display: "block"
-};
-
 class Header extends Component {
   constructor(props){
     super(props);

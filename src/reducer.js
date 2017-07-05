@@ -1,9 +1,10 @@
 import {combineReducers} from 'redux';
-import userReducer from './components/Utils/reducers/users';
-
+import {userLoginManager} from './components/Utils/reducers/users';
+import {request} from './components/Utils/reducers/searchFlight';
 
 const easyflight = combineReducers({
-  userReducer
+  userLoginManager,
+  request
 });
 
 export default easyflight;

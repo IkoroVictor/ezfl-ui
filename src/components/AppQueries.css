@@ -1,5 +1,9 @@
 /* Big tablets to 1500px*/
-@media only screen and (max-width: 1180px){
+@media only screen and (max-width: 1200px){
+  .flight-info {
+    font-size: 90%;
+  }
+
   .hero-search-box .search-component-piece.left {
     margin-right: 50px;
   }
@@ -12,15 +16,6 @@
 
   .hero-search-box .fl-route {
     display: block;
-  }
-
-  .hero-search-box .fl-location-stamp {
-    width: 40%;
-  }
-
-  .hero-search-box .ion-android-plane {
-    width: 20%;
-    margin: 0 !important;
   }
 
   .hero-search-box .flight-details.wrapper  {
@@ -46,6 +41,7 @@
 
 /* Small tablets to big tablets: from 768px to 1023px*/
 @media only screen and (max-width: 1023px){
+
   .nav-elements figure{
     margin-left: 10px;
   }
@@ -58,8 +54,15 @@
 @media only screen and (max-width: 991px){
   .top-right-bottom{
     text-align: center;
-    padding-left: 0px;
-    font-size: 100%;
+    font-size: 65%;
+  }
+
+  .flight-class{
+    font-size: 80%;
+  }
+
+  .ad-box{
+    width: 220px;
   }
 }
 
@@ -71,7 +74,7 @@
 /* Small phones to small tablets: from 481px to 767px*/
 @media only screen and (max-width: 767px){
   body {
-    font-size: 15px !important;
+    font-size: 18px !important;
   }
 
 
@@ -80,6 +83,15 @@
   /*----------------------------------------------------------------*/
   .hero-search-box{
     max-width: 100%;
+  }
+
+  .search-component-location-box {
+    opacity: 0.98;
+  }
+
+  .jumbotron-home{
+    background-size: auto;
+    background-position: center;
   }
   /*-------HOME SECTIONS---------*/
   /*---GALLERY SECTION---*/
@@ -93,13 +105,17 @@
       border: none;
   }
 
+  .gallery img {
+    width: 180%;
+  }
+
   .gallery span:last-of-type {
     left: 65%;
   }
 
   .gallery.pos1 span:last-of-type {
     left: 75%;
-}
+  }
 
   .gallery div{
     font-size: 115%;
@@ -199,6 +215,10 @@
       top:15%;
   }
 
+  .section-download p {
+    max-width: 600px;
+  }
+
   /*-------FEEDBACK SECTION---------*/
     .section-feedback {
       padding-bottom: 20px !important;
@@ -237,6 +257,7 @@
 
   nav ul.main-nav li:last-child a{
       border: 0;
+      padding: 0;
   }
 
   nav ul.main-nav li a:link, nav ul.main-nav li a:visited{
@@ -247,6 +268,10 @@
       font-weight: 400;
       color: #fff;
       transition: 0.4s;
+      width: 100%;
+      display: inline-block;
+      text-align: center;
+      padding-bottom: 0;
   }
 
   nav ul.main-nav li a:hover{
@@ -284,13 +309,20 @@
     font-size: 80%;
     margin-bottom: 5px;
     margin-top: 5px;
-    width:100%;
+    width:98%;
+    margin-left: 1px;
   }
 
-  .top-left img{
-    max-width: 55%;
+
+  .top-left img {
+    max-width: 90%;
     height: 20px;
-  }
+    margin: 52% auto 0 auto;
+    position: relative;
+}
+
+Inherited from div.flight-card
+
 
   .top-left img.double-routes{
     margin: 45% auto 0 auto;
@@ -348,7 +380,9 @@
 
   .about-us{
     text-align: justify;
+    max-width: 600px;
   }
+
 
   /************** DISPLAY PANEL ***************/
   .flight-filter{
@@ -358,6 +392,24 @@
   .flight-number{
     text-align: center;
   }
+
+  /**********************/
+  .top-right-bottom .left{
+    padding-left: 7px;
+  }
+
+  .ion-chevron-left{
+    margin-right: 5px !important;
+  }
+
+  .ion-chevron-right{
+    margin-left: 5px !important;
+  }
+
+  .top-right-bottom i {
+    padding: 3px 7px;
+    font-size: 140%;
+}
 
 }
 

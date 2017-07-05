@@ -1,52 +1,71 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Container, Row, Col, Hidden} from 'react-grid-system';
-import '../App.css';
 import FlightCard from '../Utils/components/FlightCard';
 import DisplayPanel from './FilterPane';
+import Waypoint from 'react-waypoint';
+import {Sticky } from 'react-sticky';
 
-const ResultPane = () => (
-  <div className='results-pane'>
-    <div>
 
-      <Container>
-        <DisplayPanel/>
-        <Row>
-          <Col md={4}>
-              <AdPane/>
-          </Col>
-          <Col md={8}  style={{padding:"0px"}}>
-            <FlightCard flCardDetails={{type: "search", oneWay: false, data:{airline:"apk"}}}/>
-            <FlightCard flCardDetails={{type: "search", oneWay: false, data:{airline:"ara"}}}/>
-            <FlightCard flCardDetails={{type: "search", oneWay: false, data:{airline:"dan"}}}/>
-            <FlightCard flCardDetails={{type: "search", oneWay: false, data:{airline:"frn"}}}/>
-            <FlightCard flCardDetails={{type: "search", oneWay: false, data:{airline:"mev"}}}/>
-            <FlightCard flCardDetails={{type: "search", oneWay: false, data:{airline:"ola"}}}/>
-            <FlightCard flCardDetails={{type: "search", oneWay: false, data:{airline:"aer"}}}/>
-            <FlightCard flCardDetails={{type: "search", oneWay: false, data:{airline:"apk"}}}/>
+const ResultPane = ({request, numberOfFlights, canLoadMore, moreHasErrored, flights, _handleWaypointEnter})=>{
+    return(
+    <div className='results-pane'>
+      <div>
+        <Container>
 
-            <FlightCard flCardDetails={{type: "search", oneWay: true, data:{airline:"apk"}}}/>
-            <FlightCard flCardDetails={{type: "search", oneWay: true, data:{airline:"ara"}}}/>
-            <FlightCard flCardDetails={{type: "search", oneWay: true, data:{airline:"dan"}}}/>
-            <FlightCard flCardDetails={{type: "search", oneWay: true, data:{airline:"frn"}}}/>
-            <FlightCard flCardDetails={{type: "search", oneWay: true, data:{airline:"mev"}}}/>
-            <FlightCard flCardDetails={{type: "search", oneWay: true, data:{airline:"ola"}}}/>
-            <FlightCard flCardDetails={{type: "search", oneWay: true, data:{airline:"aer"}}}/>
-            <FlightCard flCardDetails={{type: "search", oneWay: true, data:{airline:"apk"}}}/>
-          </Col>
-        </Row>
-      </Container>
+          <DisplayPanel request={request} numberOfFlights={numberOfFlights}/>
+          <Row>
+            <Col md={4}>
+                <AdPane/>
+            </Col>
+            <Col md={8}  style={{padding:"0px"}}>
+              {flights}
+              {
+                (canLoadMore)?
+                (<div>
+                    <Waypoint
+                      onEnter={_handleWaypointEnter}
+                    />
+                  <div className="loading-more-spinner">
+                      <div className="loader" id="loader-4">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                    </div>
+                  </div>):(null)
+                }
+            </Col>
+          </Row>
+        </Container>
+      </div>
+
     </div>
-
-  </div>
-);
+  );
+}
 
 const AdPane = () => (
-  <div className="ad">
-    <Hidden sm xs>
-    <p>Sponsored Ad</p>
-    <div className="ad-box"></div>
-      </Hidden>
-  </div>
+  <Sticky topOffset={150}>
+    { ({ style, distanceFromBottom}) => {
+        console.log(distanceFromBottom);
+        var css = style;
+        if(css.position==="fixed"){
+          css.top=103;
+        }
+        if(distanceFromBottom<120){
+
+        }
+        return(
+          <div className="ad" style={css}>
+            <Hidden sm xs>
+            <p>Sponsored Ad</p>
+            <div className="ad-box">
+            </div>
+              </Hidden>
+          </div>
+        )}
+  }
+  </Sticky>
+
 );
 
 export default ResultPane;
