@@ -142,7 +142,13 @@ class ResultsScreen extends Component{
             <div className='Results-Component'>
               <StickyContainer>
                 <JumbotronHider/>
-                <ResultPane flights={this.state.flights} canLoadMore={this.state.canLoadMore} moreHasErrored={this.state.moreHasErrored} _handleWaypointEnter={this._handleWaypointEnter} request={this.request} numberOfFlights={this.state.numberOfFlights}/>
+                <ResultPane 
+                  flights={this.state.flights} 
+                  canLoadMore={this.state.canLoadMore} 
+                  moreHasErrored={this.state.moreHasErrored} 
+                  _handleWaypointEnter={this._handleWaypointEnter} 
+                  request={this.request} 
+                  numberOfFlights={this.state.numberOfFlights}/>
               </StickyContainer>
           </div>
 

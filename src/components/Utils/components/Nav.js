@@ -130,7 +130,7 @@ import GoogleLogin from 'react-google-login';
                   <div className="btn-login">Login</div>
                   <div className="divider"><div></div><span>OR</span><div></div></div>
                   <div className="social-login-facebook"><i className="ion-social-facebook"/>Continue with Facebook</div>
-                  <div className="social-login-google"> <i><img src={googleLogo}/></i>Continue with Google</div>
+                  <a href="/login/google"><div className="social-login-google"> <i><img src={googleLogo}/></i>Continue with Google</div></a>
 
                   <div className="login-modal-base">
                   <div className="forgot-password">or <Link to="#">Forgot Password</Link></div>
