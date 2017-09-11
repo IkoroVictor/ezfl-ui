@@ -6,6 +6,7 @@ import {getCity} from '../Utils/strings';
 import {store} from '../../store';
 import {Hidden} from 'react-grid-system';
 import FlightCard from '../Utils/components/FlightCard';
+import FlightApi from '../../api/FlightApi';
 import moment from 'moment';
 import axios from 'axios';
 import { StickyContainer} from 'react-sticky';
@@ -21,7 +22,7 @@ class ResultsScreen extends Component{
       moreHasErrored: false,
       flights:[],
       numberOfFlights:0,
-      pageNumber:0
+      pageNumber:1
     }
     this.fetchData = this.fetchData.bind(this);
     this.doFetch = this.doFetch.bind(this);
@@ -34,20 +35,25 @@ class ResultsScreen extends Component{
   }
 
   doFetch(){
-    try{
       this.request = store.getState().request.request;
       let from = getCity[this.request.from];
       let to = getCity[this.request.to];
       let departure = moment(this.request.departure).format("DD/MM/YYYY");
       this.setState({ isLoading: true, hasErrored: false });
-      this.fetchData(`/flights/flight?from=${from}&to=${to}&date=${departure}&pageNumber=${this.state.pageNumber}&pageSize=10`);
-    }catch(err){
-      this.setState({ isLoading: false, hasErrored: false });
-    }
+      this.fetchData(
+        {
+          from, 
+          to, 
+          date: departure, 
+          pageNumber: this.state.pageNumber, 
+          pageSize : 10
+        }
+      );
+   
   }
 
-  fetchData(url) {
-    axios.get(url)
+  fetchData(params) {
+    FlightApi.getOneWayFlights(params)
     .then(response => {
       let newFlights = this.load(response.data.content);
       let currentFlights = this.state.flights;
@@ -97,16 +103,7 @@ class ResultsScreen extends Component{
   }
 
   loadMore(){
-
-      try{
-        this.request = store.getState().request.request;
-        let from = getCity[this.request.from];
-        let to = getCity[this.request.to];
-        let departure = moment(this.request.departure).format("DD/MM/YYYY");
-        this.fetchData(`/flights/flight?from=${from}&to=${to}&date=${departure}&pageNumber=${this.state.pageNumber}&pageSize=10`);
-      }catch(err){
-        this.setState({ isLoadingMore: false, moreHasErrored: false });
-      }
+     this.fetchData();
   }
 
   _handleWaypointEnter(){

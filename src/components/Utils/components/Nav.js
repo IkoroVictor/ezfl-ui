@@ -10,7 +10,7 @@ import profilePics from '../../../images/face.jpg';
 import {store} from '../../../store';
 import Rodal from 'rodal';
 import googleLogo from '../../../images/google.png';
-import GoogleLogin from 'react-google-login';
+import Routes from '../../../config/routes';
 
  class Nav extends Component{
   constructor(props){
@@ -66,7 +66,7 @@ import GoogleLogin from 'react-google-login';
           <Row>
             <Col md={3} xs={8}>
               <figure className="logo-container">
-                <Link to="/">
+                <Link to={Routes.HOME}>
                   <img src={logo} alt="logo" className='logo'/>
                   <span className="logo-name">
                     <strong>easy</strong>flight
@@ -77,10 +77,10 @@ import GoogleLogin from 'react-google-login';
             <Col md={9} xs={4}>
               <ul className={this.props.mainClass}>
                 <li onClick={this.props._toggleMenu}>
-                  <Link to="/">Flight search</Link>
+                  <Link to={Routes.SEARCH}>Flight search</Link>
                 </li>
                 <li>
-                  <Link to="/manager">Manage Schedule</Link>
+                  <Link to={Routes.MANAGER}>Manage Schedule</Link>
                 </li>
                 {!this.state.login && (
                   <li>

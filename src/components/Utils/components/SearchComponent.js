@@ -10,6 +10,7 @@ import AlertContainer from 'react-alert';
 import { withRouter } from 'react-router-dom';
 import {store} from '../../../store';
 import {SaveRequest} from '../actions/searchFlight';
+import Routes from '../../../config/routes';
 
 
 class SearchComponent extends Component{
@@ -176,7 +177,7 @@ class SearchComponent extends Component{
       this.showAlert();
     }else{
       this.saveRequestToRedux();
-      this.props.searchHandler!==undefined?this.props.searchHandler():this.props.history.push("/search");
+      this.props.searchHandler !==undefined ? this.props.searchHandler() : this.props.history.push(Routes.SEARCH);
     }
   }
 

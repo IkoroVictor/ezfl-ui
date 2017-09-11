@@ -5,6 +5,7 @@ import HomeScreen from './HomeScreen';
 import ResultsScreen from './ResultsScreen';
 import ManagerScreen from './ManagerScreen';
 import Footer from './Utils/components/Footer';
+import Routes from '../config/routes';
 import './App.css';
 import './AppQueries.css';
 import '../css/ionicons.min.css';
@@ -17,9 +18,9 @@ class App extends Component {
       <div>
         <Header/>
         <Switch>
-          <Route exact path='/app' component={HomeScreen}/>
-          <Route path='/app/search' component={ResultsScreen}/>
-          <Route exact path='/app/manager' component={ManagerScreen}/>
+          <Route exact path={Routes.BASE}component={HomeScreen}/>
+          <Route path={Routes.SEARCH} component={ResultsScreen}/>
+          <Route exact path={Routes.MANAGER}component={ManagerScreen}/>
         </Switch>
         <Footer/>
       </div>
