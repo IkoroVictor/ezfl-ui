@@ -24,7 +24,8 @@ import Routes from '../../../config/routes';
 
     store.subscribe(() => {
       this.setState({
-        login: store.getState().userLoginManager.login
+        login: store.getState().userLoginManager.login,
+        user: store.getState().userLoginManager.user
       });
     });
 
@@ -59,7 +60,7 @@ import Routes from '../../../config/routes';
   }
 
   render(){
-
+    const user = this.props.user;
     return(
       <div className="nav-elements">
         <Container fluid>
@@ -104,7 +105,7 @@ import Routes from '../../../config/routes';
                         <figure>
                           <img src={profilePics} alt="profile pic"/>
                           <div className="signout">
-                            <span id="name">Hi, Lillian<br/></span>
+                            <span id="name">Hi, {this.props.user.name}<br/></span>
                             <span> Sign Out</span>
                           </div>
                         </figure>
