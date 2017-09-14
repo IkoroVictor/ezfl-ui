@@ -27,6 +27,7 @@ class App extends Component {
       if(error.status === 401){
         store.dispatch({type : LOGOUT})
       }
+      console.log(error);
     })
   }
   render() {
