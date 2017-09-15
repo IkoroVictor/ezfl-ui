@@ -23,9 +23,10 @@ import Routes from '../../../config/routes';
     };
 
     store.subscribe(() => {
+      let state = store.getState();
       this.setState({
-        login: store.getState().userLoginManager.login,
-        user: store.getState().userLoginManager.user
+        login: state.userLoginManager.login,
+        user: state.userLoginManager.user
       });
     });
 
@@ -60,7 +61,7 @@ import Routes from '../../../config/routes';
   }
 
   render(){
-    const user = this.props.user;
+    const user = this.state.user;
     return(
       <div className="nav-elements">
         <Container fluid>
@@ -80,9 +81,9 @@ import Routes from '../../../config/routes';
                 <li onClick={this.props._toggleMenu}>
                   <Link to={Routes.SEARCH}>Flight search</Link>
                 </li>
-                <li>
+                 {this.state.login && <li>
                   <Link to={Routes.MANAGER}>Manage Schedule</Link>
-                </li>
+                </li>}
                 {!this.state.login && (
                   <li>
                     <Link to="#" onClick={this.loginClickHandler}>Login</Link>
@@ -105,7 +106,7 @@ import Routes from '../../../config/routes';
                         <figure>
                           <img src={profilePics} alt="profile pic"/>
                           <div className="signout">
-                            <span id="name">Hi, {this.props.user.name}<br/></span>
+                            <span id="name">Hi, {user.firstName}<br/></span>
                             <span> Sign Out</span>
                           </div>
                         </figure>

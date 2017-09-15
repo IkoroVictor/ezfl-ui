@@ -20,7 +20,6 @@ class App extends Component {
   componentDidMount(){
     UserApi.getUser()
     .then((response)=>{
-      debugger
       store.dispatch({type : LOGIN, user:  response.data})
     }).
     catch((error) =>{

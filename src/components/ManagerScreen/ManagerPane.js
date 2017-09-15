@@ -8,7 +8,7 @@ class ManagerPane extends Component{
   constructor(props){
     super(props);
     this.state={
-      numberOfFlights:10//props.flDetails.content.length
+      savedFlights:this.props.savedFlights
     };
   }
 
@@ -33,6 +33,7 @@ class ManagerPane extends Component{
       );*/
   }
   render(){
+    let savedFlights =  this.state.savedFlights;
     return(<div className='results-pane'>
       <div>
         <Container>
