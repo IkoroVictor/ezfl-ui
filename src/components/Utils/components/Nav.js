@@ -104,7 +104,7 @@ import Routes from '../../../config/routes';
                     <Link to="#">
                       <div>
                         <figure>
-                          <img src={profilePics} alt="profile pic"/>
+                          <img src={user.picture || profilePics} alt="profile pic"/>
                           <div className="signout">
                             <span id="name">Hi, {user.firstName}<br/></span>
                             <span> Sign Out</span>
