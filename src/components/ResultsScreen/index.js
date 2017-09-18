@@ -90,7 +90,11 @@ class ResultsScreen extends Component{
 
   load(flights){
       return flights.map((data)=>{
-        let prices = data.prices.price;
+        let prices = data.prices || [];
+        if(prices.length === undefined ){ //Prices is not an array
+            prices =  [prices];
+            data.prices =  prices;
+        }
         data.selectedClassId=prices.length-1;
         data.NumberOfClasses=prices.length;
         data.validPrices = prices;
