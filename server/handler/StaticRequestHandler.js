@@ -10,7 +10,7 @@ const StaticRequestHandler = (request, response) => {
 
 
     var filePath = pathPrefix + request.url;
-    if (filePath == pathPrefix + "/" || request.url.startsWith("/app/"))
+    if (filePath == pathPrefix + "/" || request.url === "/static/")
         filePath = pathPrefix + "/index.html";
 
     var extname = String(path.extname(filePath)).toLowerCase();
