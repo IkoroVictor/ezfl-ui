@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Container, Row, Col, Hidden} from 'react-grid-system';
 import {Link} from 'react-router-dom';
-import '../App.css';
+import '../../stylesheets/css/App.css';
 import imgAero from '../../images/logos/airlines/aero-logo.png';
 import imgDana from '../../images/logos/airlines/dana-air-logo.png';
 import imgFirstNation from '../../images/logos/airlines/first-nation-logo.png';

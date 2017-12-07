@@ -110,7 +110,7 @@ nav ul.main-nav li a:hover, nav ul.main-nav li a:active{
 /* ---------NAVIGATION-----------*/
 /* ---------JUMBOTRON-----------*/
 .jumbotron-home{
-    background-image: linear-gradient(rgba(11, 11, 11, 0.5), rgba(11, 11,11, 0.5)), url(../images/cities/index.jpg);
+    background-image: linear-gradient(rgba(11, 11, 11, 0.5), rgba(11, 11,11, 0.5)), url(../../images/cities/index.jpg);
     background-size:cover;
     color:white;
     background-position:bottom;
@@ -384,7 +384,7 @@ date-picker-sub{
   width: 100%;
   -webkit-appearance: none;
   padding: 0 12px;
-  background-image: url(../images/bg/select-arrow.png);
+  background-image: url(../../images/bg/select-arrow.png);
   background-repeat: no-repeat;
   background-position: calc(100% - 10px) 50%;
   background-size: 9px;

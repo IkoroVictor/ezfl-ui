@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, Row, Col, Hidden} from 'react-grid-system';
-import '../App.css';
+import '../../../stylesheets/css/App.css';
 
 const AdPane = () => (
   <div className="ad">
