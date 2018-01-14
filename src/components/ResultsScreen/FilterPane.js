@@ -9,7 +9,7 @@ import {Sticky } from 'react-sticky';
 const format = 'h:mm a';
 const now = moment().hour(0).minute(0);
 
-const DisplayPanel = ({request, numberOfFlights}) => (
+const DisplayPanel = ({request, numberOfFlights, onTimeToUpdate, onTimeFromUpdate, onTimePickerClose, timeTo, timeFrom}) => (
     <Sticky topOffset={155}>
       { ({style}) => {
           var css = style;
@@ -22,7 +22,7 @@ const DisplayPanel = ({request, numberOfFlights}) => (
               <Row>
                 <FlightNumber numberOfFlights={numberOfFlights}/>
                 <FlightInfo request={request}/>
-                <FlightFilter/>
+                <FlightFilter onTimeToUpdate={onTimeToUpdate} onTimeFromUpdate={onTimeFromUpdate} onTimePickerClose={onTimePickerClose} timeTo={timeTo} timeFrom={timeFrom}/>
               </Row>
             </div>
           )}
@@ -66,7 +66,7 @@ const FlightInfo = ({request}) => {
   );
 }
 
-const FlightFilter = ()=> (
+const FlightFilter = ({onTimeFromUpdate, onTimeToUpdate, onTimePickerClose, timeFrom,timeTo})=> (
   <Hidden xs sm md>
   <Col lg={7}>
     <div className="flight-filter">
@@ -82,6 +82,9 @@ const FlightFilter = ()=> (
             format={format}
             use12Hours
             placeholder="from"
+			value={timeFrom}
+			onChange={onTimeFromUpdate}
+			onClose={onTimePickerClose}
           />
           <TimePicker
             showSecond={false}
@@ -89,6 +92,9 @@ const FlightFilter = ()=> (
             format={format}
             use12Hours
             placeholder="to"
+	 		value={timeTo}
+			onChange={onTimeToUpdate}
+			onClose={onTimePickerClose}
           />
 
         </span>

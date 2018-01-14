@@ -22,16 +22,38 @@ class ResultsScreen extends Component{
       moreHasErrored: false,
       flights:[],
       numberOfFlights:0,
-      pageNumber:1
+      pageNumber:1,
+	  timeTo:null,
+	  timeFrom:null
     }
     this.fetchData = this.fetchData.bind(this);
     this.doFetch = this.doFetch.bind(this);
     this.loadMore = this.loadMore.bind(this);
+	this.onTimeToUpdate = this.onTimeToUpdate.bind(this);
+	this.onTimeFromUpdate = this.onTimeFromUpdate.bind(this);
+	this.onTimePickerClose = this.onTimePickerClose.bind(this);
     this._handleWaypointEnter = this._handleWaypointEnter.bind(this);
   }
 
   componentDidMount(){
     this.doFetch();
+  }
+	
+  onTimeToUpdate(e) {
+	  this.setState({timeTo: e})
+		  
+  }
+	
+  onTimeFromUpdate(e) {
+	  this.setState({timeFrom: e})
+  }
+	
+  onTimePickerClose() {
+	  if (this.state.timeTo && this.state.timeFrom) {
+		  this.setState({
+			  pageNumber:1
+		  },() => this.doFetch() )
+	  }
   }
 
   doFetch(){
@@ -40,15 +62,20 @@ class ResultsScreen extends Component{
       let to = getCity[this.request.to];
       let departure = moment(this.request.departure).format("DD/MM/YYYY");
       this.setState({ isLoading: true, hasErrored: false });
-      this.fetchData(
-        {
+	  
+	  let fetchData = {
           from, 
           to, 
           date: departure, 
           pageNumber: this.state.pageNumber, 
           pageSize : 10
-        }
-      );
+        };
+	  if (this.state.timeTo && this.state.timeFrom) {
+		  fetchData.startTime = this.state.timeFrom.format('HH:mm');
+		  fetchData.endTime = this.state.timeTo.format('HH:mm');
+	  }
+	  
+      this.fetchData(fetchData);
    
   }
 
@@ -57,7 +84,7 @@ class ResultsScreen extends Component{
     .then(response => {
       let newFlights = this.load(response.data.content);
       let currentFlights = this.state.flights;
-      let flights = currentFlights.concat(newFlights);
+      let flights = this.state.pageNumber === 1 ? newFlights : currentFlights.concat(newFlights);
 
       let canLoadMore = !(response.data.last);
       let totalNumOfFlights = response.data.numberOfElements;
@@ -90,7 +117,7 @@ class ResultsScreen extends Component{
 
   load(flights){
       return flights.map((data)=>{
-        let prices = data.prices.price;
+        let prices = data.prices;
         data.selectedClassId=prices.length-1;
         data.NumberOfClasses=prices.length;
         data.validPrices = prices;
@@ -144,7 +171,10 @@ class ResultsScreen extends Component{
                   canLoadMore={this.state.canLoadMore} 
                   moreHasErrored={this.state.moreHasErrored} 
                   _handleWaypointEnter={this._handleWaypointEnter} 
-                  request={this.request} 
+                  request={this.request}
+			      onTimeFromUpdate={this.onTimeFromUpdate}
+			      onTimeToUpdate={this.onTimeToUpdate}
+			      onTimePickerClose={this.onTimePickerClose}
                   numberOfFlights={this.state.numberOfFlights}/>
               </StickyContainer>
           </div>
