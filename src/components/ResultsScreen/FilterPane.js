@@ -9,7 +9,7 @@ import {Sticky } from 'react-sticky';
 const format = 'h:mm a';
 const now = moment().hour(0).minute(0);
 
-const DisplayPanel = ({request, numberOfFlights, onTimeToUpdate, onTimeFromUpdate, onTimePickerClose, timeTo, timeFrom}) => (
+const DisplayPanel = ({request, numberOfFlights, onTimeToUpdate, onTimeFromUpdate, onTimePickerClose, timeTo, timeFrom, onAirlineUpdate, airlineAll}) => (
     <Sticky topOffset={155}>
       { ({style}) => {
           var css = style;
@@ -22,7 +22,7 @@ const DisplayPanel = ({request, numberOfFlights, onTimeToUpdate, onTimeFromUpdat
               <Row>
                 <FlightNumber numberOfFlights={numberOfFlights}/>
                 <FlightInfo request={request}/>
-                <FlightFilter onTimeToUpdate={onTimeToUpdate} onTimeFromUpdate={onTimeFromUpdate} onTimePickerClose={onTimePickerClose} timeTo={timeTo} timeFrom={timeFrom}/>
+                <FlightFilter onTimeToUpdate={onTimeToUpdate} onTimeFromUpdate={onTimeFromUpdate} onTimePickerClose={onTimePickerClose} timeTo={timeTo} timeFrom={timeFrom} onAirlineUpdate={onAirlineUpdate} airlineAll={airlineAll}/>
               </Row>
             </div>
           )}
@@ -66,7 +66,7 @@ const FlightInfo = ({request}) => {
   );
 }
 
-const FlightFilter = ({onTimeFromUpdate, onTimeToUpdate, onTimePickerClose, timeFrom,timeTo})=> (
+const FlightFilter = ({onTimeFromUpdate, onTimeToUpdate, onTimePickerClose, timeFrom, timeTo, onAirlineUpdate, airlineAll})=> (
   <Hidden xs sm md>
   <Col lg={7}>
     <div className="flight-filter">
@@ -100,14 +100,14 @@ const FlightFilter = ({onTimeFromUpdate, onTimeToUpdate, onTimePickerClose, time
         </span>
         <span className="filter-text">Filter by Airline - </span>
         <span className="select-container">
-          <select>
-            <option value="airline">All</option>
+          <select onChange={onAirlineUpdate} value={airlineAll}>
+            <option value="">All</option>
             <option value="arik">Arik</option>
             <option value="aero">Aero</option>
             <option value="peace">Air peace</option>
-            <option value="arik">Dana</option>
-            <option value="aero">First Nation</option>
-            <option value="peace">Medview</option>
+            <option value="dana">Dana</option>
+            <option value="nation">First Nation</option>
+            <option value="medview">Medview</option>
           </select>
         </span>
       </span>

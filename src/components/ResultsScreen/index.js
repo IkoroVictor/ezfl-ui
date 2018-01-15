@@ -15,7 +15,7 @@ class ResultsScreen extends Component{
   constructor(props){
     super(props);
     this.state={
-      isLoading:true,
+      isLoading: false,
       hasErrored: false,
       isLoadingMore:false,
       canLoadMore:false,
@@ -24,7 +24,8 @@ class ResultsScreen extends Component{
       numberOfFlights:0,
       pageNumber:1,
 	  timeTo:null,
-	  timeFrom:null
+	  timeFrom:null,
+	  airlineAll:''
     }
     this.fetchData = this.fetchData.bind(this);
     this.doFetch = this.doFetch.bind(this);
@@ -32,6 +33,7 @@ class ResultsScreen extends Component{
 	this.onTimeToUpdate = this.onTimeToUpdate.bind(this);
 	this.onTimeFromUpdate = this.onTimeFromUpdate.bind(this);
 	this.onTimePickerClose = this.onTimePickerClose.bind(this);
+	this.onAirlineUpdate = this.onAirlineUpdate.bind(this);
     this._handleWaypointEnter = this._handleWaypointEnter.bind(this);
   }
 
@@ -39,6 +41,12 @@ class ResultsScreen extends Component{
     this.doFetch();
   }
 	
+  onAirlineUpdate(e) {
+	 this.setState({
+		 airlineAll:e.target.value,
+		 pageNumber:1
+	 }, this.doFetch);
+  }	
   onTimeToUpdate(e) {
 	  this.setState({timeTo: e})
 		  
@@ -52,28 +60,45 @@ class ResultsScreen extends Component{
 	  if (this.state.timeTo && this.state.timeFrom) {
 		  this.setState({
 			  pageNumber:1
-		  },() => this.doFetch() )
+		  }, this.doFetch);
 	  }
   }
 
   doFetch(){
       this.request = store.getState().request.request;
-      let from = getCity[this.request.from];
-      let to = getCity[this.request.to];
-      let departure = moment(this.request.departure).format("DD/MM/YYYY");
-      this.setState({ isLoading: true, hasErrored: false });
 	  
-	  let fetchData = {
-          from, 
-          to, 
-          date: departure, 
-          pageNumber: this.state.pageNumber, 
-          pageSize : 10
-        };
-	  if (this.state.timeTo && this.state.timeFrom) {
-		  fetchData.startTime = this.state.timeFrom.format('HH:mm');
-		  fetchData.endTime = this.state.timeTo.format('HH:mm');
+	  if (!this.request) {
+		  return;
 	  }
+	  
+	  let from = getCity[this.request.from];
+	  let to = getCity[this.request.to];
+	  let departure = moment(this.request.departure).format("DD/MM/YYYY");
+
+	  let fetchData = {
+		  pageNumber: this.state.pageNumber, 
+		  pageSize : 10,
+		  from, 
+		  to, 
+		  date: departure
+	  }
+      
+	  if (this.state.timeTo && this.state.timeFrom) {
+		  fetchData = {
+			  ...fetchData,
+			  startTime: this.state.timeFrom.format('HH:mm'),
+			  endTime: this.state.timeTo.format('HH:mm')
+		  }
+	  }
+	  
+	  if (this.state.airlineAll){
+		   fetchData = {
+			  ...fetchData,
+			  airline: this.state.airlineAll
+		  }
+	  }
+	  
+	  this.setState({ isLoading: true, hasErrored: false });
 	  
       this.fetchData(fetchData);
    
@@ -175,6 +200,10 @@ class ResultsScreen extends Component{
 			      onTimeFromUpdate={this.onTimeFromUpdate}
 			      onTimeToUpdate={this.onTimeToUpdate}
 			      onTimePickerClose={this.onTimePickerClose}
+				  timeTo={this.state.timeTo}
+			      timeFrom={this.state.timeFrom}
+				  onAirlineUpdate={this.onAirlineUpdate}
+				  airlineAll={this.state.airlineAll}
                   numberOfFlights={this.state.numberOfFlights}/>
               </StickyContainer>
           </div>
