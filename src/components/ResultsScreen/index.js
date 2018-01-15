@@ -25,7 +25,7 @@ class ResultsScreen extends Component{
       pageNumber:1,
 	  timeTo:null,
 	  timeFrom:null,
-	  airlineAll:''
+	  airlineSelect:''
     }
     this.fetchData = this.fetchData.bind(this);
     this.doFetch = this.doFetch.bind(this);
@@ -43,7 +43,7 @@ class ResultsScreen extends Component{
 	
   onAirlineUpdate(e) {
 	 this.setState({
-		 airlineAll:e.target.value,
+		 airlineSelect:e.target.value,
 		 pageNumber:1
 	 }, this.doFetch);
   }	
@@ -91,10 +91,10 @@ class ResultsScreen extends Component{
 		  }
 	  }
 	  
-	  if (this.state.airlineAll){
+	  if (this.state.airlineSelect){
 		   fetchData = {
 			  ...fetchData,
-			  airline: this.state.airlineAll
+			  airline: this.state.airlineSelect
 		  }
 	  }
 	  
@@ -203,7 +203,7 @@ class ResultsScreen extends Component{
 				  timeTo={this.state.timeTo}
 			      timeFrom={this.state.timeFrom}
 				  onAirlineUpdate={this.onAirlineUpdate}
-				  airlineAll={this.state.airlineAll}
+				  airlineSelect={this.state.airlineSelect}
                   numberOfFlights={this.state.numberOfFlights}/>
               </StickyContainer>
           </div>

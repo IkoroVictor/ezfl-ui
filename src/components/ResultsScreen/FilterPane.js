@@ -9,7 +9,7 @@ import {Sticky } from 'react-sticky';
 const format = 'h:mm a';
 const now = moment().hour(0).minute(0);
 
-const DisplayPanel = ({request, numberOfFlights, onTimeToUpdate, onTimeFromUpdate, onTimePickerClose, timeTo, timeFrom, onAirlineUpdate, airlineAll}) => (
+const DisplayPanel = ({request, numberOfFlights, onTimeToUpdate, onTimeFromUpdate, onTimePickerClose, timeTo, timeFrom, onAirlineUpdate, airlineSelect}) => (
     <Sticky topOffset={155}>
       { ({style}) => {
           var css = style;
@@ -22,7 +22,7 @@ const DisplayPanel = ({request, numberOfFlights, onTimeToUpdate, onTimeFromUpdat
               <Row>
                 <FlightNumber numberOfFlights={numberOfFlights}/>
                 <FlightInfo request={request}/>
-                <FlightFilter onTimeToUpdate={onTimeToUpdate} onTimeFromUpdate={onTimeFromUpdate} onTimePickerClose={onTimePickerClose} timeTo={timeTo} timeFrom={timeFrom} onAirlineUpdate={onAirlineUpdate} airlineAll={airlineAll}/>
+                <FlightFilter onTimeToUpdate={onTimeToUpdate} onTimeFromUpdate={onTimeFromUpdate} onTimePickerClose={onTimePickerClose} timeTo={timeTo} timeFrom={timeFrom} onAirlineUpdate={onAirlineUpdate} airlineSelect={airlineSelect}/>
               </Row>
             </div>
           )}
@@ -66,7 +66,7 @@ const FlightInfo = ({request}) => {
   );
 }
 
-const FlightFilter = ({onTimeFromUpdate, onTimeToUpdate, onTimePickerClose, timeFrom, timeTo, onAirlineUpdate, airlineAll})=> (
+const FlightFilter = ({onTimeFromUpdate, onTimeToUpdate, onTimePickerClose, timeFrom, timeTo, onAirlineUpdate, airlineSelect})=> (
   <Hidden xs sm md>
   <Col lg={7}>
     <div className="flight-filter">
@@ -100,7 +100,7 @@ const FlightFilter = ({onTimeFromUpdate, onTimeToUpdate, onTimePickerClose, time
         </span>
         <span className="filter-text">Filter by Airline - </span>
         <span className="select-container">
-          <select onChange={onAirlineUpdate} value={airlineAll}>
+          <select onChange={onAirlineUpdate} value={airlineSelect}>
             <option value="">All</option>
             <option value="arik">Arik</option>
             <option value="aero">Aero</option>
