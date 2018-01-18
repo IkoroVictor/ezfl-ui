@@ -4,6 +4,7 @@ import FilterPane from './FilterPane';
 import ResultPane from './ResultPane';
 import {getCity} from '../Utils/strings';
 import {store} from '../../store';
+import {SaveRequest} from '../Utils/actions/searchFlight';
 import {Hidden} from 'react-grid-system';
 import FlightCard from '../Utils/components/FlightCard';
 import FlightApi from '../../api/FlightApi';
@@ -62,6 +63,12 @@ class ResultsScreen extends Component{
 			  pageNumber:1
 		  }, this.doFetch);
 	  }
+  }
+  
+
+
+  saveRequestToRedux(){
+    store.dispatch(SaveRequest({request:this.state}));
   }
 
   doFetch(){
@@ -169,19 +176,19 @@ class ResultsScreen extends Component{
     if(this.state.hasErrored){
       return (
         <div>
-          <JumbotronHider/>
+          <JumbotronHider doFetchHandler={(e)=>{this.doFetch()}}/>
           <DisplayComponent message={"Sorry! Unable to load flights"}/>
         </div>);
     } else if(this.state.isLoading){
       return (
         <div>
-          <JumbotronHider/>
+          <JumbotronHider doFetchHandler={(e)=>{this.doFetch()}}/>
            <DisplayComponent/>
         </div>);
     } else if(this.request===undefined && this.state.isLoading===false){
       return (
         <div>
-          <JumbotronHider/>
+          <JumbotronHider doFetchHandler={(e)=>{this.doFetch()}}/>
           <DisplayComponent message={"Something went wrong, please perform search again."}/>
         </div>
       );
@@ -190,7 +197,7 @@ class ResultsScreen extends Component{
 
             <div className='Results-Component'>
               <StickyContainer>
-                <JumbotronHider/>
+                <JumbotronHider doFetchHandler={(e)=>{this.doFetch()}}/>
                 <ResultPane 
                   flights={this.state.flights} 
                   canLoadMore={this.state.canLoadMore} 
@@ -214,10 +221,10 @@ class ResultsScreen extends Component{
 }
 
 export default ResultsScreen;
-const JumbotronHider = () => (
+const JumbotronHider = ({doFetchHandler}) => (
   <div>
     <Hidden xs sm>
-      <Jumbotron forStyle="jumbotron-home away" search={true} searchHandler={this.doFetch}/>
+      <Jumbotron forStyle="jumbotron-home away" search={true} searchHandler={doFetchHandler}/>
     </Hidden>
     <Hidden md lg xl>
       <div style={{width:"100%",height:"50px"}}></div>
