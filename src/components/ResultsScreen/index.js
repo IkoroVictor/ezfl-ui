@@ -16,6 +16,14 @@ class ResultsScreen extends Component{
   constructor(props){
     super(props);
     this.state={
+	  from:"los",
+      to:"---",
+      arrival:"",
+      departure:"",
+      oneWay:true,
+      adult:1,
+      children:0,
+      infant:0,
       isLoading: false,
       hasErrored: false,
       isLoadingMore:false,
@@ -29,6 +37,7 @@ class ResultsScreen extends Component{
 	  airlineSelect:''
     }
     this.fetchData = this.fetchData.bind(this);
+	this.doFetchHandler = this.doFetchHandler.bind(this);
     this.doFetch = this.doFetch.bind(this);
     this.loadMore = this.loadMore.bind(this);
 	this.onTimeToUpdate = this.onTimeToUpdate.bind(this);
@@ -65,11 +74,16 @@ class ResultsScreen extends Component{
 	  }
   }
   
-
-
-  saveRequestToRedux(){
-    store.dispatch(SaveRequest({request:this.state}));
+  doFetchHandler() {
+	  this.setState({
+		  flights : [],
+		  timeFrom: null,
+		  timeTo: null,
+		  pageNumber : 1
+	  }, ()=> this.doFetch());
   }
+
+ 
 
   doFetch(){
       this.request = store.getState().request.request;
@@ -77,7 +91,18 @@ class ResultsScreen extends Component{
 	  if (!this.request) {
 		  return;
 	  }
-	  
+	  if(this.request !== undefined){
+      this.setState({
+        from:this.request.from,
+        to:this.request.to,
+        arrival:this.request.arrival,
+        departure:this.request.departure,
+        oneWay:this.request.oneWay,
+        adult:parseInt(this.request.adult),
+        children:parseInt(this.request.children),
+        infant:parseInt(this.request.infant)
+      });
+	  }
 	  let from = getCity[this.request.from];
 	  let to = getCity[this.request.to];
 	  let departure = moment(this.request.departure).format("DD/MM/YYYY");
@@ -90,6 +115,7 @@ class ResultsScreen extends Component{
 		  date: departure
 	  }
       
+	  
 	  if (this.state.timeTo && this.state.timeFrom) {
 		  fetchData = {
 			  ...fetchData,
@@ -176,19 +202,19 @@ class ResultsScreen extends Component{
     if(this.state.hasErrored){
       return (
         <div>
-          <JumbotronHider doFetchHandler={(e)=>{this.doFetch()}}/>
+          <JumbotronHider doFetchHandler={this.doFetchHandler}/>
           <DisplayComponent message={"Sorry! Unable to load flights"}/>
         </div>);
     } else if(this.state.isLoading){
       return (
         <div>
-          <JumbotronHider doFetchHandler={(e)=>{this.doFetch()}}/>
+          <JumbotronHider doFetchHandler={this.doFetchHandler}/>
            <DisplayComponent/>
         </div>);
     } else if(this.request===undefined && this.state.isLoading===false){
       return (
         <div>
-          <JumbotronHider doFetchHandler={(e)=>{this.doFetch()}}/>
+          <JumbotronHider doFetchHandler={this.doFetchHandler}/>
           <DisplayComponent message={"Something went wrong, please perform search again."}/>
         </div>
       );
@@ -197,7 +223,7 @@ class ResultsScreen extends Component{
 
             <div className='Results-Component'>
               <StickyContainer>
-                <JumbotronHider doFetchHandler={(e)=>{this.doFetch()}}/>
+                <JumbotronHider doFetchHandler={this.doFetchHandler}/>
                 <ResultPane 
                   flights={this.state.flights} 
                   canLoadMore={this.state.canLoadMore} 
