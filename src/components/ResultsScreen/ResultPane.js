@@ -19,6 +19,7 @@ const ResultPane = ({request, numberOfFlights, canLoadMore, moreHasErrored, flig
             </Col>
             <Col md={8}  style={{padding:"0px"}}>
               {flights}
+			  <BtnSearch/>
               {
                 (canLoadMore)?
                 (<div>
@@ -67,5 +68,6 @@ const AdPane = () => (
   </Sticky>
 
 );
+
 
 export default ResultPane;

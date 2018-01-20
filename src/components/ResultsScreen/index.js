@@ -83,7 +83,6 @@ class ResultsScreen extends Component{
 	  }, ()=> this.doFetch());
   }
 
- 
 
   doFetch(){
       this.request = store.getState().request.request;
@@ -103,13 +102,14 @@ class ResultsScreen extends Component{
         infant:parseInt(this.request.infant)
       });
 	  }
+	  
 	  let from = getCity[this.request.from];
 	  let to = getCity[this.request.to];
 	  let departure = moment(this.request.departure).format("DD/MM/YYYY");
 
 	  let fetchData = {
 		  pageNumber: this.state.pageNumber, 
-		  pageSize : 10,
+		  pageSize : 5,
 		  from, 
 		  to, 
 		  date: departure
@@ -130,7 +130,7 @@ class ResultsScreen extends Component{
 			  airline: this.state.airlineSelect
 		  }
 	  }
-	  
+	 
 	  this.setState({ isLoading: true, hasErrored: false });
 	  
       this.fetchData(fetchData);
@@ -188,7 +188,34 @@ class ResultsScreen extends Component{
   }
 
   loadMore(){
-     this.fetchData();
+	 let departure = moment(this.request.departure).format("DD/MM/YYYY");
+
+	  let fetchData = {
+		  pageNumber: this.state.pageNumber, 
+		  pageSize : 5,
+		  from :  getCity[this.state.from], 
+		  to : getCity[this.state.to], 
+		  date: departure
+	  }
+      
+	  
+	  if (this.state.timeTo && this.state.timeFrom) {
+		  fetchData = {
+			  ...fetchData,
+			  startTime: this.state.timeFrom.format('HH:mm'),
+			  endTime: this.state.timeTo.format('HH:mm')
+		  }
+	  }
+	  
+	  if (this.state.airlineSelect){
+		   fetchData = {
+			  ...fetchData,
+			  airline: this.state.airlineSelect
+		  }
+	  }
+	  console.log(fetchData);
+     this.fetchData(fetchData);
+	 
   }
 
   _handleWaypointEnter(){
@@ -238,7 +265,7 @@ class ResultsScreen extends Component{
 				  onAirlineUpdate={this.onAirlineUpdate}
 				  airlineSelect={this.state.airlineSelect}
                   numberOfFlights={this.state.numberOfFlights}/>
-              </StickyContainer>
+			</StickyContainer>
           </div>
 
         );
@@ -274,5 +301,13 @@ const DisplayComponent = ({message}) =>(
     }</span>
   </div>
 );
+
+const BtnSearch = ({onLoadMore}) => {
+  return (
+    <div className="btn-search" onClick={onLoadMore}>
+      LOAD MORE
+    </div>
+  )
+};
 
 //https://easyflight-logistics.herokuapp.com
