@@ -9,9 +9,9 @@ import Routes from '../config/routes';
 import UserApi from '../api/UserApi';
 import {store} from '../store';
 import {LOGIN, LOGOUT} from "./Utils/actions/user";
-import './App.css';
-import './AppQueries.css';
-import '../css/ionicons.min.css';
+import '../stylesheets/css/App.css';
+import '../stylesheets/css/AppQueries.css';
+import '../stylesheets/css/ionicons.min.css';
 import 'rodal/lib/rodal.css';
 
 

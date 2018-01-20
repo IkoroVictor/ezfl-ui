@@ -4,6 +4,7 @@ import FilterPane from './FilterPane';
 import ResultPane from './ResultPane';
 import {getCity} from '../Utils/strings';
 import {store} from '../../store';
+import {SaveRequest} from '../Utils/actions/searchFlight';
 import {Hidden} from 'react-grid-system';
 import FlightCard from '../Utils/components/FlightCard';
 import FlightApi from '../../api/FlightApi';
@@ -15,40 +16,124 @@ class ResultsScreen extends Component{
   constructor(props){
     super(props);
     this.state={
-      isLoading:true,
+	  from:"los",
+      to:"---",
+      arrival:"",
+      departure:"",
+      oneWay:true,
+      adult:1,
+      children:0,
+      infant:0,
+      isLoading: false,
       hasErrored: false,
       isLoadingMore:false,
       canLoadMore:false,
       moreHasErrored: false,
       flights:[],
       numberOfFlights:0,
-      pageNumber:1
+      pageNumber:1,
+	  timeTo:null,
+	  timeFrom:null,
+	  airlineSelect:''
     }
     this.fetchData = this.fetchData.bind(this);
+	this.doFetchHandler = this.doFetchHandler.bind(this);
     this.doFetch = this.doFetch.bind(this);
     this.loadMore = this.loadMore.bind(this);
+	this.onTimeToUpdate = this.onTimeToUpdate.bind(this);
+	this.onTimeFromUpdate = this.onTimeFromUpdate.bind(this);
+	this.onTimePickerClose = this.onTimePickerClose.bind(this);
+	this.onAirlineUpdate = this.onAirlineUpdate.bind(this);
     this._handleWaypointEnter = this._handleWaypointEnter.bind(this);
   }
 
   componentDidMount(){
     this.doFetch();
   }
+	
+  onAirlineUpdate(e) {
+	 this.setState({
+		 airlineSelect:e.target.value,
+		 pageNumber:1
+	 }, this.doFetch);
+  }	
+  onTimeToUpdate(e) {
+	  this.setState({timeTo: e})
+		  
+  }
+	
+  onTimeFromUpdate(e) {
+	  this.setState({timeFrom: e})
+  }
+	
+  onTimePickerClose() {
+	  if (this.state.timeTo && this.state.timeFrom) {
+		  this.setState({
+			  pageNumber:1
+		  }, this.doFetch);
+	  }
+  }
+  
+  doFetchHandler() {
+	  this.setState({
+		  flights : [],
+		  timeFrom: null,
+		  timeTo: null,
+		  pageNumber : 1
+	  }, ()=> this.doFetch());
+  }
+
 
   doFetch(){
       this.request = store.getState().request.request;
-      let from = getCity[this.request.from];
-      let to = getCity[this.request.to];
-      let departure = moment(this.request.departure).format("DD/MM/YYYY");
-      this.setState({ isLoading: true, hasErrored: false });
-      this.fetchData(
-        {
-          from, 
-          to, 
-          date: departure, 
-          pageNumber: this.state.pageNumber, 
-          pageSize : 10
-        }
-      );
+	  
+	  if (!this.request) {
+		  return;
+	  }
+	  if(this.request !== undefined){
+      this.setState({
+        from:this.request.from,
+        to:this.request.to,
+        arrival:this.request.arrival,
+        departure:this.request.departure,
+        oneWay:this.request.oneWay,
+        adult:parseInt(this.request.adult),
+        children:parseInt(this.request.children),
+        infant:parseInt(this.request.infant)
+      });
+	  }
+	  
+	  let from = getCity[this.request.from];
+	  let to = getCity[this.request.to];
+	  let departure = moment(this.request.departure).format("DD/MM/YYYY");
+
+	  let fetchData = {
+		  pageNumber: this.state.pageNumber, 
+		  pageSize : 5,
+		  from, 
+		  to, 
+		  date: departure
+	  }
+      
+	  
+	  if (this.state.timeTo && this.state.timeFrom) {
+		  fetchData = {
+			  ...fetchData,
+			  startTime: this.state.timeFrom.format('HH:mm'),
+			  endTime: this.state.timeTo.format('HH:mm')
+		  }
+	  }
+	  
+	  if (this.state.airlineSelect){
+		   fetchData = {
+			  ...fetchData,
+			  airline: this.state.airlineSelect
+		  }
+	  }
+	 
+	  this.setState({ isLoading: true, hasErrored: false });
+	  
+      this.fetchData(fetchData);
    
   }
 
@@ -57,7 +142,7 @@ class ResultsScreen extends Component{
     .then(response => {
       let newFlights = this.load(response.data.content);
       let currentFlights = this.state.flights;
-      let flights = currentFlights.concat(newFlights);
+      let flights = this.state.pageNumber === 1 ? newFlights : currentFlights.concat(newFlights);
 
       let canLoadMore = !(response.data.last);
       let totalNumOfFlights = response.data.numberOfElements;
@@ -90,7 +175,7 @@ class ResultsScreen extends Component{
 
   load(flights){
       return flights.map((data)=>{
-        let prices = data.prices.price;
+        let prices = data.prices;
         data.selectedClassId=prices.length-1;
         data.NumberOfClasses=prices.length;
         data.validPrices = prices;
@@ -103,7 +188,34 @@ class ResultsScreen extends Component{
   }
 
   loadMore(){
-     this.fetchData();
+	 let departure = moment(this.request.departure).format("DD/MM/YYYY");
+
+	  let fetchData = {
+		  pageNumber: this.state.pageNumber, 
+		  pageSize : 5,
+		  from :  getCity[this.state.from], 
+		  to : getCity[this.state.to], 
+		  date: departure
+	  }
+      
+	  
+	  if (this.state.timeTo && this.state.timeFrom) {
+		  fetchData = {
+			  ...fetchData,
+			  startTime: this.state.timeFrom.format('HH:mm'),
+			  endTime: this.state.timeTo.format('HH:mm')
+		  }
+	  }
+	  
+	  if (this.state.airlineSelect){
+		   fetchData = {
+			  ...fetchData,
+			  airline: this.state.airlineSelect
+		  }
+	  }
+	  console.log(fetchData);
+     this.fetchData(fetchData);
+	 
   }
 
   _handleWaypointEnter(){
@@ -117,19 +229,19 @@ class ResultsScreen extends Component{
     if(this.state.hasErrored){
       return (
         <div>
-          <JumbotronHider/>
+          <JumbotronHider doFetchHandler={this.doFetchHandler}/>
           <DisplayComponent message={"Sorry! Unable to load flights"}/>
         </div>);
     } else if(this.state.isLoading){
       return (
         <div>
-          <JumbotronHider/>
+          <JumbotronHider doFetchHandler={this.doFetchHandler}/>
            <DisplayComponent/>
         </div>);
     } else if(this.request===undefined && this.state.isLoading===false){
       return (
         <div>
-          <JumbotronHider/>
+          <JumbotronHider doFetchHandler={this.doFetchHandler}/>
           <DisplayComponent message={"Something went wrong, please perform search again."}/>
         </div>
       );
@@ -138,15 +250,22 @@ class ResultsScreen extends Component{
 
             <div className='Results-Component'>
               <StickyContainer>
-                <JumbotronHider/>
+                <JumbotronHider doFetchHandler={this.doFetchHandler}/>
                 <ResultPane 
                   flights={this.state.flights} 
                   canLoadMore={this.state.canLoadMore} 
                   moreHasErrored={this.state.moreHasErrored} 
                   _handleWaypointEnter={this._handleWaypointEnter} 
-                  request={this.request} 
+                  request={this.request}
+			      onTimeFromUpdate={this.onTimeFromUpdate}
+			      onTimeToUpdate={this.onTimeToUpdate}
+			      onTimePickerClose={this.onTimePickerClose}
+				  timeTo={this.state.timeTo}
+			      timeFrom={this.state.timeFrom}
+				  onAirlineUpdate={this.onAirlineUpdate}
+				  airlineSelect={this.state.airlineSelect}
                   numberOfFlights={this.state.numberOfFlights}/>
-              </StickyContainer>
+			</StickyContainer>
           </div>
 
         );
@@ -155,10 +274,10 @@ class ResultsScreen extends Component{
 }
 
 export default ResultsScreen;
-const JumbotronHider = () => (
+const JumbotronHider = ({doFetchHandler}) => (
   <div>
     <Hidden xs sm>
-      <Jumbotron forStyle="jumbotron-home away" search={true} searchHandler={this.doFetch}/>
+      <Jumbotron forStyle="jumbotron-home away" search={true} searchHandler={doFetchHandler}/>
     </Hidden>
     <Hidden md lg xl>
       <div style={{width:"100%",height:"50px"}}></div>
@@ -182,5 +301,13 @@ const DisplayComponent = ({message}) =>(
     }</span>
   </div>
 );
+
+const BtnSearch = ({onLoadMore}) => {
+  return (
+    <div className="btn-search" onClick={onLoadMore}>
+      LOAD MORE
+    </div>
+  )
+};
 
 //https://easyflight-logistics.herokuapp.com

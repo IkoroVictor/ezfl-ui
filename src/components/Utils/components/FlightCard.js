@@ -35,10 +35,12 @@ const BtnClose = ()=>(
 class FlightCard extends Component{
   constructor(props){
     super(props);
+     let emCost = this.props.data.validPrices[this.props.data.selectedClassId].cost;
+     let emClass = this.props.data.validPrices[this.props.data.selectedClassId].class;
     this.state={
       modalVisible:false,
-      cost:(this.props.data.validPrices[this.props.data.selectedClassId].cost).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-      flightClass:this.props.data.validPrices[this.props.data.selectedClassId].class,
+      cost:emCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+      flightClass:emClass,
       selectedClassId: this.props.data.selectedClassId,
       numberOfClasses: this.props.data.NumberOfClasses,
       validPrices:this.props.data.validPrices
@@ -72,8 +74,9 @@ class FlightCard extends Component{
   }
 
   loadPriceAndClass(){
+    let stCost = (this.state.validPrices[this.state.selectedClassId].cost);
     this.setState({
-      cost:(this.state.validPrices[this.state.selectedClassId].cost).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+      cost:stCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
       flightClass:this.state.validPrices[this.state.selectedClassId].class
     });
   }
