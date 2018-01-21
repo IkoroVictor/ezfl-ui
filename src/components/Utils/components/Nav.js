@@ -122,12 +122,8 @@ import Routes from '../../../config/routes';
             <h3>Login to Your Easyflight Account!</h3>
             </div>
             <div className="login-modal">
-                  <input type="email" maxLength="120" minLength="6" name="email" placeholder="Email" required={true}/>
-                  <input type="password" maxLength="120" minLength="6" name="password" placeholder="Password" required={true}/>
-                  <div className="btn-login">Login</div>
-                  <div className="divider"><div></div><span>OR</span><div></div></div>
-                  <div className="social-login-facebook"><i className="ion-social-facebook"/>Continue with Facebook</div>
-                  <a href="/login/google"><div className="social-login-google"> <i><img src={googleLogo}/></i>Continue with Google</div></a>
+                  <a href="/login/facebook"><div className="social-login-facebook"><i className="ion-social-facebook"/>Login with Facebook</div></a>
+                  <a href="/login/google"><div className="social-login-google"> <i><img src={googleLogo}/></i>Login with Google</div></a>
 
                   <div className="login-modal-base">
                   <div className="forgot-password">or <Link to="#">Forgot Password</Link></div>
