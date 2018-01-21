@@ -123,6 +123,7 @@ class Nav extends Component {
             </div>
             <div className="login-modal">
               <a href="/login/facebook"><div className="social-login-facebook"><i className="ion-social-facebook" />Login with Facebook</div></a>
+              <div className="divider"><div></div><span>OR</span><div></div></div>
               <a href="/login/google"><div className="social-login-google"> <i><img src={googleLogo} /></i>Login with Google</div></a>
 
               <div className="login-modal-base">
