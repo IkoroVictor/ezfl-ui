@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, Row, Col, Hidden} from 'react-grid-system';
-import '../App.css';
+import '../../stylesheets/css/App.css';
 import FlightCard from '../Utils/FlightCard';
 import DisplayPanel from './FilterPane';
 

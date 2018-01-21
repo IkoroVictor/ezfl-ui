@@ -6,19 +6,20 @@ import Waypoint from 'react-waypoint';
 import {Sticky } from 'react-sticky';
 
 
-const ResultPane = ({request, numberOfFlights, canLoadMore, moreHasErrored, flights, _handleWaypointEnter})=>{
+const ResultPane = ({request, numberOfFlights, canLoadMore, moreHasErrored, flights, _handleWaypointEnter, onTimeToUpdate, onTimeFromUpdate, onTimePickerClose, timeTo, timeFrom, onAirlineUpdate, airlineSelect})=>{
     return(
     <div className='results-pane'>
       <div>
         <Container>
 
-          <DisplayPanel request={request} numberOfFlights={numberOfFlights}/>
+          <DisplayPanel request={request} numberOfFlights={numberOfFlights} onTimeToUpdate={onTimeToUpdate} onTimeFromUpdate={onTimeFromUpdate} onTimePickerClose={onTimePickerClose} timeTo={timeTo} timeFrom={timeFrom} onAirlineUpdate={onAirlineUpdate} airlineSelect={airlineSelect}/>
           <Row>
             <Col md={4}>
                 <AdPane/>
             </Col>
             <Col md={8}  style={{padding:"0px"}}>
               {flights}
+			  <BtnSearch/>
               {
                 (canLoadMore)?
                 (<div>
@@ -67,5 +68,6 @@ const AdPane = () => (
   </Sticky>
 
 );
+
 
 export default ResultPane;

@@ -1,0 +1,458 @@
+/* Big tablets to 1500px*/
+@media only screen and (max-width: 1200px){
+  .flight-info {
+    font-size: 90%;
+  }
+
+  .hero-search-box .search-component-piece.left {
+    margin-right: 50px;
+  }
+
+  .search-component-location {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+  }
+
+  .hero-search-box .fl-route {
+    display: block;
+  }
+
+  .hero-search-box .flight-details.wrapper  {
+    display: block;
+  }
+
+  .hero-search-box .flight-location-wrapper {
+    margin-top: 20px;
+  }
+
+  .hero-search-box .picker-passengers-wrapper {
+    margin-top: 20px;
+  }
+
+  .hero-search-box .btn-search {
+    margin: 0px;
+    margin-top: 25px;
+    width: 100%;
+  }
+
+}
+
+
+/* Small tablets to big tablets: from 768px to 1023px*/
+@media only screen and (max-width: 1023px){
+
+  .nav-elements figure{
+    margin-left: 10px;
+  }
+
+  .main-nav{
+    margin-right: 10px;
+  }
+}
+
+@media only screen and (max-width: 991px){
+  .top-right-bottom{
+    text-align: center;
+    font-size: 65%;
+  }
+
+  .flight-class{
+    font-size: 80%;
+  }
+
+  .ad-box{
+    width: 220px;
+  }
+}
+
+
+
+
+
+
+/* Small phones to small tablets: from 481px to 767px*/
+@media only screen and (max-width: 767px){
+  body {
+    font-size: 18px !important;
+  }
+
+
+  /*----------------------------------------------------------------*/
+  /* HOME COMPONENTS */
+  /*----------------------------------------------------------------*/
+  .hero-search-box{
+    max-width: 100%;
+  }
+
+  .search-component-location-box {
+    opacity: 0.98;
+  }
+
+  .jumbotron-home{
+    background-size: auto;
+    background-position: center;
+  }
+  /*-------HOME SECTIONS---------*/
+  /*---GALLERY SECTION---*/
+  .gal-col{
+    padding: 0 0 !important;
+    margin-bottom: 0px;
+  }
+
+  .gallery{
+      height:170px;
+      border: none;
+  }
+
+  .gallery img {
+    width: 180%;
+  }
+
+  .gallery span:last-of-type {
+    left: 65%;
+  }
+
+  .gallery.pos1 span:last-of-type {
+    left: 75%;
+  }
+
+  .gallery div{
+    font-size: 115%;
+  }
+  .gallery-row{
+    margin: 0px !important;
+  }
+
+
+
+  /*---SERVICES SECTION---*/
+  .services-row{
+      width: 100%;
+  }
+
+  .services-row > div{
+      padding: 0 !important;
+  }
+
+  .section-services{
+    text-align: -webkit-center;
+  }
+
+  .section-services > div{
+    padding: 0 !important;
+  }
+
+  .service-box{
+      width:90%;
+      padding: 0;
+      margin-top: 15px;
+  }
+
+
+  .service-box i{
+      display: inline-block;
+      padding: 6px 10px;
+      border: 2px solid #32648e;
+      border-radius: 50%;
+      margin-bottom: 0px;
+      margin-top: 15px;
+      color: #32648e;
+      font-size: 100%;
+  }
+
+  .service-box h3{
+      padding: 0;
+      margin-bottom: 0px;
+      font-size: 105%;
+      text-transform: uppercase;
+      color: #32648e;
+  }
+
+  .service-box p{
+      display: inline-block;
+      padding: 5px 14px;
+      font-size: 100%;
+      color: #777;
+  }
+
+  .service-box p:nth-child(4){
+      font-size: 70%;
+      padding-bottom: 10px;
+      margin-bottom: 0;
+  }
+
+  .new-feature{
+    margin-bottom: -10px;
+  }
+
+  .coming-soon{
+    margin-top:4px;
+  }
+
+  /*---DOWNLOAD SECTION---*/
+
+  .section-download{
+    text-align: center;
+    padding-bottom: 40px !important;
+  }
+
+  .download-text{
+    border-bottom: 1px solid #eee;
+  }
+
+  .download-buttons{
+    box-shadow: 0px 0px 5px 0px rgba(46,61,73,0.2);
+  }
+
+  .col-downloads{
+    border-left: 1px solid #e5e5e5;
+    position: relative;
+    height: 70px;
+  }
+
+  .available-on-item{
+      top:15%;
+  }
+
+  .section-download p {
+    max-width: 600px;
+  }
+
+  /*-------FEEDBACK SECTION---------*/
+    .section-feedback {
+      padding-bottom: 20px !important;
+    }
+  /*-------NAV---------*/
+  .main-nav.menu-hidden{
+    display:none;
+  }
+
+  .btn-menu{
+    display: block;
+    float:right;
+    margin-top: -5px;
+  }
+
+.main-nav{
+  display: block;
+  position:fixed;
+  top :50px;
+  left: 0;
+  text-align: center;
+}
+
+  nav ul.main-nav{
+      list-style: none;
+      width: 100%;
+  }
+
+  nav ul.main-nav li{
+    background-color: #32658F;
+    border-top: 1px solid #fff;
+    line-height: 50px;
+    width: 100%;
+    margin: 0;
+  }
+
+  nav ul.main-nav li:last-child a{
+      border: 0;
+      padding: 0;
+  }
+
+  nav ul.main-nav li a:link, nav ul.main-nav li a:visited{
+      font-size:80%;
+      text-transform: uppercase;
+      word-spacing: 1px;
+      letter-spacing: 1px;
+      font-weight: 400;
+      color: #fff;
+      transition: 0.4s;
+      width: 100%;
+      display: inline-block;
+      text-align: center;
+      padding-bottom: 0;
+  }
+
+  nav ul.main-nav li a:hover{
+      border: 0;
+  }
+
+  nav ul.main-nav li:hover{
+      background-color: #142839;
+  }
+
+  /*----------------------------------------------------------------*/
+  /* REUSABLE COMPONENTS */
+  /*----------------------------------------------------------------*/
+
+  section{
+      padding:5px 0 0 0 !important;
+  }
+
+  .search-component{
+    font-size: 85%;
+  }
+
+  /*-------CARD COMPONENT------------*/
+  .top-right-bottom{
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .top-right-top figure{
+    margin-left: 7px;
+  }
+
+/****** FLIGHT CARD ***********/
+  .flight-card{
+    font-size: 80%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    width:98%;
+    margin-left: 1px;
+  }
+
+
+  .top-left img {
+    max-width: 90%;
+    height: 20px;
+    margin: 52% auto 0 auto;
+    position: relative;
+}
+
+Inherited from div.flight-card
+
+
+  .top-left img.double-routes{
+    margin: 45% auto 0 auto;
+    max-width: 65%;
+    height: 20px;
+  }
+
+  .top-right img{
+    max-width: 70px;
+  }
+
+  *.location-stamp-departure{
+    margin-left: 2%;
+  }
+
+  .location-stamp-arrival{
+    margin-right: 0;
+  }
+
+  .time{
+    font-weight: 300;
+    font-size: 70%;
+    color: #333;
+  }
+  .btn-border{
+    border: 0;
+  }
+
+  .btn{
+    font-size: 120%;
+  }
+
+  /*************FOOTER************/
+
+  .footer{
+    text-align: center;
+  }
+
+  .footer .social-icons li{
+    margin: 0px 20px 15px 20px;
+  }
+
+  .footer ul.social-icons{
+    float:none;
+    padding-right: 0;
+    font-size:150%;
+    color: #255C80;
+    margin: 0;
+  }
+
+  .footer p{
+    color:#888;
+    font-size: 60%;
+  }
+
+  .about-us{
+    text-align: justify;
+    max-width: 600px;
+  }
+
+
+  /************** DISPLAY PANEL ***************/
+  .flight-filter{
+    text-align: center;
+  }
+
+  .flight-number{
+    text-align: center;
+  }
+
+  /**********************/
+  .top-right-bottom .left{
+    padding-left: 7px;
+  }
+
+  .ion-chevron-left{
+    margin-right: 5px !important;
+  }
+
+  .ion-chevron-right{
+    margin-left: 5px !important;
+  }
+
+  .top-right-bottom i {
+    padding: 3px 7px;
+    font-size: 140%;
+}
+
+}
+
+
+
+
+
+
+
+
+
+/* Small phones: from 0 to 480px*/
+@media only screen and (max-width: 480px){
+
+}
+
+
+
+
+@media only screen and (max-width: 680px){
+  .hero-search-box .search-component-piece.left, .hero-search-box .search-component-piece.right {
+    display: block;
+    margin: 0px;
+    margin: auto;
+    max-width: 400px;
+  }
+
+  .hero-search-box .search-component-piece.right {
+    max-width: 330px;
+  }
+
+
+  .hero-search-box .flight-location-wrapper {
+    padding: 0px;
+    width: 100%;
+  }
+
+  .hero-search-box .flight-details.wrapper {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .hero-search-box>div {
+    padding-top: 120px;
+  }
+}

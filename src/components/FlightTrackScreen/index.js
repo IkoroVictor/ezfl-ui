@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../../stylesheets/css/App.css';
 import Jumbotron from '../Utils/Jumbotron';
 import FilterPane from './FilterPane';
 import ResultPane from './ResultPane';
