@@ -7,7 +7,16 @@ import DisplayPanel from './FilterPane';
 class ManagerPane extends Component{
   constructor(props){
     super(props);
-    this.state={
+     let savedFlights = this.props.savedFlights || [];
+
+    //Map Saved Flights and prices
+    let savedFlightsWithPrices  = []; 
+    savedFlights.forEach(savedFlight => {
+      savedFlight.
+      savedFlightsWithPrices.push
+    })
+
+    this.state = {
       savedFlights:this.props.savedFlights
     };
   }
@@ -34,6 +43,8 @@ class ManagerPane extends Component{
   }
   render(){
     let savedFlights =  this.state.savedFlights;
+
+
     return(<div className='results-pane'>
       <div>
         <Container>
@@ -43,6 +54,26 @@ class ManagerPane extends Component{
                 <AdPane/>
             </Col>
             <Col md={8}  style={{padding:"0px"}}>
+             <SavedFlightCard
+                cardDetails={{
+                    data:
+                    {
+                      airline:"aero",
+                      price:25000,
+                      oldPrice:56700,
+                      from:"lagos",
+                      to:"abuja",
+                      flightClass:"Economy",
+                      arrivalTime:1496076000000,
+                      departureTime:1429072400000,
+                      goingDate:1493040000000,
+                      returnDate:"",
+                      oneWay: true,
+                      passengers:5,
+                      flightNumber: "ATA-273",
+                      active: false}}}
+                      
+                />
               <SavedFlightCard
                 cardDetails={{
                     data:

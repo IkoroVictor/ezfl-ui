@@ -95,11 +95,6 @@ import Routes from '../../../config/routes';
                   </li>
                 )}
                 {this.state.login && (
-                  <li>
-                    <Link to="#">Settings</Link>
-                  </li>
-                )}
-                {this.state.login && (
                   <li id="userId" className="user-id" onClick={()=>{store.dispatch(UserActions.userLogOut())}}>
                     <Link to="#">
                       <div>

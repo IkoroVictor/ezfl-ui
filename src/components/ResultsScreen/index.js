@@ -76,6 +76,7 @@ class ResultsScreen extends Component{
 
     })
     .catch(error => {
+      console.log(error)
       if(error.message==="Network Error"){
         this.state.message="Pls check your internet connection";
         alert("Pls check your internet connection");
@@ -90,7 +91,11 @@ class ResultsScreen extends Component{
 
   load(flights){
       return flights.map((data)=>{
-        let prices = data.prices.price;
+        if(data.prices && data.prices.length === undefined){ //Not an array
+          data.prices =  [data.prices]
+        }
+
+        let prices = data.prices;
         data.selectedClassId=prices.length-1;
         data.NumberOfClasses=prices.length;
         data.validPrices = prices;
