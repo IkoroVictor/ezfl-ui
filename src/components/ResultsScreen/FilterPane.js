@@ -106,7 +106,7 @@ const FlightFilter = ({onTimeFromUpdate, onTimeToUpdate, onTimePickerClose, time
             <option value="aero">Aero</option>
             <option value="peace">Air peace</option>
             <option value="dana">Dana</option>
-            <option value="nation">First Nation</option>
+            <option value="firstnation">First Nation</option>
             <option value="medview">Medview</option>
           </select>
         </span>

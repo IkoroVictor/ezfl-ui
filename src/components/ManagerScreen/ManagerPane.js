@@ -7,7 +7,7 @@ import DisplayPanel from './FilterPane';
 class ManagerPane extends Component{
   constructor(props){
     super(props);
-     let savedFlights = this.props.savedFlights || [];
+     let savedFlights = this.props.savedFlights || {};
 
     //Map Saved Flights and prices
     let savedFlightsWithPrices  = []; 

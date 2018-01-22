@@ -51,6 +51,16 @@ Request.get = (options) => {
   return Request.make(options);
 }
 
+Request.post = (options) => {
+  options.method = 'POST';
+  return Request.make(options);
+}
+
+Request.delete = (options) => {
+  options.method = 'DELETE';
+  return Request.make(options);
+}
+
 Request.cancel = () => {
   cancel && cancel();
 }
